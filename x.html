@@ -553,3 +553,18 @@ if (table.tHead && table.tHead.rows[0].cells.length <= 4) {
     });
   }
 </script>
+<!-- ===== Auto-resize iframe height for WordPress embed ===== -->
+<script>
+function sendHeightToParent() {
+  try {
+    const height = document.body.scrollHeight;
+    window.parent.postMessage({ type: "resize-iframe", height: height, src: window.location.href }, "*");
+  } catch (e) {}
+}
+
+// Send initial height and when content toggles
+window.addEventListener("load", sendHeightToParent);
+window.addEventListener("resize", sendHeightToParent);
+const observer = new MutationObserver(sendHeightToParent);
+observer.observe(document.body, { childList: true, subtree: true, attributes: true });
+</script>
