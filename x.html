@@ -85,11 +85,14 @@
     /* Top-center logo (masked) */
     #dw-lottery-2 .dw-top-brand{display:none; align-items:center}
     #dw-lottery-2 .dw-top-logo{
-      display:block; width:200px; height:24px; background:var(--brand-500);
+      display:block;
+      height:clamp(22px, 2.8vw, 48px); /* desktop/tablet: scales with viewport */
+      aspect-ratio: 200 / 24;          /* keep the wordmark proportion */
+      width:auto;
+      background:var(--brand-500);
       -webkit-mask: var(--logo-url) no-repeat center / contain;
               mask: var(--logo-url) no-repeat center / contain;
     }
-
     /* Card & table */
     #dw-lottery-2 .dw-card { background: var(--bg); border: 0; box-shadow: none; overflow: hidden; margin: 0; width: 100%; }
     #dw-lottery-2 .dw-scroll { overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; }
@@ -150,6 +153,8 @@
       #dw-lottery-2 .dw-field{width:100%; max-width:46vw;}
       #dw-lottery-2 .dw-input{width:100%; padding:6px 24px 6px 10px; height:34px; font-size:13px;}
       #dw-lottery-2 thead th{ font-size:13px; line-height:1.2; }
+        /* Add this line ↓ for mobile logo size */
+      #dw-lottery-2 .dw-top-logo{ height:clamp(16px, 6vw, 28px); }
     }
     </style>
 
