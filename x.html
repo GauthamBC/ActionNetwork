@@ -285,6 +285,17 @@
     #dw-lottery-2 .dw-select{min-width:68px; height:32px; padding:6px 22px 6px 8px; font-size:13px;}
     #dw-lottery-2 .dw-btn{width:32px; height:32px; padding:0; border-radius:12px; display:inline-flex; align-items:center; justify-content:center;}
   }
+   /* === HARD OVERRIDE: always show the <img> logo, and force it to render black === */
+     #dw-lottery-2 .dw-top-logo { 
+       display: none !important;            /* never use the mask for now */
+     }
+     #dw-lottery-2 .dw-top-logo-img{
+       display: block !important;           /* always show the image */
+       height: var(--logo-h,24px);
+       width: auto;
+       filter: brightness(0) !important;    /* turns white artwork to black so it’s visible on white */
+       image-rendering: -webkit-optimize-contrast;
+     }
   </style>
 
   <!-- Controls -->
