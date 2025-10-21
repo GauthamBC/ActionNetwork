@@ -518,7 +518,7 @@ if (table.tHead && table.tHead.rows[0].cells.length <= 4) {
           
           // Robust fallback-first: default to <img>, switch to mask only after proving it works
           (function ensureLogo(){
-            const color = (getComputedStyle(root).getPropertyValue('--header-bg') || '#000').trim() || '#000';
+            const color = (getComputedStyle(root).getPropertyValue('--header-bg') || '#56C257').trim() || '#000';
             const probe = new Image();
             probe.onload = () => {
               if (topLogo) {
