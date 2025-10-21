@@ -99,7 +99,7 @@
     #dw-lottery-2 .dw-top-brand{display:none; align-items:center}
     #dw-lottery-2 .dw-top-logo{
       display:block;
-      height:24px;                /* desktop/tablet height (slightly larger) */
+      height:24px;                /* desktop/tablet height */
       aspect-ratio:200/24;
       width:auto;
       margin:0 auto;              /* truly centered */
@@ -159,27 +159,47 @@
     }
     #dw-lottery-2 .dw-brand-left{display:none; color:inherit; text-decoration:none; font-weight:600;}
 
-    /* Mobile adjustments */
+    /* ---------- UPDATED MOBILE TUNING ---------- */
+
+    /* Phones and small tablets (<=600px): keep everything on one row without overlap */
     @media (max-width: 600px){
       #dw-lottery-2 .dw-controls{
-        grid-template-columns: auto auto auto;       /* search | logo | rows/page */
-        column-gap:8px; row-gap:0; margin:6px 0 8px;
+        grid-template-columns: minmax(140px,1fr) auto auto; /* search | logo | rows/page */
+        gap:6px;
+        margin:6px 0 8px;
       }
+
+      /* smaller search */
       #dw-lottery-2 .dw-input{
-        width:clamp(150px, 55vw, 220px);             /* shorter search on phones */
-        padding:6px 24px 6px 10px; height:34px; font-size:13px;
+        width:clamp(140px, 46vw, 200px);
+        padding:6px 24px 6px 10px;
+        height:32px;
+        font-size:12.5px;
       }
-      #dw-lottery-2 .dw-top-logo{ height:18px; }     /* smaller logo on phones */
-      #dw-lottery-2 .right{ gap:6px; }               /* tighten spacing */
+
+      /* smaller centered logo */
+      #dw-lottery-2 .dw-top-logo{ height:16px; }
+
+      /* compact rows/page select + nav buttons */
+      #dw-lottery-2 .dw-select{
+        min-width:56px;
+        height:32px;
+        font-size:12.5px;
+        padding-right:28px;
+        background-position:right 8px center;
+        background-size:12px;
+      }
+      #dw-lottery-2 .dw-btn{ padding:6px 10px; }
+      
       #dw-lottery-2 thead th{ font-size:13px; line-height:1.2; }
     }
 
-    /* Ultra-small fallback: allow a gentle wrap so nothing disappears */
-    @media (max-width: 380px){
+    /* Very narrow phones (<=480px): wrap to two rows so nothing overlaps */
+    @media (max-width: 480px){
       #dw-lottery-2 .dw-controls{ grid-template-columns: 1fr 1fr; }
-      #dw-lottery-2 .left{ grid-column:1 / 3; }      /* search spans full width */
-      #dw-lottery-2 .center{ grid-column:1 / 2; justify-self:start; }
-      #dw-lottery-2 .right{ grid-column:2 / 3; justify-self:end; }
+      #dw-lottery-2 .left{   grid-column:1 / -1; }         /* search spans full width (row 1) */
+      #dw-lottery-2 .center{ grid-column:1 / 2; justify-self:start; }  /* row 2, left */
+      #dw-lottery-2 .right{  grid-column:2 / 3; justify-self:end; }    /* row 2, right */
     }
     </style>
 
@@ -477,5 +497,4 @@
         setTimeout(() => status.style.display = 'none', 2500);
       }
     });
-  }
 </script>
