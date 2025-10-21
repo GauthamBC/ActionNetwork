@@ -1,302 +1,189 @@
-<section id="tailgating-states">
-<!-- Datawrapper-style table (black header + gold stripes) -->
-<div id="dw-lottery-2" data-dw="table"
-     style="--logo-h:34px;
-            --stripe:#F2C23A;              /* gold zebra */
-            --hover:#F7DB7A;               /* gold hover */
-            --header-bg:#000000;           /* black header */
-            --header-fg:#ffffff;
-            --scroll-track:#f7f8fb; 
-            --scroll-thumb:#000000; 
-            --scroll-thumb-hover:#333333;
-            --gutter: clamp(8px, 4vw, 14px);
-            --gutter-left: 0;
-            --gutter-right: 0; 
-            --edge-pad: 14px;
-            --table-max-h: 500px;
-            --vbar-w: 6px; --vbar-w-hover: 8px;">
-  <style>
-  /* ===== Datawrapper-style table (black + gold theme) ===== */
-  #dw-lottery-2{
-    /* Brand palette (gold + black) */
-    --brand-50:#FFF7DC; 
-    --brand-100:#FFE8AA;
-    --brand-500:#F2C23A; 
-    --brand-600:#D9A72A; 
-    --brand-700:#B9851A; 
-    --brand-900:#111111;
+<section id="tailgating-states"> 
+  <!-- Wrapper provides the CSS scope + theme variables -->
+  <div id="dw-lottery-2" data-dw="table"
+       style="--logo-h:45px;
+              --stripe:#DCF2EB;              /* mint stripe */
+              --hover:#BCE5D6;               /* hover mint */
+              --header-bg:#56C257;           /* green header */
+              --header-fg:#ffffff;
+              --scroll-track:#f7f8fb; 
+              --scroll-thumb:#56C257; 
+              --scroll-thumb-hover:#3FA94B;
+              --gutter: clamp(8px, 4vw, 14px);
+              --gutter-left: 0;
+              --gutter-right: 0; 
+              --edge-pad: 14px;
+              --table-max-h: 500px;
+              --vbar-w: 6px; --vbar-w-hover: 8px;">
 
-    --bg:#ffffff; --text:#1f2937;
-    box-sizing:border-box; overflow-x:hidden; display:block; max-width:100%;
-    padding-left:var(--gutter-left,var(--gutter));
-    padding-right:var(--gutter-right,var(--gutter));
-  }
+    <style>
+    /* ===== Datawrapper-style table (Action Network Green + Mint theme) ===== */
+    #dw-lottery-2{
+      /* Brand palette */
+      --brand-50:#F6FFF9;
+      --brand-100:#DCF2EB;      /* mint stripe */
+      --brand-500:#56C257;      /* main green */
+      --brand-600:#3FA94B;
+      --brand-700:#2E8538;
+      --brand-900:#1F5D28;
 
-  /* Controls layout */
-  #dw-lottery-2 .dw-controls{
-    display:grid; grid-template-columns:1fr auto 1fr; align-items:center;
-    gap:12px; margin:2px 0 10px 0;
-  }
-  #dw-lottery-2 .left{display:flex; gap:8px; align-items:center; flex-wrap:wrap; justify-content:flex-start}
-  #dw-lottery-2 .center{justify-self:center; display:flex; align-items:center}
-  #dw-lottery-2 .right{display:flex; gap:8px; align-items:center; flex-wrap:wrap; justify-content:flex-end}
+      --bg:#ffffff; 
+      --text:#1f2937;
+      box-sizing:border-box; overflow-x:hidden; display:block; max-width:100%;
+      padding-left:var(--gutter-left,var(--gutter));
+      padding-right:var(--gutter-right,var(--gutter));
+    }
 
-  #dw-lottery-2 .dw-field{position:relative}
-  #dw-lottery-2 .dw-input,#dw-lottery-2 .dw-select,#dw-lottery-2 .dw-btn{
-    font:14px/1.2 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; border-radius:10px; padding:8px 10px; transition:.15s ease;
-  }
-  #dw-lottery-2 .dw-input,#dw-lottery-2 .dw-select{
-    background:#fff;
-    border:1px solid var(--brand-900);         /* black border */
-    color:var(--text); box-shadow:inset 0 1px 2px rgba(16,24,40,.04);
-  }
-  #dw-lottery-2 .dw-input{width:min(320px,100%); padding-right:36px}
-  #dw-lottery-2 .dw-input::placeholder{color:#9AA4B2}
-  #dw-lottery-2 .dw-input:focus,#dw-lottery-2 .dw-select:focus{
-    outline:none; border-color:var(--brand-900);
-    box-shadow:0 0 0 3px color-mix(in oklab,var(--brand-900) 25%,transparent); background:#fff;
-  }
-  #dw-lottery-2 .dw-select{
-    appearance:none; padding-right:34px;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23111111' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
-    background-repeat:no-repeat; background-position:right 10px center; background-size:14px;
-  }
-  #dw-lottery-2 .dw-btn{background:var(--brand-900); color:#fff; border:1px solid var(--brand-900); padding-inline:12px; cursor:pointer}
-  #dw-lottery-2 .dw-btn:hover{background:#222; border-color:#222} 
-  #dw-lottery-2 .dw-btn:active{transform:translateY(1px)}
-  #dw-lottery-2 .dw-btn[disabled]{background:#fafafa; border-color:#d1d5db; color:#6b7280; opacity:1; cursor:not-allowed; transform:none}
-  #dw-lottery-2 .dw-status{font:12px/1.2 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; color:#6b7280}
-  #dw-lottery-2 .dw-counter{display:none !important;}
-
-  /* Clear button */
-  #dw-lottery-2 .dw-clear{
-    position:absolute; right:10px; top:50%; translate:0 -50%; width:22px; height:22px; border-radius:9999px; border:0;
-    background:transparent; color:var(--brand-900); cursor:pointer; display:none; align-items:center; justify-content:center;
-  }
-  #dw-lottery-2 .dw-field.has-value .dw-clear{display:flex}
-  #dw-lottery-2 .dw-clear:hover{background:var(--brand-50)}
-
- /* Top-centre logo (mask + fallback) */
-     #dw-lottery-2 .dw-top-brand{
-       display:flex; align-items:center; justify-content:center;
-     }
-     #dw-lottery-2 .dw-top-logo{
-       display:block;
-       height: var(--logo-h,24px);
-       width: clamp(120px, 16vw, 220px);
-       background: var(--header-bg);                 /* colour the mask */
-       -webkit-mask: var(--logo-url) no-repeat center / contain;
-               mask: var(--logo-url) no-repeat center / contain;
-     }
-     /* Fallback <img> (shows if mask unsupported) */
-     #dw-lottery-2 .dw-top-logo-img{
-       display:none; height: var(--logo-h,24px); width:auto;
-     }
-     @supports not (-webkit-mask: url("")){
-       #dw-lottery-2 .dw-top-logo{ display:none; }
-       #dw-lottery-2 .dw-top-logo-img{ display:block; }
-     }
-
-/* ===== OVERRIDE: show <img> by default; swap to mask only when JS confirms ===== */
-#dw-lottery-2 .dw-top-logo { display: none; }
-#dw-lottery-2 .dw-top-logo-img { display: block; height: var(--logo-h,24px); width: auto; }
-#dw-lottery-2.logo-mask-ok .dw-top-logo { display: block; }
-#dw-lottery-2.logo-mask-ok .dw-top-logo-img { display: none; }
-/* ===== END OVERRIDE ===== */
-
- /* Card & table */
-#dw-lottery-2 .dw-card {
-  background: var(--bg);
-  border: 0;
-  box-shadow: none;
-  overflow: hidden;
-  margin: 0;
-  width: 100%;
-}
-
-/* Default scroll for wide tables */
-#dw-lottery-2 .dw-scroll {
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Disable horizontal scroll if 4 or fewer columns */
-#dw-lottery-2 .dw-scroll.no-scroll {
-  overflow-x: hidden !important;
-}
-#dw-lottery-2 table.dw-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  font: 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  color: var(--text);
-  font-variant-numeric: tabular-nums;
-  background: transparent;
-
-  /* :white_check_mark: Allow natural column sizing + horizontal scroll */
-  min-width: 1200px;
-  table-layout: auto;
-}
-
-
-  /* Header */
-  #dw-lottery-2 thead th{
-    background:var(--header-bg); color:var(--header-fg,#fff); font-weight:700; text-align:center;
-    padding:12px 14px; white-space:nowrap; vertical-align:middle; border:0;
-    transition:background-color .15s, color .15s, box-shadow .15s, transform .05s;
-  }
-  #dw-lottery-2 thead th.sortable{cursor:pointer; user-select:none}
-  #dw-lottery-2 thead th.sortable::after{content:"↕"; font-size:12px; opacity:.75; margin-left:8px; color:var(--header-fg,#fff)}
-  #dw-lottery-2 thead th.sortable[data-sort="asc"]::after{content:"▲"}
-  #dw-lottery-2 thead th.sortable[data-sort="desc"]::after{content:"▼"}
-  #dw-lottery-2 thead th.sortable:hover,#dw-lottery-2 thead th.sortable:focus-visible{background:#222; color:#fff; box-shadow:inset 0 -3px 0 var(--brand-500)}
-  #dw-lottery-2 .dw-scroll.scrolled thead th{box-shadow:0 6px 10px -6px rgba(0,0,0,.25)}
-  #dw-lottery-2 .dw-scroll.scrolled thead th.sortable:hover,#dw-lottery-2 .dw-scroll.scrolled thead th.sortable:focus-visible{box-shadow:inset 0 -3px 0 var(--brand-500),0 6px 10px -6px rgba(0,0,0,.25)}
-  #dw-lottery-2 thead th.is-sorted{background:#1a1a1a; color:#fff; box-shadow:inset 0 -3px 0 var(--brand-500)}
-
-/* Allow text wrapping only for the State column, keep headers tidy */
-#dw-lottery-2 thead th,
-#dw-lottery-2 tbody td {
-  padding: 12px 10px;
-  overflow: hidden;
-}
-
-/* Keep headers on one line */
-#dw-lottery-2 thead th {
-  white-space: nowrap;
-}
-
-/* :white_check_mark: Only wrap multi-word states over 2–3 lines */
-#dw-lottery-2 tbody td:nth-child(2) {
-  white-space: normal;          
-  word-break: keep-all;         
-  overflow-wrap: break-word;
-  min-width: 100px;
-  max-width: 220px;            
-  line-height: 1.3;
-}
-
-/* Prevent Chrome re-paint duplication bug */
-#dw-lottery-2 tbody td {
-  background-clip: padding-box;
-  backface-visibility: hidden;
-  transform: translateZ(0);
-}
-
-  /* Body */
-  #dw-lottery-2 tbody td{ text-align:center; vertical-align:middle; background:transparent!important; border:0; transition:background-color .12s }
-  #dw-lottery-2 thead th:last-child,#dw-lottery-2 tbody td:last-child{padding-right:14px}
-  #dw-lottery-2 tbody tr:nth-child(odd){background:var(--stripe,#F2C23A)}  /* gold stripes */
-  #dw-lottery-2 tbody tr:hover{background:var(--hover,#F7DB7A); box-shadow:inset 3px 0 0 var(--brand-900)}
-  #dw-lottery-2 thead th{position:sticky; top:var(--sticky-top,0); z-index:5}
-
-  /* Scrollbar + height */
-  #dw-lottery-2 .dw-scroll{max-height:var(--table-max-h,360px); overflow-y:auto; -ms-overflow-style:auto; scrollbar-width:thin; scrollbar-color:var(--scroll-thumb) transparent}
-  #dw-lottery-2 .dw-scroll::-webkit-scrollbar:horizontal{height:0; display:none}
-  #dw-lottery-2 .dw-scroll::-webkit-scrollbar:vertical{width:var(--vbar-w)}
-  #dw-lottery-2 .dw-scroll:hover::-webkit-scrollbar:vertical{width:var(--vbar-w-hover)}
-  #dw-lottery-2 .dw-scroll::-webkit-scrollbar-thumb{background:var(--scroll-thumb); border-radius:9999px; border:2px solid transparent; background-clip:content-box}
-
-  /* Dynamic zebra */
-  #dw-lottery-2 tbody tr{background:transparent!important}
-  #dw-lottery-2 tbody tr.dw-zebra{background:var(--stripe,#F2C23A)!important}
-  #dw-lottery-2 tbody td.is-sorted{background:var(--hover,#F7DB7A)!important; font-weight:600}
-
-  /* Empty-state row */
-  #dw-lottery-2 tr.dw-empty td{text-align:center; color:#6b7280; font-style:italic; padding:18px 14px; background:linear-gradient(0deg,#fff,var(--brand-50))}
-
-  /* Footer (brand name left; optional) */
-  #dw-lottery-2 .dw-footer{
-    display:flex; align-items:center; justify-content:space-between; gap:12px;
-    padding:10px 0; margin-top:10px; color:#6b7280;
-    font:12px/1.25 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
-    box-shadow:0 -1px 0 0 color-mix(in oklab,var(--brand-900) 35%, transparent);
-  }
-  #dw-lottery-2 .dw-brand-left{
-    display:none; color:inherit; text-decoration:none; font-weight:600;
-    border-bottom:1px dashed transparent; transition:color .15s, border-color .15s;
-  }
-  #dw-lottery-2 .dw-brand-left:is(:hover,:focus-visible){color:var(--brand-700); border-color:var(--brand-700); outline:none}
-
-  /* === Keep the controls in a single row on narrow desktops === */
-#dw-lottery-2 .dw-controls{
-  /* allow left & right columns to shrink properly */
-  grid-template-columns: minmax(0,1fr) auto minmax(0,1fr);
-  column-gap: 12px;
-}
-#dw-lottery-2 .left,
-#dw-lottery-2 .center,
-#dw-lottery-2 .right { min-width: 0; }
-
-/* keep both side clusters on one line */
-#dw-lottery-2 .left,
-#dw-lottery-2 .right { flex-wrap: nowrap; }
-
-/* avoid accidental wrapping in the right cluster */
-#dw-lottery-2 .right { white-space: nowrap; gap: 8px; }
-
-/* let the search shrink on tighter widths (overrides the earlier width) */
-#dw-lottery-2 .dw-input { width: clamp(160px, 26vw, 320px); }
-
-/* keep the select compact */
-#dw-lottery-2 .dw-select { min-width: 68px; }
-
-/* slightly tighter buttons */
-#dw-lottery-2 .dw-btn { padding-inline: 8px; }
-
-/* — Compact desktop (601–980px): show short "Rows" label and keep layout tidy — */
-@media (min-width:601px) and (max-width:980px){
-  /* replace the long label text "Rows/page" with a short "Rows" */
-  #dw-lottery-2 .right > .dw-status{ 
-    display:inline; 
-    font-size:0;              /* hide original text */
-  }
-  #dw-lottery-2 .right > .dw-status::after{ 
-    content:"Rows"; 
-    font-size:12px;           /* visible replacement text */
-  }
-
-  /* make search a touch smaller; keep logo balanced */
-  #dw-lottery-2 .dw-input { width: clamp(150px, 22vw, 260px); }
-  #dw-lottery-2 .dw-top-logo { height: clamp(18px, 3.2vw, 22px); width: auto; }
-}
-
-/* Optional: slightly larger logo on roomy desktops */
-@media (min-width:981px){
-  #dw-lottery-2 .dw-top-logo { height: 24px; width: auto; }
-}
-
-  /* === Mobile one-line controls (keep logo visible) === */
-  @media (max-width: 600px){
+    /* Controls layout — compact pattern (desktop + mobile) */
     #dw-lottery-2 .dw-controls{
       display:grid;
-      grid-template-columns:minmax(0,1fr) auto auto;
-      align-items:center; column-gap:8px; row-gap:0; margin:6px 0 8px;
+      grid-template-columns: auto 1fr auto;
+      align-items:center;
+      gap:12px; margin:2px 0 10px 0;
     }
-    #dw-lottery-2 .left, #dw-lottery-2 .center, #dw-lottery-2 .right{min-width:0;}
-    #dw-lottery-2 .dw-field{width:100%; max-width:46vw;}
-    #dw-lottery-2 .dw-input{width:100%; padding:6px 24px 6px 10px; height:34px; font-size:13px;}
-    #dw-lottery-2 .dw-clear{width:20px; height:20px;}
-    #dw-lottery-2 thead th{ font-size:13px; line-height:1.2; } /* tighter header on small screens */
-    #dw-lottery-2 .dw-top-logo{height:22px; width:120px;}
-    #dw-lottery-2 .right{justify-content:flex-end; gap:6px;}
-    #dw-lottery-2 .right .dw-status{display:none;}
-    #dw-lottery-2 .dw-select{min-width:68px; height:32px; padding:6px 22px 6px 8px; font-size:13px;}
-    #dw-lottery-2 .dw-btn{width:32px; height:32px; padding:0; border-radius:12px; display:inline-flex; align-items:center; justify-content:center;}
-  }
-   /* === HARD OVERRIDE: always show the <img> logo, and force it to render black === */
-     #dw-lottery-2 .dw-top-logo { 
-       display: none !important;            /* never use the mask for now */
-     }
-     #dw-lottery-2 .dw-top-logo-img{
-       display: block !important;           /* always show the image */
-       height: var(--logo-h,24px);
-       width: auto;
-       filter: brightness(0) !important;    /* turns white artwork to black so it’s visible on white */
-       image-rendering: -webkit-optimize-contrast;
-     }
-  </style>
+    #dw-lottery-2 .left{
+      display:flex; gap:8px; align-items:center; flex-wrap:nowrap; justify-content:flex-start;
+      min-width:0;
+    }
+    #dw-lottery-2 .center{justify-self:center; display:flex; align-items:center; justify-content:center;}
+    #dw-lottery-2 .right{
+      display:flex; gap:8px; align-items:center; flex-wrap:nowrap; justify-content:flex-end;
+      min-width:0;
+    }
+    #dw-lottery-2 .right label{ display:none; }
+    #dw-lottery-2 .right select,
+    #dw-lottery-2 .right button { vertical-align: middle; }
+
+    /* Search field */
+    #dw-lottery-2 .dw-field{ position:relative; flex:0 0 auto; }
+    #dw-lottery-2 .dw-input,#dw-lottery-2 .dw-select,#dw-lottery-2 .dw-btn{
+      font:14px/1.2 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; 
+      border-radius:10px; padding:8px 10px; transition:.15s ease;
+    }
+    #dw-lottery-2 .dw-input,#dw-lottery-2 .dw-select{
+      background:#fff;
+      border:1px solid var(--brand-700);
+      color:var(--text); box-shadow:inset 0 1px 2px rgba(16,24,40,.04);
+    }
+    #dw-lottery-2 .dw-input{ width:clamp(260px, 32vw, 360px); padding-right:36px; }
+    #dw-lottery-2 .dw-input::placeholder{color:#9AA4B2}
+    #dw-lottery-2 .dw-input:focus,#dw-lottery-2 .dw-select:focus{
+      outline:none; border-color:var(--brand-500);
+      box-shadow:0 0 0 3px color-mix(in oklab,var(--brand-500) 25%,transparent); background:#fff;
+    }
+    #dw-lottery-2 .dw-select{
+      appearance:none; padding-right:34px; min-width:58px;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%232E8538' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat:no-repeat; background-position:right 10px center; background-size:14px;
+    }
+    #dw-lottery-2 .dw-btn{
+      background:var(--brand-500); color:#fff; border:1px solid var(--brand-500);
+      padding-inline:12px; cursor:pointer;
+    }
+    #dw-lottery-2 .dw-btn:hover{background:var(--brand-600); border-color:var(--brand-600)} 
+    #dw-lottery-2 .dw-btn:active{transform:translateY(1px)}
+    #dw-lottery-2 .dw-btn[disabled]{background:#fafafa; border-color:#d1d5db; color:#6b7280; opacity:1; cursor:not-allowed; transform:none}
+    #dw-lottery-2 .dw-status{font:12px/1.2 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; color:#6b7280}
+    #dw-lottery-2 .dw-counter{display:none !important;}
+
+    /* Clear button */
+    #dw-lottery-2 .dw-clear{
+      position:absolute; right:10px; top:50%; translate:0 -50%; width:22px; height:22px; border-radius:9999px; border:0;
+      background:transparent; color:var(--brand-700); cursor:pointer; display:none; align-items:center; justify-content:center;
+    }
+    #dw-lottery-2 .dw-field.has-value .dw-clear{display:flex}
+    #dw-lottery-2 .dw-clear:hover{background:var(--brand-100)}
+
+    /* Top-center logo */
+    #dw-lottery-2 .dw-top-brand{display:none; align-items:center}
+    #dw-lottery-2 .dw-top-logo{
+      display:block;
+      height:24px;
+      aspect-ratio:200/24;
+      width:auto;
+      margin:0 auto;
+      background:var(--brand-500);
+      -webkit-mask: var(--logo-url) no-repeat center / contain;
+              mask: var(--logo-url) no-repeat center / contain;
+    }
+
+    /* Card & table */
+    #dw-lottery-2 .dw-card { background: var(--bg); border: 0; box-shadow: none; overflow: hidden; margin: 0; width: 100%; }
+    #dw-lottery-2 .dw-scroll { overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; }
+    #dw-lottery-2 .dw-scroll.no-scroll { overflow-x: hidden !important; }
+    #dw-lottery-2 table.dw-table {
+      width: 100%; border-collapse: separate; border-spacing: 0;
+      font: 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--text); font-variant-numeric: tabular-nums; background: transparent;
+      min-width: 1200px; table-layout: auto;
+    }
+
+    /* Header */
+    #dw-lottery-2 thead th{
+      background:var(--header-bg,#56C257);
+      color:var(--header-fg,#ffffff);
+      font-weight:700; text-align:center;
+      padding:12px 14px; white-space:nowrap; vertical-align:middle; border:0;
+      transition:background-color .15s, color .15s, box-shadow .15s, transform .05s;
+    }
+    #dw-lottery-2 thead th.sortable{cursor:pointer; user-select:none}
+    #dw-lottery-2 thead th.sortable::after{content:"↕"; font-size:12px; opacity:.75; margin-left:8px; color:var(--header-fg,#fff)}
+    #dw-lottery-2 thead th.sortable[data-sort="asc"]::after{content:"▲"}
+    #dw-lottery-2 thead th.sortable[data-sort="desc"]::after{content:"▼"}
+    #dw-lottery-2 thead th.sortable:hover,#dw-lottery-2 thead th.sortable:focus-visible{background:var(--brand-600); color:#fff; box-shadow:inset 0 -3px 0 var(--brand-100)}
+    #dw-lottery-2 .dw-scroll.scrolled thead th{box-shadow:0 6px 10px -6px rgba(0,0,0,.25)}
+    #dw-lottery-2 thead th.is-sorted{background:var(--brand-700); color:#fff; box-shadow:inset 0 -3px 0 var(--brand-100)}
+
+    /* Body */
+    #dw-lottery-2 tbody td{ text-align:center; vertical-align:middle; background:transparent!important; border:0; transition:background-color .12s }
+    #dw-lottery-2 thead th{position:sticky; top:var(--sticky-top,0); z-index:5}
+
+    /* Scrollbar */
+    #dw-lottery-2 .dw-scroll{max-height:var(--table-max-h,360px); overflow-y:auto; -ms-overflow-style:auto; scrollbar-width:thin; scrollbar-color:var(--scroll-thumb,#56C257) transparent}
+    #dw-lottery-2 .dw-scroll::-webkit-scrollbar:vertical{width:8px}
+    #dw-lottery-2 .dw-scroll::-webkit-scrollbar-thumb{background:var(--scroll-thumb,#56C257); border-radius:9999px;}
+
+    /* ✅ Zebra + hover highlight */
+    #dw-lottery-2 tbody tr{background:transparent!important}
+    #dw-lottery-2 tbody tr.dw-zebra{background:var(--stripe,#DCF2EB)!important}
+    #dw-lottery-2 tbody tr:hover{background:var(--hover,#BCE5D6)!important; box-shadow:inset 3px 0 0 var(--brand-500)}
+    #dw-lottery-2 tbody td.is-sorted{background:var(--hover,#BCE5D6)!important; font-weight:600}
+
+    /* Footer */
+    #dw-lottery-2 .dw-footer{
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      padding:10px 0; margin-top:10px; color:#6b7280;
+      font:12px/1.25 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+      box-shadow:0 -1px 0 0 color-mix(in oklab,var(--brand-500) 35%, transparent);
+    }
+    #dw-lottery-2 .dw-brand-left{display:none; color:inherit; text-decoration:none; font-weight:600;}
+
+    /* ---------- MOBILE ---------- */
+    @media (max-width: 600px){
+      #dw-lottery-2 .dw-controls{
+        grid-template-columns: minmax(140px,1fr) auto auto;
+        gap:6px; margin:6px 0 8px;
+      }
+      #dw-lottery-2 .dw-input{
+        width:clamp(140px, 46vw, 200px);
+        padding:6px 24px 6px 10px;
+        height:32px; font-size:12.5px;
+      }
+      #dw-lottery-2 .dw-top-logo{ height:16px; }
+      #dw-lottery-2 .dw-select{
+        min-width:56px; height:32px; font-size:12.5px;
+        padding-right:28px; background-position:right 8px center; background-size:12px;
+      }
+      #dw-lottery-2 .dw-btn{ padding:6px 10px; }
+      #dw-lottery-2 thead th{ font-size:13px; line-height:1.2; }
+    }
+    @media (max-width: 480px){
+      #dw-lottery-2 .dw-controls{ grid-template-columns: 1fr 1fr; }
+      #dw-lottery-2 .left{ grid-column:1 / -1; }
+      #dw-lottery-2 .center{ grid-column:1 / 2; justify-self:start; }
+      #dw-lottery-2 .right{ grid-column:2 / 3; justify-self:end; }
+    }
+    </style>
 
   <!-- Controls -->
   <div class="dw-controls">
