@@ -97,6 +97,13 @@
        #dw-lottery-2 .dw-top-logo-img{ display:block; }
      }
 
+/* ===== OVERRIDE: show <img> by default; swap to mask only when JS confirms ===== */
+#dw-lottery-2 .dw-top-logo { display: none; }
+#dw-lottery-2 .dw-top-logo-img { display: block; height: var(--logo-h,24px); width: auto; }
+#dw-lottery-2.logo-mask-ok .dw-top-logo { display: block; }
+#dw-lottery-2.logo-mask-ok .dw-top-logo-img { display: none; }
+/* ===== END OVERRIDE ===== */
+
  /* Card & table */
 #dw-lottery-2 .dw-card {
   background: var(--bg);
@@ -543,27 +550,35 @@ if (table.tHead && table.tHead.rows[0].cells.length <= 4) {
           const topLogo = root.querySelector('.dw-top-logo');      // masked version
           const topImg  = root.querySelector('.dw-top-logo-img');  // <img> fallback
           
-          // Try to use the masked logo first
+          // Try to use the masked logo first (kept as-is; explicit styles below will take precedence)
           if (LOGO_URL) topLogo.style.setProperty('--logo-url', `url("${LOGO_URL}")`);
           
           // Always show the brand wrapper
           topWrap.style.display = 'flex';
           
-          // Robust fallback: if the image can't be loaded, or mask fails, show <img>
-          (function ensureLogo() {
+          // Robust fallback-first: default to <img>, switch to mask only after proving it works
+          (function ensureLogo(){
+            const color = (getComputedStyle(root).getPropertyValue('--header-bg') || '#000').trim() || '#000';
             const probe = new Image();
             probe.onload = () => {
-              // Masked logo should render fine
-              if (topLogo) topLogo.style.display = '';
-              if (topImg)  topImg.style.display  = 'none';
+              if (topLogo) {
+                topLogo.style.backgroundColor = color;
+                topLogo.style.webkitMaskImage  = `url("${LOGO_URL}")`;
+                topLogo.style.maskImage        = `url("${LOGO_URL}")`;
+                topLogo.style.webkitMaskRepeat = 'no-repeat';
+                topLogo.style.maskRepeat       = 'no-repeat';
+                topLogo.style.webkitMaskPosition = 'center';
+                topLogo.style.maskPosition       = 'center';
+                topLogo.style.webkitMaskSize   = 'contain';
+                topLogo.style.maskSize         = 'contain';
+              }
+              // Flip to masked logo only now
+              root.classList.add('logo-mask-ok');
             };
             probe.onerror = () => {
-              // Fall back to normal <img>
-              if (topLogo) topLogo.style.display = 'none';
-              if (topImg)  {
-                if (!topImg.getAttribute('src')) topImg.src = LOGO_URL;
-                topImg.style.display = 'block';
-              }
+              // Stay on <img> fallback; ensure it has a src
+              if (topImg && !topImg.getAttribute('src')) topImg.src = LOGO_URL;
+              root.classList.remove('logo-mask-ok');
             };
             probe.src = LOGO_URL;
           })();
