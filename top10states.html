@@ -324,6 +324,30 @@
   }
   .vi-compact-embed .metric-number{ font-size: 18px } /* prevents wrap */
 }
+/* center the donut across the full card width (robust across browsers) */
+.vi-compact-embed .donut svg{
+  grid-row: 3;
+  grid-column: 1 / -1;        /* span full width of the card */
+  justify-self: center !important;
+  margin-inline: auto;
+  display: block;
+}
+
+/* narrow-desktop (2-col) tune: make the donut bigger so it doesn't look tiny */
+@media (max-width: 980px){
+  .vi-compact-embed{
+    --viz-row-h: 112px;       /* taller viz row */
+    --donut-h: 112px;         /* bigger ring */
+    --card-h: 210px;          /* keep all 4 cards equal height */
+  }
+  /* ensure the calendar & spark fit the taller viz row cleanly */
+  .vi-compact-embed .calendar{ height: var(--viz-row-h) }
+  .vi-compact-embed .spark svg{ height: calc(var(--viz-row-h) - 2px) }
+}
+
+/* safety: if text wraps, keep the number on its own full-width row */
+.vi-compact-embed .donut .metric-number,
+.vi-compact-embed .donut .metric-scale{ grid-column: 1 / -1 }
   </style>
 
   <div class="head">
