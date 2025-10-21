@@ -202,6 +202,54 @@
   }
   #dw-lottery-2 .dw-brand-left:is(:hover,:focus-visible){color:var(--brand-700); border-color:var(--brand-700); outline:none}
 
+  /* === Keep the controls in a single row on narrow desktops === */
+#dw-lottery-2 .dw-controls{
+  /* allow left & right columns to shrink properly */
+  grid-template-columns: minmax(0,1fr) auto minmax(0,1fr);
+  column-gap: 12px;
+}
+#dw-lottery-2 .left,
+#dw-lottery-2 .center,
+#dw-lottery-2 .right { min-width: 0; }
+
+/* keep both side clusters on one line */
+#dw-lottery-2 .left,
+#dw-lottery-2 .right { flex-wrap: nowrap; }
+
+/* avoid accidental wrapping in the right cluster */
+#dw-lottery-2 .right { white-space: nowrap; gap: 8px; }
+
+/* let the search shrink on tighter widths (overrides the earlier width) */
+#dw-lottery-2 .dw-input { width: clamp(160px, 26vw, 320px); }
+
+/* keep the select compact */
+#dw-lottery-2 .dw-select { min-width: 68px; }
+
+/* slightly tighter buttons */
+#dw-lottery-2 .dw-btn { padding-inline: 8px; }
+
+/* — Compact desktop (601–980px): show short "Rows" label and keep layout tidy — */
+@media (min-width:601px) and (max-width:980px){
+  /* replace the long label text "Rows/page" with a short "Rows" */
+  #dw-lottery-2 .right > .dw-status{ 
+    display:inline; 
+    font-size:0;              /* hide original text */
+  }
+  #dw-lottery-2 .right > .dw-status::after{ 
+    content:"Rows"; 
+    font-size:12px;           /* visible replacement text */
+  }
+
+  /* make search a touch smaller; keep logo balanced */
+  #dw-lottery-2 .dw-input { width: clamp(150px, 22vw, 260px); }
+  #dw-lottery-2 .dw-top-logo { height: clamp(18px, 3.2vw, 22px); width: auto; }
+}
+
+/* Optional: slightly larger logo on roomy desktops */
+@media (min-width:981px){
+  #dw-lottery-2 .dw-top-logo { height: 24px; width: auto; }
+}
+
   /* === Mobile one-line controls (keep logo visible) === */
   @media (max-width: 600px){
     #dw-lottery-2 .dw-controls{
