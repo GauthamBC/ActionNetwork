@@ -89,13 +89,7 @@
       -webkit-mask: var(--logo-url) no-repeat center / contain;
               mask: var(--logo-url) no-repeat center / contain;
     }
-    /* Fix: Make Action Network tick visible */
-    #dw-lottery-2 .logo-wrapper {
-      background-color: #F6FFF9; /* light mint background */
-      padding: 6px 10px;
-      border-radius: 8px;
-      display: inline-block;
-    }
+
     /* Card & table */
     #dw-lottery-2 .dw-card { background: var(--bg); border: 0; box-shadow: none; overflow: hidden; margin: 0; width: 100%; }
     #dw-lottery-2 .dw-scroll { overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; }
@@ -171,11 +165,11 @@
 
       <!-- Center: NOT clickable logo -->
       <div class="center">
-         <div class="logo-wrapper">
+        <div class="dw-top-brand" aria-label="Brand">
           <div class="dw-top-logo" aria-hidden="true"></div>
-         </div>
+        </div>
       </div>
-      
+
       <div class="right">
         <label class="dw-status" for="dw-size" style="margin-right:4px;">Rows/page</label>
         <select id="dw-size" class="dw-select">
@@ -375,7 +369,7 @@
           nextBtn.addEventListener('click', ()=>{ page++; renderPage(); });
 
           /* ---------- Config ---------- */
-          const LOGO_URL   = "https://i.postimg.cc/x1nG117r/AN-final2-logo.png"; // logo mask
+          const LOGO_URL   = "https://i.postimg.cc/kGVJyXc1/VI-logo-final.png"; // logo mask
           const BRAND_NAME = "";
           const BRAND_HREF = "";
 
@@ -408,15 +402,15 @@
   </div> <!-- /#dw-lottery-2 wrapper -->
 </section>
 
-<div style="height: 4px;"></div>
+<div style="height: 8px;"></div>
 
 <!-- Embed button placed AFTER section -->
 <div class="embed-container" style="text-align:center;margin-top:12px;">
   <button id="copy-embed-btn"
-          style="background:#4AA94B;color:#fff;border:1px solid #4AA94B;border-radius:8px;
+          style="background:#000;color:#fff;border:1px solid #000;border-radius:8px;
                  padding:8px 18px;cursor:pointer;font:14px/1.2 system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
                  transition:.2s ease;">
-    🔗 Embed State Table
+    📎 Embed State Table
   </button>
 
   <div id="embed-wrapper" 
