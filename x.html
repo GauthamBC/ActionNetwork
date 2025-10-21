@@ -76,17 +76,27 @@
   #dw-lottery-2 .dw-field.has-value .dw-clear{display:flex}
   #dw-lottery-2 .dw-clear:hover{background:var(--brand-50)}
 
-  /* ===== Top-center logo (kept; fills with header colour if you want) ===== */
-  #dw-lottery-2 .dw-top-brand{display:none; align-items:center}
-  #dw-lottery-2 .dw-top-logo{
-    display:block;
-    width:200px; height:24px;
-    background:var(--header-bg);               /* set to black to match header */
-    -webkit-mask: var(--logo-url) no-repeat center / contain;
-            mask: var(--logo-url) no-repeat center / contain;
-  }
+ /* Top-centre logo (mask + fallback) */
+     #dw-lottery-2 .dw-top-brand{
+       display:flex; align-items:center; justify-content:center;
+     }
+     #dw-lottery-2 .dw-top-logo{
+       display:block;
+       height: var(--logo-h,24px);
+       width: clamp(120px, 16vw, 220px);
+       background: var(--header-bg);                 /* colour the mask */
+       -webkit-mask: var(--logo-url) no-repeat center / contain;
+               mask: var(--logo-url) no-repeat center / contain;
+     }
+     /* Fallback <img> (shows if mask unsupported) */
+     #dw-lottery-2 .dw-top-logo-img{
+       display:none; height: var(--logo-h,24px); width:auto;
+     }
+     @supports not (-webkit-mask: url("")){
+       #dw-lottery-2 .dw-top-logo{ display:none; }
+       #dw-lottery-2 .dw-top-logo-img{ display:block; }
+     }
 
-  /* Card & table */
  /* Card & table */
 #dw-lottery-2 .dw-card {
   background: var(--bg);
@@ -281,12 +291,15 @@
     </div>
 
     <!-- Center: NOT clickable logo -->
-    <div class="center">
-      <div class="dw-top-brand" aria-label="Brand">
-        <div class="dw-top-logo" aria-hidden="true"></div>
-      </div>
-    </div>
-
+     <div class="center">
+  <div class="dw-top-brand" aria-label="Brand">
+    <div class="dw-top-logo" aria-hidden="true"></div>
+    <img class="dw-top-logo-img"
+         src="https://i.postimg.cc/kGVJyXc1/VI-logo-final.png"
+         alt="VegasInsider logo" loading="lazy">
+  </div>
+</div>
+       
     <div class="right">
       <label class="dw-status" for="dw-size" style="margin-right:4px;">Rows/page</label>
       <select id="dw-size" class="dw-select">
