@@ -348,6 +348,51 @@
 /* safety: if text wraps, keep the number on its own full-width row */
 .vi-compact-embed .donut .metric-number,
 .vi-compact-embed .donut .metric-scale{ grid-column: 1 / -1 }
+    /* === DESKTOP LAYOUT LOCK — always 4 cards in 1 row === */
+.vi-compact-embed{
+  /* tune these three knobs if you ever want slightly different sizing */
+  --viz-row-h: 120px;      /* height of the visualization row */
+  --donut-size: 112px;     /* donut ring size */
+  --card-h: 220px;         /* equal card height so all 4 match */
+}
+
+/* 4 columns, always */
+.vi-compact-embed .metrics-grid{
+  grid-template-columns: repeat(4, minmax(0,1fr)) !important;
+  grid-auto-rows: var(--card-h);
+  gap: 12px !important;
+}
+
+/* ensure each card follows: label • number • viz • caption */
+.vi-compact-embed .metric-card{
+  min-width: 0; /* prevents overflow */
+  grid-template-rows: auto auto var(--viz-row-h) auto !important;
+}
+
+/* ---- Donut: big + centered, no in-chart labels ---- */
+.vi-compact-embed .donut,
+.vi-compact-embed .donut > div{ display: contents } /* number/caption stay separate */
+
+.vi-compact-embed .donut svg{
+  grid-row: 3;
+  grid-column: 1 / -1;
+  width:  var(--donut-size) !important;
+  height: var(--donut-size) !important;
+  justify-self: center !important;
+  align-self: center !important;
+  display: block;               /* robust centering */
+  margin-inline: auto;
+}
+
+.vi-compact-embed .donut circle.bg,
+.vi-compact-embed .donut circle.fg{ stroke-width: 10 }
+
+/* ---- Calendar & spark sized to the shared viz row ---- */
+.vi-compact-embed .calendar{ height: var(--viz-row-h) }
+.vi-compact-embed .spark svg{ height: var(--viz-row-h) }
+
+/* mini bars stay slim and centered naturally */
+.vi-compact-embed .mini-bar{ height: 8px }
   </style>
 
   <div class="head">
