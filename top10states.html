@@ -5,23 +5,14 @@
   <style>
     .vi-compact-embed *{box-sizing:border-box}
     .vi-compact-embed{color-scheme:light}
-
-    /* ===== Theme + base tokens ===== */
     .vi-compact-embed{
       --brand-50:#F6FFF9; --brand-100:#DCF2EB; --brand-300:#BCE5D6;
       --brand-500:#56C257; --brand-600:#3FA94B; --brand-700:#2E8538; --brand-900:#1F5D28;
-      --ink:#181a1f; --muted:#666b73; --border:#DCEFE6;
-
-      /* Fluid scale: keeps 4-up layout and just shrinks uniformly */
-      --scale: clamp(.62, calc(100vw / 860), 1);
-
-      /* Layout knobs driven by scale */
-      --viz-row-h: calc(120px * var(--scale));   /* viz row height (donut/spark/calendar) */
-      --donut-size: calc(112px * var(--scale));  /* donut ring size */
-      --card-h: calc(220px * var(--scale));      /* equal card height */
+      --ink:#181a1f; --muted:#666b73; --border:#DCEFE6; --viz-h:88px;
+      --hover-tint: rgba(86,194,87,.12); --hover-ring:#BCE5D6; --hover-shadow:0 10px 24px rgba(86,194,87,.18);
     }
 
-    /* ===== Header ===== */
+    /* Header */
     .vi-compact-embed .head{
       padding:14px 16px;border-bottom:1px solid var(--border)!important;color:#fff!important;
       background:
@@ -32,7 +23,7 @@
     .vi-compact-embed .sub{margin:0;color:rgba(255,255,255,.92)!important;font-size:12px}
     .vi-compact-embed .meta{margin:4px 0 0;color:rgba(255,255,255,.85)!important;font-size:12px}
 
-    /* ===== Row (top list) ===== */
+    /* Rows */
     .vi-compact-embed .table{padding:10px 12px}
     .vi-compact-embed .row{
       display:grid;grid-template-columns:36px 1fr minmax(240px,48%);gap:8px;align-items:center;margin:6px 0;
@@ -41,78 +32,152 @@
       transform-origin:center;
     }
     .vi-compact-embed .row:hover,.vi-compact-embed .row:focus-within{
-      background:linear-gradient(0deg,rgba(86,194,87,.12),rgba(86,194,87,.12)),#fff!important;
-      transform:scale(1.01);box-shadow:0 10px 24px rgba(86,194,87,.18);border-color:#BCE5D6!important;
+      background:linear-gradient(0deg,var(--hover-tint),var(--hover-tint)),#fff!important;
+      transform:scale(1.01);box-shadow:var(--hover-shadow);border-color:var(--hover-ring)!important;
     }
     @media (prefers-reduced-motion:reduce){.vi-compact-embed .row{transition:none}.vi-compact-embed .row:hover,.vi-compact-embed .row:focus-within{transform:none;box-shadow:none}}
+    @media (max-width:640px){.vi-compact-embed .row{grid-template-columns:30px 1fr}.vi-compact-embed .metric{grid-column:1 / -1}}
+
     .vi-compact-embed .rank{display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--muted)}
     .vi-compact-embed .state{display:flex;align-items:center;gap:8px;font-weight:700;color:var(--ink)}
     .vi-compact-embed .chip{width:18px;height:18px;border-radius:50%;overflow:hidden;border:1px solid #cfe4da;background:#fff;flex-shrink:0}
     .vi-compact-embed .chip img{width:100%;height:100%;object-fit:cover}
+
     .vi-compact-embed .metric{position:relative;height:28px;border-radius:999px;background:rgba(86,194,87,.10)!important;overflow:hidden}
     .vi-compact-embed .bar{position:absolute;inset:0 auto 0 0;border-radius:999px;background:linear-gradient(90deg,var(--brand-600),var(--brand-500))!important;box-shadow:inset 0 0 0 1px rgba(0,0,0,.04)}
     .vi-compact-embed .val{position:absolute;right:6px;top:50%;transform:translateY(-50%);font-variant-numeric:tabular-nums;font-weight:800;font-size:13px;color:#0e1a12!important;background:#fff!important;border:2px solid #e6e9ed!important;border-radius:999px;padding:2px 8px}
-    .vi-compact-embed .row[data-rank="1"] .bar{background:linear-gradient(90deg,#1F5D28,#56C257)!important}
 
-    /* ===== Details panel ===== */
+    /* Gradient bars by rank */
+    .vi-compact-embed .row[data-rank="1"]  .bar{background:linear-gradient(90deg,#1F5D28,#56C257)!important}
+    .vi-compact-embed .row[data-rank="2"]  .bar{background:linear-gradient(90deg,#2A7331,#5DC65F)!important}
+    .vi-compact-embed .row[data-rank="3"]  .bar{background:linear-gradient(90deg,#2E8538,#63CA67)!important}
+    .vi-compact-embed .row[data-rank="4"]  .bar{background:linear-gradient(90deg,#379744,#6ACE70)!important}
+    .vi-compact-embed .row[data-rank="5"]  .bar{background:linear-gradient(90deg,#3FA94B,#71D279)!important}
+    .vi-compact-embed .row[data-rank="6"]  .bar{background:linear-gradient(90deg,#52B760,#7AD783)!important}
+    .vi-compact-embed .row[data-rank="7"]  .bar{background:linear-gradient(90deg,#64C274,#84DB8E)!important}
+    .vi-compact-embed .row[data-rank="8"]  .bar{background:linear-gradient(90deg,#76CC88,#8FE099)!important}
+    .vi-compact-embed .row[data-rank="9"]  .bar{background:linear-gradient(90deg,#8AD79D,#9AE5A5)!important}
+    .vi-compact-embed .row[data-rank="10"] .bar{background:linear-gradient(90deg,#9FE1B3,#A7E6BA)!important}
+
+    /* Details panel */
     .vi-compact-embed .details{
       margin:0;padding:0;border:1px solid var(--border);border-width:0;border-radius:12px;background:var(--brand-50);
       max-height:0;opacity:0;overflow:hidden;transform:translateY(-6px);
       transition:max-height .28s ease,opacity .28s ease,transform .28s ease,padding .20s ease,margin .20s ease,border-width .20s ease;
     }
     .vi-compact-embed .details.open{margin:8px 0 12px;padding:12px;border-width:1px;max-height:420px;opacity:1;transform:translateY(0)}
-    .vi-compact-embed .metrics-title{margin:0 0 10px;font-weight:800;font-size:calc(14px * var(--scale));color:var(--brand-900)}
+    .vi-compact-embed .metrics-title{margin:0 0 10px;font-weight:800;font-size:14px;color:var(--brand-900)}
+    .vi-compact-embed .metrics-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+    @media (max-width:640px){.vi-compact-embed .metrics-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
-    /* ===== Metrics grid: locked 4-up; equal heights; fluid scale ===== */
-    .vi-compact-embed .metrics-grid{
-      grid-template-columns: repeat(4, minmax(0,1fr)) !important;
-      display:grid; gap:calc(12px * var(--scale)) !important;
-      grid-auto-rows: var(--card-h);
-    }
+    /* Cards (grid: label → number → viz → caption) */
     .vi-compact-embed .metric-card{
-      background:#fff;border:1px solid var(--border);border-radius:10px;
-      padding:calc(12px * var(--scale)) calc(12px * var(--scale)) calc(10px * var(--scale));
-      display:grid;gap:calc(6px * var(--scale));align-content:start;min-width:0;
-      grid-template-rows:auto auto var(--viz-row-h) auto !important; /* label • number • viz • caption */
+      background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 12px 12px;
+      display:grid;grid-template-rows:auto auto var(--viz-h) auto;gap:8px;align-content:start;
     }
-    .vi-compact-embed .metric-label{font-size:calc(12px * var(--scale));color:var(--muted);font-weight:700;margin:0;line-height:1.2}
-    .vi-compact-embed .metric-number{font-weight:800;font-size:calc(20px * var(--scale));color:#0e1a12;margin:0;line-height:1.1;font-variant-numeric:tabular-nums}
-    .vi-compact-embed .metric-scale{font-size:calc(11px * var(--scale));color:#8a9099;margin:0}
+    .vi-compact-embed .metric-label{font-size:12px;color:var(--muted);font-weight:700;margin:0;line-height:1.2}
+    .vi-compact-embed .metric-number{font-weight:800;font-size:20px;color:#0e1a12;margin:0;line-height:1.1;font-variant-numeric:tabular-nums}
+    .vi-compact-embed .metric-scale{font-size:11px;color:#8a9099;margin:0}
 
-    /* ===== Sparkline (elevation) ===== */
+    /* Sparkline (elevation) */
     .vi-compact-embed .spark{align-self:center}
-    .vi-compact-embed .spark svg{width:100%;height:var(--viz-row-h)}
+    .vi-compact-embed .spark svg{width:100%;height:var(--viz-h)}
     .vi-compact-embed .spark-base{stroke:#e6f1ec;stroke-width:3;fill:none}
     .vi-compact-embed .spark-line{stroke:url(#az-elev-grad);stroke-width:4;fill:none;stroke-linecap:round;transition:stroke-dashoffset .6s ease}
     .vi-compact-embed .spark-dot{fill:var(--brand-500);stroke:#fff;stroke-width:2}
+    .vi-compact-embed .donut > div{display:contents}
+    .vi-compact-embed .donut circle.bg{stroke:#e6f4ee;stroke-width:10;fill:none}
+    .vi-compact-embed .donut circle.fg{stroke:var(--brand-600);stroke-width:10;fill:none;stroke-linecap:round;transform:rotate(-90deg);transform-origin:50% 50%;transition:stroke-dashoffset .7s ease}
 
-    /* ===== Donut (darkness) — big, centered, no in-chart labels ===== */
-    .vi-compact-embed .donut,
-    .vi-compact-embed .donut > div{ display:contents } /* keep number/caption separate */
-    .vi-compact-embed .donut svg{
-      grid-row:3; grid-column:1 / -1;
-      width:var(--donut-size) !important; height:var(--donut-size) !important;
-      justify-self:center !important; align-self:center !important;
-      display:block; margin-inline:auto;
-    }
-    .vi-compact-embed .donut circle.bg{stroke:#e6f4ee;stroke-width:calc(10px * var(--scale));fill:none}
-    .vi-compact-embed .donut circle.fg{stroke:var(--brand-600);stroke-width:calc(10px * var(--scale));fill:none;stroke-linecap:round;transform:rotate(-90deg);transform-origin:50% 50%;transition:stroke-dashoffset .7s ease}
-
-    /* ===== Mini bar (humidity) ===== */
-    .vi-compact-embed .mini-bar{height:calc(8px * var(--scale));border-radius:999px;background:rgba(86,194,87,.16);overflow:hidden;align-self:center}
+    /* Mini bars (clear days & humidity) */
+    .vi-compact-embed .mini-bar{height:10px;border-radius:999px;background:rgba(86,194,87,.16);overflow:hidden;align-self:center}
     .vi-compact-embed .mini-bar .fill{display:block;height:100%;width:0%;border-radius:999px;background:linear-gradient(90deg,var(--brand-600),var(--brand-500));transition:width .6s ease}
 
-    /* ===== Calendar (clear days) ===== */
-    .vi-compact-embed .calendar{
-      height:var(--viz-row-h);display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:1fr;gap:calc(6px * var(--scale));align-self:center
+    /* Clickable hint fix */
+    .vi-compact-embed .row.is-clickable{cursor:pointer;position:relative}
+    .vi-compact-embed .row.is-clickable .metric{padding-right:128px}
+    .vi-compact-embed .row.is-clickable::after{
+      content:"Click for metrics";position:absolute;right:12px;top:50%;transform:translateY(-50%);
+      font-size:11px;color:#7cae85;white-space:nowrap;pointer-events:none;z-index:1;
     }
-    .vi-compact-embed .calendar .day{border-radius:calc(6px * var(--scale));background:#eaf5ee;position:relative;overflow:hidden}
-    .vi-compact-embed .calendar .day.filled{background:linear-gradient(180deg,var(--brand-600),var(--brand-500))}
-    .vi-compact-embed .calendar .day.partial::after{content:"";position:absolute;inset:0;width:calc(var(--part,0)*100%);background:linear-gradient(90deg,var(--brand-600),var(--brand-500))}
+    .vi-compact-embed .metric .val{z-index:2}
+    @media (max-width:640px){.vi-compact-embed .row.is-clickable::after{display:none}}
+    .vi-compact-embed .row[aria-expanded="true"]::after{display:none}
 
-    /* ===== Close button in details ===== */
     .vi-compact-embed .details-close{margin-top:10px;align-self:flex-end;background:#fff;border:1px solid var(--border);border-radius:999px;padding:6px 10px;font-weight:700;cursor:pointer}
-    .vi-compact-embed .details-close:hover{border-color:#BCE5D6}
+    .vi-compact-embed .details-close:hover{border-color:var(--hover-ring)}
+
+    /* === FINAL: compact + equal-height, no extra whitespace === */
+    .vi-compact-embed{ --viz-h:56px; --card-h:176px }
+    .vi-compact-embed .metrics-grid{ grid-auto-rows:var(--card-h); gap:10px }
+    .vi-compact-embed .metric-card{ height:100%; padding:12px 12px 10px; gap:6px; grid-template-rows:auto auto var(--viz-h) auto }
+    .vi-compact-embed .metric-number{ font-size:19px }
+    .vi-compact-embed .spark svg{ height:var(--viz-h) }
+
+    .vi-compact-embed .donut{ row-gap:6px }
+    .vi-compact-embed .donut svg{ width:var(--viz-h); height:var(--viz-h) }
+    .vi-compact-embed .donut circle.bg,.vi-compact-embed .donut circle.fg{ stroke-width:8 }
+    .vi-compact-embed .mini-bar{ height:8px }
+    .vi-compact-embed .details.open{ padding:8px }
+
+    /* Big ring, no in-chart labels */
+    .vi-compact-embed{ --donut-h:104px; --card-h:196px }
+    .vi-compact-embed .metric-card:has(.donut){ grid-template-rows:auto auto var(--donut-h) auto }
+    .vi-compact-embed .donut,.vi-compact-embed .donut > div{ display:contents }
+    .vi-compact-embed .donut svg{
+      grid-row:3; width:var(--donut-h); height:var(--donut-h);
+      justify-self:center !important; margin-inline:auto; display:block;
+    }
+    .vi-compact-embed .donut .metric-number{ grid-row:2 }
+    .vi-compact-embed .donut .metric-scale{ grid-row:4 }
+
+    /* Calendar viz */
+    .vi-compact-embed{ --cal-h:80px }
+    .vi-compact-embed .metric-card:has(.calendar){ grid-template-rows:auto auto var(--cal-h) auto }
+    .vi-compact-embed .calendar{
+      height:var(--cal-h); display:grid; grid-template-columns:repeat(6,1fr);
+      grid-auto-rows:1fr; gap:6px; align-self:center;
+    }
+    .vi-compact-embed .calendar .day{ border-radius:6px; background:#eaf5ee; position:relative; overflow:hidden }
+    .vi-compact-embed .calendar .day.filled{ background:linear-gradient(180deg,var(--brand-600),var(--brand-500)) }
+    .vi-compact-embed .calendar .day.partial::after{
+      content:""; position:absolute; inset:0; width:calc(var(--part,0)*100%);
+      background:linear-gradient(90deg,var(--brand-600),var(--brand-500));
+    }
+
+    /* Shared viz row height + centre alignment */
+    .vi-compact-embed{ --viz-row-h:104px }
+    .vi-compact-embed .metric-card{ grid-template-rows:auto auto var(--viz-row-h) auto !important }
+    .vi-compact-embed .metric-card:has(.donut), .vi-compact-embed .metric-card:has(.calendar){
+      grid-template-rows:auto auto var(--viz-row-h) auto !important;
+    }
+    .vi-compact-embed .spark, .vi-compact-embed .calendar, .vi-compact-embed .mini-bar{ align-self:center !important }
+    .vi-compact-embed .spark svg{ height:min(var(--viz-h,56px), calc(var(--viz-row-h) - 2px)) }
+    .vi-compact-embed .calendar{ height:var(--viz-row-h) }
+
+    /* === Responsive grid mode requested === */
+    /* Desktop: one-line metrics (4-up). Mobile: 2x2 four-grid. */
+    @media (min-width:641px){
+      .vi-compact-embed .metrics-grid{
+        grid-template-columns: repeat(4, minmax(0,1fr)) !important;
+      }
+      .vi-compact-embed .row{
+        grid-template-columns: 36px 1fr minmax(240px,48%) !important;
+      }
+      .vi-compact-embed .metric{ grid-column: auto !important; }
+    }
+    @media (max-width:640px){
+      .vi-compact-embed .metrics-grid{
+        grid-template-columns: repeat(2, minmax(0,1fr)) !important; /* 2x2 */
+      }
+      .vi-compact-embed{ --card-h: 188px; --viz-row-h: 92px; --donut-h: 92px }
+      .vi-compact-embed .calendar{ gap:5px }
+      .vi-compact-embed .metric-number{ font-size:18px }
+    }
+    /* Optional: ultra-small screens stack (safety) */
+    @media (max-width:360px){
+      .vi-compact-embed .metrics-grid{ grid-template-columns: 1fr !important }
+    }
   </style>
 
   <div class="head">
@@ -208,10 +273,10 @@
       const btnClose = document.getElementById('az-close');
       if(!rowAZ || !panel) return;
 
-      /* sample numbers (already in your code) */
       const elevations = [4100,5700,6800,2900,5500,6100,1700,1300,2000,6700];
       const elevMin = Math.min(...elevations);
       const elevMax = Math.max(...elevations);
+
       const data = { elev:4100, dark:4.13, darkMax:5, clear:17.20, clearMax:30, humid:33.00 };
 
       function drawElevationSpark(){
@@ -231,37 +296,31 @@
       }
 
       function animateOtherBars(){
-        const clearFill = document.getElementById('az-humid-fill'); /* (kept name as in your markup) */
+        const clearFill = document.getElementById('az-clear-fill');
+        const clearPct = Math.max(0, Math.min(100, data.clear / data.clearMax * 100));
+        if(clearFill){ clearFill.style.width = '0%'; requestAnimationFrame(()=> clearFill.style.width = clearPct.toFixed(1)+'%'); }
+
         const humidFill = document.getElementById('az-humid-fill');
+        if(humidFill){ humidFill.style.width = '0%'; requestAnimationFrame(()=> humidFill.style.width = Math.max(0, Math.min(100, data.humid)).toFixed(1)+'%'); }
 
-        /* humidity bar */
-        if(humidFill){
-          humidFill.style.width = '0%';
-          requestAnimationFrame(()=> humidFill.style.width = Math.max(0, Math.min(100, data.humid)).toFixed(1)+'%');
-        }
-
-        /* donut ring */
         const arc = document.getElementById('az-dark-arc');
         if(arc){
-          const r=26, C=2*Math.PI*r;
-          arc.style.strokeDasharray=C.toFixed(1);
-          arc.style.strokeDashoffset=C.toFixed(1);
+          const r=26, C=2*Math.PI*r; arc.style.strokeDasharray=C.toFixed(1); arc.style.strokeDashoffset=C.toFixed(1);
           const pct = Math.max(0, Math.min(1, data.dark / data.darkMax));
           setTimeout(()=> arc.style.strokeDashoffset = (C*(1-pct)).toFixed(1), 30);
         }
 
-        /* numbers */
         const ez = document.getElementById('az-elev-val'); if(ez) ez.textContent = data.elev.toLocaleString() + ' ft';
         const dz = document.getElementById('az-dark-val'); if(dz) dz.textContent = data.dark.toFixed(2) + ' / ' + data.darkMax;
         const cz = document.getElementById('az-clear-val'); if(cz) cz.textContent = data.clear.toFixed(1) + ' days';
-        const hz = document.getElementById('az-humid-val'); if(hz) hz.textContent = data.humid.toFixed(0) + '%';
 
-        /* calendar for clear days (30 cells, ~17 green) */
+        // Calendar for clear days (30 cells, ~17 green)
         const cal = document.getElementById('az-clear-cal');
         if (cal && !cal.hasChildNodes()) {
           const total = 30;
           const whole = Math.floor(data.clear);
           const frac  = Math.max(0, Math.min(1, data.clear - whole));
+
           for (let i = 0; i < total; i++) {
             const cell = document.createElement('span');
             cell.className = 'day';
@@ -274,6 +333,8 @@
             cal.appendChild(cell);
           }
         }
+
+        const hz = document.getElementById('az-humid-val'); if(hz) hz.textContent = data.humid.toFixed(0) + '%';
       }
 
       function togglePanel(){
