@@ -89,7 +89,13 @@
       -webkit-mask: var(--logo-url) no-repeat center / contain;
               mask: var(--logo-url) no-repeat center / contain;
     }
-
+    /* Fix: Make Action Network tick visible */
+    #dw-lottery-2 .logo-wrapper {
+      background-color: #F6FFF9; /* light mint background */
+      padding: 6px 10px;
+      border-radius: 8px;
+      display: inline-block;
+    }
     /* Card & table */
     #dw-lottery-2 .dw-card { background: var(--bg); border: 0; box-shadow: none; overflow: hidden; margin: 0; width: 100%; }
     #dw-lottery-2 .dw-scroll { overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; }
@@ -165,11 +171,11 @@
 
       <!-- Center: NOT clickable logo -->
       <div class="center">
-        <div class="dw-top-brand" aria-label="Brand">
+         <div class="logo-wrapper">
           <div class="dw-top-logo" aria-hidden="true"></div>
-        </div>
+         </div>
       </div>
-
+      
       <div class="right">
         <label class="dw-status" for="dw-size" style="margin-right:4px;">Rows/page</label>
         <select id="dw-size" class="dw-select">
