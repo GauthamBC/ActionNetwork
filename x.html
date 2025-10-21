@@ -535,27 +535,50 @@ if (table.tHead && table.tHead.rows[0].cells.length <= 4) {
         nextBtn.addEventListener('click', ()=>{ page++; renderPage(); });
 
         /* ---------- Config ---------- */
-        const LOGO_URL   = "https://i.postimg.cc/kGVJyXc1/VI-logo-final.png"; // CSB logo (mask)
-        const BRAND_NAME = "";
-        const BRAND_HREF = "";
+          const LOGO_URL   = "https://i.postimg.cc/kGVJyXc1/VI-logo-final.png";
+          const BRAND_NAME = "";
+          const BRAND_HREF = "";
+          
+          const topWrap = root.querySelector('.dw-top-brand');
+          const topLogo = root.querySelector('.dw-top-logo');      // masked version
+          const topImg  = root.querySelector('.dw-top-logo-img');  // <img> fallback
+          
+          // Try to use the masked logo first
+          if (LOGO_URL) topLogo.style.setProperty('--logo-url', `url("${LOGO_URL}")`);
+          
+          // Always show the brand wrapper
+          topWrap.style.display = 'flex';
+          
+          // Robust fallback: if the image can't be loaded, or mask fails, show <img>
+          (function ensureLogo() {
+            const probe = new Image();
+            probe.onload = () => {
+              // Masked logo should render fine
+              if (topLogo) topLogo.style.display = '';
+              if (topImg)  topImg.style.display  = 'none';
+            };
+            probe.onerror = () => {
+              // Fall back to normal <img>
+              if (topLogo) topLogo.style.display = 'none';
+              if (topImg)  {
+                if (!topImg.getAttribute('src')) topImg.src = LOGO_URL;
+                topImg.style.display = 'block';
+              }
+            };
+            probe.src = LOGO_URL;
+          })();
+          
+          // Footer brand name (optional)
+          const footer    = root.querySelector('.dw-footer');
+          const brandLeft = root.querySelector('.dw-brand-left');
+          if (BRAND_NAME){
+            brandLeft.textContent = BRAND_NAME;
+            if (BRAND_HREF) brandLeft.href = BRAND_HREF;
+            brandLeft.style.display = "inline-block";
+          } else {
+            footer.style.display = "none";
+          }
 
-        // Top logo (not clickable) - set mask CSS var & show wrapper
-        const topWrap = root.querySelector('.dw-top-brand');
-        const topLogo = root.querySelector('.dw-top-logo');
-        if (LOGO_URL){
-          topLogo.style.setProperty('--logo-url', `url("${LOGO_URL}")`);
-          topWrap.style.display = "flex";
-        }
-        // Footer brand name (optional)
-        const footer = root.querySelector('.dw-footer');
-        const brandLeft = root.querySelector('.dw-brand-left');
-        if (BRAND_NAME){
-          brandLeft.textContent = BRAND_NAME;
-          if (BRAND_HREF) brandLeft.href = BRAND_HREF;
-          brandLeft.style.display = "inline-block";
-        } else {
-          footer.style.display = "none";
-        }
         /* -------------------------------- */
         renderPage();
       };
