@@ -76,57 +76,71 @@
   #dw-lottery-2 .dw-field.has-value .dw-clear{display:flex}
   #dw-lottery-2 .dw-clear:hover{background:var(--brand-100)}
 
- /* Top-centre logo (mask + fallback) */
-     #dw-lottery-2 .dw-top-brand{
-       display:flex; align-items:center; justify-content:center;
-     }
-     #dw-lottery-2 .dw-top-logo{
-       display:block;
-       height: var(--logo-h,24px);
-       width: clamp(120px, 16vw, 220px);
-       background: var(--header-bg);                 
-       -webkit-mask: var(--logo-url) no-repeat center / contain;
-               mask: var(--logo-url) no-repeat center / contain;
-     }
-     #dw-lottery-2 .dw-top-logo-img{
-       display:none; height: var(--logo-h,24px); width:auto;
-     }
-     @supports not (-webkit-mask: url("")){
-       #dw-lottery-2 .dw-top-logo{ display:none; }
-       #dw-lottery-2 .dw-top-logo-img{ display:block; }
-     }
+  /* === Top-centre logo (mask + fallback) ======================= */
+  #dw-lottery-2 .dw-top-brand{
+    display:flex; align-items:center; justify-content:center;
+  }
 
-#dw-lottery-2 .dw-top-logo { display: none; }
-#dw-lottery-2 .dw-top-logo-img { display: block; height: var(--logo-h,24px); width: auto; }
-#dw-lottery-2.logo-mask-ok .dw-top-logo { display: block; }
-#dw-lottery-2.logo-mask-ok .dw-top-logo-img { display: none; }
+  /* Masked, single-colour logo (exact match to header green) */
+  #dw-lottery-2 .dw-top-logo{
+    display:block;
+    height: clamp(18px, 4.2vw, 28px);
+    width: clamp(120px, 16vw, 220px);
+    background: var(--header-bg); /* exact fill = #56C257 by default */
+    -webkit-mask: var(--logo-url) no-repeat center / contain;
+            mask: var(--logo-url) no-repeat center / contain;
+  }
 
- /* Card & table */
-#dw-lottery-2 .dw-card {
-  background: var(--bg);
-  border: 0;
-  box-shadow: none;
-  overflow: hidden;
-  margin: 0;
-  width: 100%;
-}
-#dw-lottery-2 .dw-scroll {
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-}
-#dw-lottery-2 .dw-scroll.no-scroll { overflow-x: hidden !important; }
-#dw-lottery-2 table.dw-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  font: 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  color: var(--text);
-  font-variant-numeric: tabular-nums;
-  background: transparent;
-  min-width: 1200px;
-  table-layout: auto;
-}
+  /* <img> fallback (near-exact match using filter) */
+  #dw-lottery-2 .dw-top-logo-img{
+    display:block;
+    height: clamp(18px, 4.2vw, 28px);
+    width:auto;
+    filter:
+      brightness(0) saturate(100%)
+      invert(62%) sepia(23%) saturate(1250%) hue-rotate(78deg)
+      brightness(96%) contrast(92%);
+    image-rendering:-webkit-optimize-contrast;
+  }
+
+  /* Prefer mask when available */
+  #dw-lottery-2 .dw-top-logo { display: none; }
+  #dw-lottery-2 .dw-top-logo-img { display: block; }
+  #dw-lottery-2.logo-mask-ok .dw-top-logo { display: block; }
+  #dw-lottery-2.logo-mask-ok .dw-top-logo-img { display: none; }
+
+  /* If mask isn’t supported, stay on <img> fallback */
+  @supports not (-webkit-mask: url("")){
+    #dw-lottery-2 .dw-top-logo{ display:none; }
+    #dw-lottery-2 .dw-top-logo-img{ display:block; }
+  }
+
+  /* Card & table */
+  #dw-lottery-2 .dw-card {
+    background: var(--bg);
+    border: 0;
+    box-shadow: none;
+    overflow: hidden;
+    margin: 0;
+    width: 100%;
+  }
+  #dw-lottery-2 .dw-scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+  #dw-lottery-2 .dw-scroll.no-scroll { overflow-x: hidden !important; }
+  #dw-lottery-2 table.dw-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font: 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+    background: transparent;
+    min-width: 1200px;
+    table-layout: auto;
+  }
 
   /* Header */
   #dw-lottery-2 thead th{
@@ -142,25 +156,25 @@
   #dw-lottery-2 .dw-scroll.scrolled thead th{box-shadow:0 6px 10px -6px rgba(0,0,0,.25)}
   #dw-lottery-2 thead th.is-sorted{background:var(--brand-700); color:#fff; box-shadow:inset 0 -3px 0 var(--brand-100)}
 
-#dw-lottery-2 thead th,
-#dw-lottery-2 tbody td {
-  padding: 12px 10px;
-  overflow: hidden;
-}
-#dw-lottery-2 thead th { white-space: nowrap; }
-#dw-lottery-2 tbody td:nth-child(2) {
-  white-space: normal;          
-  word-break: keep-all;         
-  overflow-wrap: break-word;
-  min-width: 100px;
-  max-width: 220px;            
-  line-height: 1.3;
-}
-#dw-lottery-2 tbody td {
-  background-clip: padding-box;
-  backface-visibility: hidden;
-  transform: translateZ(0);
-}
+  #dw-lottery-2 thead th,
+  #dw-lottery-2 tbody td {
+    padding: 12px 10px;
+    overflow: hidden;
+  }
+  #dw-lottery-2 thead th { white-space: nowrap; }
+  #dw-lottery-2 tbody td:nth-child(2) {
+    white-space: normal;          
+    word-break: keep-all;         
+    overflow-wrap: break-word;
+    min-width: 100px;
+    max-width: 220px;            
+    line-height: 1.3;
+  }
+  #dw-lottery-2 tbody td {
+    background-clip: padding-box;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
 
   /* Body */
   #dw-lottery-2 tbody td{ text-align:center; vertical-align:middle; background:transparent!important; border:0; transition:background-color .12s }
@@ -211,15 +225,15 @@
   #dw-lottery-2 .dw-select { min-width: 68px; }
   #dw-lottery-2 .dw-btn { padding-inline: 8px; }
 
-@media (min-width:601px) and (max-width:980px){
-  #dw-lottery-2 .right > .dw-status{display:inline; font-size:0;}
-  #dw-lottery-2 .right > .dw-status::after{content:"Rows"; font-size:12px;}
-  #dw-lottery-2 .dw-input { width: clamp(150px, 22vw, 260px); }
-  #dw-lottery-2 .dw-top-logo { height: clamp(18px, 3.2vw, 22px); width: auto; }
-}
-@media (min-width:981px){
-  #dw-lottery-2 .dw-top-logo { height: 24px; width: auto; }
-}
+  @media (min-width:601px) and (max-width:980px){
+    #dw-lottery-2 .right > .dw-status{display:inline; font-size:0;}
+    #dw-lottery-2 .right > .dw-status::after{content:"Rows"; font-size:12px;}
+    #dw-lottery-2 .dw-input { width: clamp(150px, 22vw, 260px); }
+  }
+  @media (min-width:981px){
+    #dw-lottery-2 .dw-top-logo,
+    #dw-lottery-2 .dw-top-logo-img { height: 24px; width: auto; }
+  }
   @media (max-width: 600px){
     #dw-lottery-2 .dw-controls{
       display:grid;
@@ -231,19 +245,13 @@
     #dw-lottery-2 .dw-input{width:100%; padding:6px 24px 6px 10px; height:34px; font-size:13px;}
     #dw-lottery-2 .dw-clear{width:20px; height:20px;}
     #dw-lottery-2 thead th{ font-size:13px; line-height:1.2; }
-    #dw-lottery-2 .dw-top-logo{height:22px; width:120px;}
+    #dw-lottery-2 .dw-top-logo,
+    #dw-lottery-2 .dw-top-logo-img{ height:18px; width:120px; } /* 18px on phones */
     #dw-lottery-2 .right{justify-content:flex-end; gap:6px;}
     #dw-lottery-2 .right .dw-status{display:none;}
     #dw-lottery-2 .dw-select{min-width:68px; height:32px; padding:6px 22px 6px 8px; font-size:13px;}
     #dw-lottery-2 .dw-btn{width:32px; height:32px; padding:0; border-radius:12px; display:inline-flex; align-items:center; justify-content:center;}
   }
-   #dw-lottery-2 .dw-top-logo-img{
-     display: block !important;
-     height: var(--logo-h,24px);
-     width: auto;
-     filter: none !important;
-     image-rendering: -webkit-optimize-contrast;
-   }
   </style>
 
   <!-- Controls -->
@@ -257,14 +265,14 @@
     </div>
 
     <!-- Center: NOT clickable logo -->
-     <div class="center">
-  <div class="dw-top-brand" aria-label="Brand">
-    <div class="dw-top-logo" aria-hidden="true"></div>
-    <img class="dw-top-logo-img"
-         src="https://i.postimg.cc/kGVJyXc1/VI-logo-final.png"
-         alt="VegasInsider logo" loading="lazy">
-  </div>
-</div>
+    <div class="center">
+      <div class="dw-top-brand" aria-label="Brand">
+        <div class="dw-top-logo" aria-hidden="true"></div>
+        <img class="dw-top-logo-img"
+             src="https://i.postimg.cc/kGVJyXc1/VI-logo-final.png"
+             alt="VegasInsider logo" loading="lazy">
+      </div>
+    </div>
        
     <div class="right">
       <label class="dw-status" for="dw-size" style="margin-right:4px;">Rows/page</label>
@@ -365,10 +373,10 @@
         const table = root.querySelector('table.dw-table');
         const tb = table ? table.tBodies[0] : null;
         const scroller = root.querySelector('.dw-scroll');
-// Disable horizontal scrolling if the table has 4 or fewer columns
-if (table.tHead && table.tHead.rows[0].cells.length <= 4) {
-  scroller.classList.add('no-scroll');
-}
+        // Disable horizontal scrolling if the table has 4 or fewer columns
+        if (table.tHead && table.tHead.rows[0].cells.length <= 4) {
+          scroller.classList.add('no-scroll');
+        }
         const controls = root.querySelector('.dw-controls');
         if(!table || !tb || !scroller || !controls) return;
 
@@ -501,57 +509,60 @@ if (table.tHead && table.tHead.rows[0].cells.length <= 4) {
         nextBtn.addEventListener('click', ()=>{ page++; renderPage(); });
 
         /* ---------- Config ---------- */
-          const LOGO_URL   = "https://i.postimg.cc/kGVJyXc1/VI-logo-final.png";
-          const BRAND_NAME = "";
-          const BRAND_HREF = "";
-          
-          const topWrap = root.querySelector('.dw-top-brand');
-          const topLogo = root.querySelector('.dw-top-logo');      // masked version
-          const topImg  = root.querySelector('.dw-top-logo-img');  // <img> fallback
-          
-          // Try to use the masked logo first (kept as-is; explicit styles below will take precedence)
-          if (LOGO_URL) topLogo.style.setProperty('--logo-url', `url("${LOGO_URL}")`);
-          
-          // Always show the brand wrapper
-          topWrap.style.display = 'flex';
-          
-          // Robust fallback-first: default to <img>, switch to mask only after proving it works
-          (function ensureLogo(){
-            const color = (getComputedStyle(root).getPropertyValue('--header-bg') || '#56C257').trim() || '#000';
-            const probe = new Image();
-            probe.onload = () => {
-              if (topLogo) {
-                topLogo.style.backgroundColor = color;
-                topLogo.style.webkitMaskImage  = `url("${LOGO_URL}")`;
-                topLogo.style.maskImage        = `url("${LOGO_URL}")`;
-                topLogo.style.webkitMaskRepeat = 'no-repeat';
-                topLogo.style.maskRepeat       = 'no-repeat';
-                topLogo.style.webkitMaskPosition = 'center';
-                topLogo.style.maskPosition       = 'center';
-                topLogo.style.webkitMaskSize   = 'contain';
-                topLogo.style.maskSize         = 'contain';
-              }
-              // Flip to masked logo only now
-              root.classList.add('logo-mask-ok');
-            };
-            probe.onerror = () => {
-              // Stay on <img> fallback; ensure it has a src
-              if (topImg && !topImg.getAttribute('src')) topImg.src = LOGO_URL;
-              root.classList.remove('logo-mask-ok');
-            };
-            probe.src = LOGO_URL;
-          })();
-          
-          // Footer brand name (optional)
-          const footer    = root.querySelector('.dw-footer');
-          const brandLeft = root.querySelector('.dw-brand-left');
-          if (BRAND_NAME){
-            brandLeft.textContent = BRAND_NAME;
-            if (BRAND_HREF) brandLeft.href = BRAND_HREF;
-            brandLeft.style.display = "inline-block";
+        const LOGO_URL   = "https://i.postimg.cc/kGVJyXc1/VI-logo-final.png";
+        const BRAND_NAME = "";
+        const BRAND_HREF = "";
+        
+        const topWrap = root.querySelector('.dw-top-brand');
+        const topLogo = root.querySelector('.dw-top-logo');      // masked version
+        const topImg  = root.querySelector('.dw-top-logo-img');  // <img> fallback
+        
+        if (LOGO_URL) topLogo.style.setProperty('--logo-url', `url("${LOGO_URL}")`);
+        topWrap.style.display = 'flex';
+
+        // Only enable the mask route if the browser actually supports it
+        const supportsMask =
+          (window.CSS && (CSS.supports('mask-image', 'url("")') || CSS.supports('-webkit-mask-image', 'url("")')));
+
+        // Preload the asset then flip the class when ready
+        const probe = new Image();
+        probe.onload = () => {
+          if (supportsMask) {
+            const color = (getComputedStyle(root).getPropertyValue('--header-bg') || '#56C257').trim();
+            // Ensure masked logo takes the header colour exactly
+            topLogo.style.backgroundColor = color;
+            topLogo.style.webkitMaskImage  = `url("${LOGO_URL}")`;
+            topLogo.style.maskImage        = `url("${LOGO_URL}")`;
+            topLogo.style.webkitMaskRepeat = 'no-repeat';
+            topLogo.style.maskRepeat       = 'no-repeat';
+            topLogo.style.webkitMaskPosition = 'center';
+            topLogo.style.maskPosition       = 'center';
+            topLogo.style.webkitMaskSize   = 'contain';
+            topLogo.style.maskSize         = 'contain';
+            root.classList.add('logo-mask-ok');      // switch to masked version
           } else {
-            footer.style.display = "none";
+            // Stay on <img> + filter fallback
+            if (topImg && !topImg.getAttribute('src')) topImg.src = LOGO_URL;
+            root.classList.remove('logo-mask-ok');
           }
+        };
+        probe.onerror = () => {
+          // Fall back gracefully to <img>
+          if (topImg && !topImg.getAttribute('src')) topImg.src = LOGO_URL;
+          root.classList.remove('logo-mask-ok');
+        };
+        probe.src = LOGO_URL;
+
+        // Footer brand name (optional)
+        const footer    = root.querySelector('.dw-footer');
+        const brandLeft = root.querySelector('.dw-brand-left');
+        if (BRAND_NAME){
+          brandLeft.textContent = BRAND_NAME;
+          if (BRAND_HREF) brandLeft.href = BRAND_HREF;
+          brandLeft.style.display = "inline-block";
+        } else {
+          footer.style.display = "none";
+        }
 
         /* -------------------------------- */
         renderPage();
@@ -611,6 +622,7 @@ if (table.tHead && table.tHead.rows[0].cells.length <= 4) {
     });
   }
 </script>
+
 <!-- ===== Auto-resize iframe height for WordPress embed ===== -->
 <script>
 function sendHeightToParent() {
