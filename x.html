@@ -1,14 +1,14 @@
 <section id="tailgating-states">
-<!-- Datawrapper-style table (black header + gold stripes) -->
+<!-- Datawrapper-style table (Action Network green + mint theme) -->
 <div id="dw-lottery-2" data-dw="table"
      style="--logo-h:34px;
-            --stripe:#F2C23A;              /* gold zebra */
-            --hover:#F7DB7A;               /* gold hover */
-            --header-bg:#000000;           /* black header */
+            --stripe:#DCF2EB;              /* mint zebra */
+            --hover:#BCE5D6;               /* mint hover */
+            --header-bg:#56C257;           /* green header */
             --header-fg:#ffffff;
             --scroll-track:#f7f8fb; 
-            --scroll-thumb:#000000; 
-            --scroll-thumb-hover:#333333;
+            --scroll-thumb:#56C257; 
+            --scroll-thumb-hover:#3FA94B;
             --gutter: clamp(8px, 4vw, 14px);
             --gutter-left: 0;
             --gutter-right: 0; 
@@ -16,15 +16,15 @@
             --table-max-h: 500px;
             --vbar-w: 6px; --vbar-w-hover: 8px;">
   <style>
-  /* ===== Datawrapper-style table (black + gold theme) ===== */
+  /* ===== Datawrapper-style table (Action Network Green + Mint) ===== */
   #dw-lottery-2{
-    /* Brand palette (gold + black) */
-    --brand-50:#FFF7DC; 
-    --brand-100:#FFE8AA;
-    --brand-500:#F2C23A; 
-    --brand-600:#D9A72A; 
-    --brand-700:#B9851A; 
-    --brand-900:#111111;
+    /* Brand palette (mint + green) */
+    --brand-50:#F6FFF9; 
+    --brand-100:#DCF2EB;
+    --brand-500:#56C257; 
+    --brand-600:#3FA94B; 
+    --brand-700:#2E8538; 
+    --brand-900:#1F5D28;
 
     --bg:#ffffff; --text:#1f2937;
     box-sizing:border-box; overflow-x:hidden; display:block; max-width:100%;
@@ -47,22 +47,22 @@
   }
   #dw-lottery-2 .dw-input,#dw-lottery-2 .dw-select{
     background:#fff;
-    border:1px solid var(--brand-900);         /* black border */
+    border:1px solid var(--brand-700);         /* green border */
     color:var(--text); box-shadow:inset 0 1px 2px rgba(16,24,40,.04);
   }
   #dw-lottery-2 .dw-input{width:min(320px,100%); padding-right:36px}
   #dw-lottery-2 .dw-input::placeholder{color:#9AA4B2}
   #dw-lottery-2 .dw-input:focus,#dw-lottery-2 .dw-select:focus{
-    outline:none; border-color:var(--brand-900);
-    box-shadow:0 0 0 3px color-mix(in oklab,var(--brand-900) 25%,transparent); background:#fff;
+    outline:none; border-color:var(--brand-500);
+    box-shadow:0 0 0 3px color-mix(in oklab,var(--brand-500) 25%,transparent); background:#fff;
   }
   #dw-lottery-2 .dw-select{
     appearance:none; padding-right:34px;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23111111' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%232E8538' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
     background-repeat:no-repeat; background-position:right 10px center; background-size:14px;
   }
-  #dw-lottery-2 .dw-btn{background:var(--brand-900); color:#fff; border:1px solid var(--brand-900); padding-inline:12px; cursor:pointer}
-  #dw-lottery-2 .dw-btn:hover{background:#222; border-color:#222} 
+  #dw-lottery-2 .dw-btn{background:var(--brand-500); color:#fff; border:1px solid var(--brand-500); padding-inline:12px; cursor:pointer}
+  #dw-lottery-2 .dw-btn:hover{background:var(--brand-600); border-color:var(--brand-600)} 
   #dw-lottery-2 .dw-btn:active{transform:translateY(1px)}
   #dw-lottery-2 .dw-btn[disabled]{background:#fafafa; border-color:#d1d5db; color:#6b7280; opacity:1; cursor:not-allowed; transform:none}
   #dw-lottery-2 .dw-status{font:12px/1.2 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; color:#6b7280}
@@ -71,10 +71,10 @@
   /* Clear button */
   #dw-lottery-2 .dw-clear{
     position:absolute; right:10px; top:50%; translate:0 -50%; width:22px; height:22px; border-radius:9999px; border:0;
-    background:transparent; color:var(--brand-900); cursor:pointer; display:none; align-items:center; justify-content:center;
+    background:transparent; color:var(--brand-700); cursor:pointer; display:none; align-items:center; justify-content:center;
   }
   #dw-lottery-2 .dw-field.has-value .dw-clear{display:flex}
-  #dw-lottery-2 .dw-clear:hover{background:var(--brand-50)}
+  #dw-lottery-2 .dw-clear:hover{background:var(--brand-100)}
 
  /* Top-centre logo (mask + fallback) */
      #dw-lottery-2 .dw-top-brand{
@@ -84,11 +84,10 @@
        display:block;
        height: var(--logo-h,24px);
        width: clamp(120px, 16vw, 220px);
-       background: var(--header-bg);                 /* colour the mask */
+       background: var(--header-bg);                 
        -webkit-mask: var(--logo-url) no-repeat center / contain;
                mask: var(--logo-url) no-repeat center / contain;
      }
-     /* Fallback <img> (shows if mask unsupported) */
      #dw-lottery-2 .dw-top-logo-img{
        display:none; height: var(--logo-h,24px); width:auto;
      }
@@ -97,12 +96,10 @@
        #dw-lottery-2 .dw-top-logo-img{ display:block; }
      }
 
-/* ===== OVERRIDE: show <img> by default; swap to mask only when JS confirms ===== */
 #dw-lottery-2 .dw-top-logo { display: none; }
 #dw-lottery-2 .dw-top-logo-img { display: block; height: var(--logo-h,24px); width: auto; }
 #dw-lottery-2.logo-mask-ok .dw-top-logo { display: block; }
 #dw-lottery-2.logo-mask-ok .dw-top-logo-img { display: none; }
-/* ===== END OVERRIDE ===== */
 
  /* Card & table */
 #dw-lottery-2 .dw-card {
@@ -113,18 +110,12 @@
   margin: 0;
   width: 100%;
 }
-
-/* Default scroll for wide tables */
 #dw-lottery-2 .dw-scroll {
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
 }
-
-/* Disable horizontal scroll if 4 or fewer columns */
-#dw-lottery-2 .dw-scroll.no-scroll {
-  overflow-x: hidden !important;
-}
+#dw-lottery-2 .dw-scroll.no-scroll { overflow-x: hidden !important; }
 #dw-lottery-2 table.dw-table {
   width: 100%;
   border-collapse: separate;
@@ -133,12 +124,9 @@
   color: var(--text);
   font-variant-numeric: tabular-nums;
   background: transparent;
-
-  /* :white_check_mark: Allow natural column sizing + horizontal scroll */
   min-width: 1200px;
   table-layout: auto;
 }
-
 
   /* Header */
   #dw-lottery-2 thead th{
@@ -150,24 +138,16 @@
   #dw-lottery-2 thead th.sortable::after{content:"↕"; font-size:12px; opacity:.75; margin-left:8px; color:var(--header-fg,#fff)}
   #dw-lottery-2 thead th.sortable[data-sort="asc"]::after{content:"▲"}
   #dw-lottery-2 thead th.sortable[data-sort="desc"]::after{content:"▼"}
-  #dw-lottery-2 thead th.sortable:hover,#dw-lottery-2 thead th.sortable:focus-visible{background:#222; color:#fff; box-shadow:inset 0 -3px 0 var(--brand-500)}
+  #dw-lottery-2 thead th.sortable:hover,#dw-lottery-2 thead th.sortable:focus-visible{background:var(--brand-600); color:#fff; box-shadow:inset 0 -3px 0 var(--brand-100)}
   #dw-lottery-2 .dw-scroll.scrolled thead th{box-shadow:0 6px 10px -6px rgba(0,0,0,.25)}
-  #dw-lottery-2 .dw-scroll.scrolled thead th.sortable:hover,#dw-lottery-2 .dw-scroll.scrolled thead th.sortable:focus-visible{box-shadow:inset 0 -3px 0 var(--brand-500),0 6px 10px -6px rgba(0,0,0,.25)}
-  #dw-lottery-2 thead th.is-sorted{background:#1a1a1a; color:#fff; box-shadow:inset 0 -3px 0 var(--brand-500)}
+  #dw-lottery-2 thead th.is-sorted{background:var(--brand-700); color:#fff; box-shadow:inset 0 -3px 0 var(--brand-100)}
 
-/* Allow text wrapping only for the State column, keep headers tidy */
 #dw-lottery-2 thead th,
 #dw-lottery-2 tbody td {
   padding: 12px 10px;
   overflow: hidden;
 }
-
-/* Keep headers on one line */
-#dw-lottery-2 thead th {
-  white-space: nowrap;
-}
-
-/* :white_check_mark: Only wrap multi-word states over 2–3 lines */
+#dw-lottery-2 thead th { white-space: nowrap; }
 #dw-lottery-2 tbody td:nth-child(2) {
   white-space: normal;          
   word-break: keep-all;         
@@ -176,8 +156,6 @@
   max-width: 220px;            
   line-height: 1.3;
 }
-
-/* Prevent Chrome re-paint duplication bug */
 #dw-lottery-2 tbody td {
   background-clip: padding-box;
   backface-visibility: hidden;
@@ -187,8 +165,8 @@
   /* Body */
   #dw-lottery-2 tbody td{ text-align:center; vertical-align:middle; background:transparent!important; border:0; transition:background-color .12s }
   #dw-lottery-2 thead th:last-child,#dw-lottery-2 tbody td:last-child{padding-right:14px}
-  #dw-lottery-2 tbody tr:nth-child(odd){background:var(--stripe,#F2C23A)}  /* gold stripes */
-  #dw-lottery-2 tbody tr:hover{background:var(--hover,#F7DB7A); box-shadow:inset 3px 0 0 var(--brand-900)}
+  #dw-lottery-2 tbody tr:nth-child(odd){background:var(--stripe,#DCF2EB)}
+  #dw-lottery-2 tbody tr:hover{background:var(--hover,#BCE5D6); box-shadow:inset 3px 0 0 var(--brand-500)}
   #dw-lottery-2 thead th{position:sticky; top:var(--sticky-top,0); z-index:5}
 
   /* Scrollbar + height */
@@ -200,18 +178,18 @@
 
   /* Dynamic zebra */
   #dw-lottery-2 tbody tr{background:transparent!important}
-  #dw-lottery-2 tbody tr.dw-zebra{background:var(--stripe,#F2C23A)!important}
-  #dw-lottery-2 tbody td.is-sorted{background:var(--hover,#F7DB7A)!important; font-weight:600}
+  #dw-lottery-2 tbody tr.dw-zebra{background:var(--stripe,#DCF2EB)!important}
+  #dw-lottery-2 tbody td.is-sorted{background:var(--hover,#BCE5D6)!important; font-weight:600}
 
   /* Empty-state row */
   #dw-lottery-2 tr.dw-empty td{text-align:center; color:#6b7280; font-style:italic; padding:18px 14px; background:linear-gradient(0deg,#fff,var(--brand-50))}
 
-  /* Footer (brand name left; optional) */
+  /* Footer */
   #dw-lottery-2 .dw-footer{
     display:flex; align-items:center; justify-content:space-between; gap:12px;
     padding:10px 0; margin-top:10px; color:#6b7280;
     font:12px/1.25 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
-    box-shadow:0 -1px 0 0 color-mix(in oklab,var(--brand-900) 35%, transparent);
+    box-shadow:0 -1px 0 0 color-mix(in oklab,var(--brand-500) 35%, transparent);
   }
   #dw-lottery-2 .dw-brand-left{
     display:none; color:inherit; text-decoration:none; font-weight:600;
@@ -219,55 +197,29 @@
   }
   #dw-lottery-2 .dw-brand-left:is(:hover,:focus-visible){color:var(--brand-700); border-color:var(--brand-700); outline:none}
 
-  /* === Keep the controls in a single row on narrow desktops === */
-#dw-lottery-2 .dw-controls{
-  /* allow left & right columns to shrink properly */
-  grid-template-columns: minmax(0,1fr) auto minmax(0,1fr);
-  column-gap: 12px;
-}
-#dw-lottery-2 .left,
-#dw-lottery-2 .center,
-#dw-lottery-2 .right { min-width: 0; }
+  #dw-lottery-2 .dw-controls{
+    grid-template-columns: minmax(0,1fr) auto minmax(0,1fr);
+    column-gap: 12px;
+  }
+  #dw-lottery-2 .left,
+  #dw-lottery-2 .center,
+  #dw-lottery-2 .right { min-width: 0; }
+  #dw-lottery-2 .left,
+  #dw-lottery-2 .right { flex-wrap: nowrap; }
+  #dw-lottery-2 .right { white-space: nowrap; gap: 8px; }
+  #dw-lottery-2 .dw-input { width: clamp(160px, 26vw, 320px); }
+  #dw-lottery-2 .dw-select { min-width: 68px; }
+  #dw-lottery-2 .dw-btn { padding-inline: 8px; }
 
-/* keep both side clusters on one line */
-#dw-lottery-2 .left,
-#dw-lottery-2 .right { flex-wrap: nowrap; }
-
-/* avoid accidental wrapping in the right cluster */
-#dw-lottery-2 .right { white-space: nowrap; gap: 8px; }
-
-/* let the search shrink on tighter widths (overrides the earlier width) */
-#dw-lottery-2 .dw-input { width: clamp(160px, 26vw, 320px); }
-
-/* keep the select compact */
-#dw-lottery-2 .dw-select { min-width: 68px; }
-
-/* slightly tighter buttons */
-#dw-lottery-2 .dw-btn { padding-inline: 8px; }
-
-/* — Compact desktop (601–980px): show short "Rows" label and keep layout tidy — */
 @media (min-width:601px) and (max-width:980px){
-  /* replace the long label text "Rows/page" with a short "Rows" */
-  #dw-lottery-2 .right > .dw-status{ 
-    display:inline; 
-    font-size:0;              /* hide original text */
-  }
-  #dw-lottery-2 .right > .dw-status::after{ 
-    content:"Rows"; 
-    font-size:12px;           /* visible replacement text */
-  }
-
-  /* make search a touch smaller; keep logo balanced */
+  #dw-lottery-2 .right > .dw-status{display:inline; font-size:0;}
+  #dw-lottery-2 .right > .dw-status::after{content:"Rows"; font-size:12px;}
   #dw-lottery-2 .dw-input { width: clamp(150px, 22vw, 260px); }
   #dw-lottery-2 .dw-top-logo { height: clamp(18px, 3.2vw, 22px); width: auto; }
 }
-
-/* Optional: slightly larger logo on roomy desktops */
 @media (min-width:981px){
   #dw-lottery-2 .dw-top-logo { height: 24px; width: auto; }
 }
-
-  /* === Mobile one-line controls (keep logo visible) === */
   @media (max-width: 600px){
     #dw-lottery-2 .dw-controls{
       display:grid;
@@ -278,24 +230,21 @@
     #dw-lottery-2 .dw-field{width:100%; max-width:46vw;}
     #dw-lottery-2 .dw-input{width:100%; padding:6px 24px 6px 10px; height:34px; font-size:13px;}
     #dw-lottery-2 .dw-clear{width:20px; height:20px;}
-    #dw-lottery-2 thead th{ font-size:13px; line-height:1.2; } /* tighter header on small screens */
+    #dw-lottery-2 thead th{ font-size:13px; line-height:1.2; }
     #dw-lottery-2 .dw-top-logo{height:22px; width:120px;}
     #dw-lottery-2 .right{justify-content:flex-end; gap:6px;}
     #dw-lottery-2 .right .dw-status{display:none;}
     #dw-lottery-2 .dw-select{min-width:68px; height:32px; padding:6px 22px 6px 8px; font-size:13px;}
     #dw-lottery-2 .dw-btn{width:32px; height:32px; padding:0; border-radius:12px; display:inline-flex; align-items:center; justify-content:center;}
   }
-   /* === HARD OVERRIDE: always show the <img> logo, and force it to render black === */
-     #dw-lottery-2 .dw-top-logo { 
-       display: none !important;            /* never use the mask for now */
-     }
-     #dw-lottery-2 .dw-top-logo-img{
-       display: block !important;           /* always show the image */
-       height: var(--logo-h,24px);
-       width: auto;
-       filter: brightness(0) !important;    /* turns white artwork to black so it’s visible on white */
-       image-rendering: -webkit-optimize-contrast;
-     }
+   #dw-lottery-2 .dw-top-logo { display: none !important; }
+   #dw-lottery-2 .dw-top-logo-img{
+     display: block !important;
+     height: var(--logo-h,24px);
+     width: auto;
+     filter: brightness(0) !important;
+     image-rendering: -webkit-optimize-contrast;
+   }
   </style>
 
   <!-- Controls -->
