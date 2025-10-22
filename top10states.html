@@ -386,6 +386,45 @@
 
 /* Kill stray “s” letters from the right edge by hiding the pseudo-hint entirely */
 .vi-compact-embed .row.is-clickable::after{ display:none !important; }
+    /* === Mobile footer/notch/popup fixes === */
+@media (max-width:640px){
+  /* 1) Let the whole page scroll, not the inner table */
+  .vi-compact-embed .table{
+    max-height: none !important;
+    /* add a bit of breathing room above the footer */
+    padding-bottom: 72px; /* ~footer height */
+  }
+
+  /* 2) Ensure the section itself doesn't clip children on mobile */
+  section.vi-compact-embed{
+    overflow: visible !important;
+  }
+
+  /* 3) Safe-area friendly footer */
+  .vi-compact-embed .vi-footer{
+    padding-bottom: max(6px, env(safe-area-inset-bottom));
+  }
+
+  /* 4) Keep the embed popup visible on small screens */
+  .vi-compact-embed .embed-wrapper{
+    position: fixed;                        /* escape any parent overflow */
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: calc(56px + env(safe-area-inset-bottom) + 8px); /* sit above footer */
+    width: min(600px, 92vw);
+    max-height: 65vh;                        /* scroll inside if tall */
+    overflow: auto;
+    z-index: 1000;
+  }
+}
+@media (max-width:640px){
+  .vi-compact-embed .vi-footer{
+    position: sticky;
+    bottom: 0;
+    z-index: 2;
+  }
+  .vi-compact-embed .table{ padding-bottom: 96px; }
+}
   </style>
 
 <div class="head">
