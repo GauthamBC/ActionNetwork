@@ -283,13 +283,12 @@
 /* ===================== MOBILE OVERRIDES (single block) ===================== */
 @media (max-width:640px){
   html, body { height:auto !important; overflow:auto !important; }
-  section.vi-compact-embed{ overflow:visible !important; }
-
   /* Make the SECTION the scroll container, not .table */
   .vi-compact-embed{
     display:flex;
     flex-direction:column;
     min-height:100dvh;
+    min-height:100svh;
     overflow:auto;                 /* page scroll happens here */
     scroll-padding-bottom:72px;    /* keeps last row above sticky footer */
   }
