@@ -280,54 +280,40 @@
     }
     .vi-compact-embed .row.is-clickable::after{ display:none !important; } /* hide hint if it clips */
 
-    /* ===================== MOBILE OVERRIDES (single block) ===================== */
- @media (max-width:640px){
+/* ===================== MOBILE OVERRIDES (single block) ===================== */
+@media (max-width:640px){
   html, body { height:auto !important; overflow:auto !important; }
   section.vi-compact-embed{ overflow:visible !important; }
 
+  /* Make the SECTION the scroll container, not .table */
+  .vi-compact-embed{
+    display:flex;
+    flex-direction:column;
+    min-height:100dvh;
+    overflow:auto;                 /* page scroll happens here */
+    scroll-padding-bottom:72px;    /* keeps last row above sticky footer */
+  }
+
+  /* Let the table grow; no internal scroller on mobile */
   .vi-compact-embed .table{
-    max-height:620px !important;
-    overflow:auto !important;
-    -webkit-overflow-scrolling:touch !important;
-    scrollbar-color: var(--brand-600) var(--brand-50);
-    scrollbar-width: thin;
-    padding-bottom:96px !important;
-  }
-  .vi-compact-embed .table::-webkit-scrollbar {
-    width:10px; height:8px;
-  }
-  .vi-compact-embed .table::-webkit-scrollbar-track {
-    background:var(--brand-50); border-radius:999px;
-  }
-  .vi-compact-embed .table::-webkit-scrollbar-thumb {
-    background:linear-gradient(180deg,var(--brand-600),var(--brand-500));
-    border-radius:999px; border:2px solid #fff;
-  }
-  .vi-compact-embed .table::-webkit-scrollbar-thumb:hover {
-    background:linear-gradient(180deg,var(--brand-700),var(--brand-600));
+    max-height:none !important;
+    overflow:visible !important;
+    -webkit-overflow-scrolling:auto !important;
+    padding-bottom:0 !important;
+    margin-bottom:72px;            /* breathing room above footer */
   }
 
-  /* --- fix: footer visible and sticky --- */
-  .vi-compact-embed {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-
-  .vi-compact-embed .table {
-    flex: 1 1 auto;
-  }
-
-  .vi-compact-embed .vi-footer {
-    flex-shrink: 0;
-    position: sticky;
-    bottom: 0;
-    z-index: 3;
+  /* Sticky footer */
+  .vi-compact-embed .vi-footer{
+    position:sticky;
+    bottom:0;
+    z-index:5;
+    align-self:stretch;
+    border-top:1px solid var(--border);
+    padding:8px 0 max(8px, env(safe-area-inset-bottom));
     background:
       radial-gradient(120% 140% at 85% 10%, rgba(255,255,255,.10) 0%, transparent 60%),
       linear-gradient(90deg,var(--brand-900) 0%,var(--brand-600) 45%,var(--brand-500) 100%)!important;
-    border-top: 1px solid var(--border);
-    padding: 8px 0 max(8px, env(safe-area-inset-bottom));
   }
 
   /* Keep the embed popup fully visible above the footer */
@@ -340,26 +326,27 @@
     overflow:auto;
     z-index:1000;
   }
-      /* Details panel: allow full height on mobile + sticky close */
-      .vi-compact-embed .details.open{ max-height:none !important; }
-      .vi-compact-embed .details{ display:flex; flex-direction:column; scroll-margin-top:8px; }
-      .vi-compact-embed .details-close{
-        order:-1; align-self:flex-end; position:sticky; top:8px; z-index:5;
-        padding:8px 12px; border-radius:999px; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,.08);
-      }
 
-      /* If the host iframe cannot resize, add .is-embedded on the <section> */
-      section.vi-compact-embed.is-embedded{
-        max-height:100dvh;
-        overflow:auto !important;
-        -webkit-overflow-scrolling:touch;
-      }
-      section.vi-compact-embed.is-embedded .table{
-        overflow:visible !important;
-        max-height:none !important;
-      }
-    }
-    /* =================== END MOBILE OVERRIDES (desktop untouched) ============== */
+  /* Details panel UX */
+  .vi-compact-embed .details.open{ max-height:none !important; }
+  .vi-compact-embed .details{ display:flex; flex-direction:column; scroll-margin-top:8px; }
+  .vi-compact-embed .details-close{
+    order:-1; align-self:flex-end; position:sticky; top:8px; z-index:5;
+    padding:8px 12px; border-radius:999px; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,.08);
+  }
+
+  /* If the host iframe cannot resize, add .is-embedded on the <section> */
+  section.vi-compact-embed.is-embedded{
+    max-height:100dvh;
+    overflow:auto !important;
+    -webkit-overflow-scrolling:touch;
+  }
+  section.vi-compact-embed.is-embedded .table{
+    overflow:visible !important;
+    max-height:none !important;
+  }
+}
+/* =================== END MOBILE OVERRIDES (desktop untouched) ============== */
   </style>
 
 <div class="head">
