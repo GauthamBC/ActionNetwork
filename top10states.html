@@ -241,6 +241,7 @@
         linear-gradient(90deg,var(--brand-900) 0%,var(--brand-600) 45%,var(--brand-500) 100%)!important;
       color: #fff;
       position: relative;
+      overflow: visible; /* allow popup to show above on mobile */
     }
     .vi-compact-embed .footer-inner {
       display: flex; justify-content: center; align-items: center; gap: 12px; position: relative;
@@ -300,6 +301,23 @@
     margin-bottom:0 !important;
   }
 
+  /* Make footer content not overlap: button smaller and in-flow */
+  .vi-compact-embed .footer-inner{
+    justify-content:space-between !important;
+    padding:0 10px;
+    gap:8px;
+  }
+  .vi-compact-embed .embed-btn{
+    position:static !important;
+    padding:6px 10px;
+    font-size:12px;
+    line-height:1.2;
+    flex-shrink:0;
+  }
+  .vi-compact-embed .vi-footer img{
+    height:44px;
+  }
+
   /* Footer behaves like desktop (not sticky) */
   .vi-compact-embed .vi-footer{
     position: static !important;
@@ -310,6 +328,7 @@
     background:
       radial-gradient(120% 140% at 85% 10%, rgba(255,255,255,.10) 0%, transparent 60%),
       linear-gradient(90deg,var(--brand-900) 0%,var(--brand-600) 45%,var(--brand-500) 100%)!important;
+    overflow:visible !important; /* ensure popup is visible */
   }
 
   /* Keep the embed popup positioned like desktop (relative to footer) */
@@ -670,7 +689,7 @@
           if (isHidden) {
             ta.focus();
             ta.select();
-            document.execCommand('copy');
+            try { document.execCommand('copy'); } catch(e) {}
             status.style.display = 'block';
             setTimeout(() => status.style.display = 'none', 2500);
           } else {
