@@ -216,6 +216,51 @@
   scrollbar-color: var(--brand-600) var(--brand-50);
 }
   .vi-compact-embed .foot{display:none!important}
+  /* === Bigger cards + taller panel + mobile sticky Close (merged) === */
+.vi-compact-embed{
+  /* taller internal scroll area */
+  --pane-max-h: min(78vh, 820px);
+  /* card + viz sizing */
+  --card-h: 220px;
+  --viz-row-h: 120px;
+  --donut-h: 120px;
+  /* details panel height cap for non-mobile */
+  --details-max: 740px;
+}
+
+.vi-compact-embed .table{ max-height: var(--pane-max-h); }
+
+.vi-compact-embed .metrics-grid{ grid-auto-rows: var(--card-h) !important; }
+.vi-compact-embed .metric-card{ padding:14px 12px 12px !important; overflow:hidden; }
+.vi-compact-embed .spark svg{ height: var(--viz-row-h) !important; }
+.vi-compact-embed .donut svg{ width: var(--donut-h) !important; height: var(--donut-h) !important; }
+.vi-compact-embed .calendar{ height: var(--viz-row-h) !important; }
+
+/* raise details height overall */
+.vi-compact-embed .details.open{ max-height: var(--details-max) !important; }
+
+/* desktop: keep four-up, don’t let cards get too narrow */
+@media (min-width:641px){
+  .vi-compact-embed .metrics-grid{
+    grid-template-columns: repeat(4, minmax(200px, 1fr)) !important;
+  }
+}
+
+/* mobile: larger cards + keep Close visible */
+@media (max-width:640px){
+  .vi-compact-embed{ --card-h:208px; --viz-row-h:108px; --donut-h:108px; }
+
+  /* remove cap so panel can grow; .table handles scrolling */
+  .vi-compact-embed .details.open{ max-height: none !important; }
+
+  /* sticky Close pill at the top without changing HTML */
+  .vi-compact-embed .details{ display:flex; flex-direction:column; scroll-margin-top:8px; }
+  .vi-compact-embed .details-close{
+    order:-1; align-self:flex-end; position:sticky; top:8px; z-index:5;
+    padding:8px 12px; border-radius:999px; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,.08);
+  }
+  .vi-compact-embed .metrics-title{ margin-top:6px; }
+}
   </style>
 
   <div class="head">
