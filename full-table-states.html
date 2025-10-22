@@ -1,0 +1,608 @@
+<section id="tailgating-states">
+<!-- Datawrapper-style table (Action Network green + mint theme) -->
+<div id="dw-lottery-2" data-dw="table"
+     style="--logo-h:34px;
+            --stripe:#DCF2EB;              /* mint zebra */
+            --hover:#BCE5D6;               /* mint hover */
+            --header-bg:#56C257;           /* green header */
+            --header-fg:#ffffff;
+            --scroll-track:#f7f8fb; 
+            --scroll-thumb:#56C257; 
+            --scroll-thumb-hover:#3FA94B;
+            --gutter: clamp(8px, 4vw, 14px);
+            --gutter-left: 0;
+            --gutter-right: 0; 
+            --edge-pad: 14px;
+            --table-max-h: 500px;
+            --vbar-w: 6px; --vbar-w-hover: 8px;">
+  <style>
+  /* Guard: scope box-sizing to this block only */
+  #tailgating-states, #tailgating-states * { box-sizing: border-box; }
+
+  /* ===== Datawrapper-style table (Action Network Green + Mint) ===== */
+  #dw-lottery-2{
+    /* Brand palette (mint + green) */
+    --brand-50:#F6FFF9; 
+    --brand-100:#DCF2EB;
+    --brand-500:#56C257; 
+    --brand-600:#3FA94B; 
+    --brand-700:#2E8538; 
+    --brand-900:#1F5D28;
+
+    --bg:#ffffff; --text:#1f2937;
+    box-sizing:border-box; overflow-x:hidden; display:block; max-width:100%;
+    padding-left:var(--gutter-left,var(--gutter));
+    padding-right:var(--gutter-right,var(--gutter));
+  }
+
+  /* Controls layout */
+  #dw-lottery-2 .dw-controls{
+    display:grid; grid-template-columns:1fr auto 1fr; align-items:center;
+    gap:12px; margin:2px 0 10px 0;
+  }
+  #dw-lottery-2 .left{display:flex; gap:8px; align-items:center; flex-wrap:wrap; justify-content:flex-start}
+  #dw-lottery-2 .center{justify-self:center; display:flex; align-items:center}
+  #dw-lottery-2 .right{display:flex; gap:8px; align-items:center; flex-wrap:wrap; justify-content:flex-end}
+
+  #dw-lottery-2 .dw-field{position:relative}
+  #dw-lottery-2 .dw-input,#dw-lottery-2 .dw-select,#dw-lottery-2 .dw-btn{
+    font:14px/1.2 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; border-radius:10px; padding:8px 10px; transition:.15s ease;
+  }
+  #dw-lottery-2 .dw-input,#dw-lottery-2 .dw-select{
+    background:#fff;
+    border:1px solid var(--brand-700);         /* green border */
+    color:var(--text); box-shadow:inset 0 1px 2px rgba(16,24,40,.04);
+  }
+  #dw-lottery-2 .dw-input{width:min(320px,100%); padding-right:36px}
+  #dw-lottery-2 .dw-input::placeholder{color:#9AA4B2}
+  #dw-lottery-2 .dw-input:focus,#dw-lottery-2 .dw-select:focus{
+    outline:none; border-color:var(--brand-500);
+    box-shadow:0 0 0 3px color-mix(in oklab,var(--brand-500) 25%,transparent); background:#fff;
+  }
+  #dw-lottery-2 .dw-select{
+    appearance:none; padding-right:34px;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%232E8538' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat:no-repeat; background-position:right 10px center; background-size:14px;
+  }
+  #dw-lottery-2 .dw-btn{background:var(--brand-500); color:#fff; border:1px solid var(--brand-500); padding-inline:12px; cursor:pointer}
+  #dw-lottery-2 .dw-btn:hover{background:var(--brand-600); border-color:var(--brand-600)} 
+  #dw-lottery-2 .dw-btn:active{transform:translateY(1px)}
+  #dw-lottery-2 .dw-btn[disabled]{background:#fafafa; border-color:#d1d5db; color:#6b7280; opacity:1; cursor:not-allowed; transform:none}
+  #dw-lottery-2 .dw-status{font:12px/1.2 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; color:#6b7280}
+  #dw-lottery-2 .dw-counter{display:none !important;}
+
+  /* Clear button */
+  #dw-lottery-2 .dw-clear{
+    position:absolute; right:10px; top:50%; translate:0 -50%; width:22px; height:22px; border-radius:9999px; border:0;
+    background:transparent; color:var(--brand-700); cursor:pointer; display:none; align-items:center; justify-content:center;
+  }
+  #dw-lottery-2 .dw-field.has-value .dw-clear{display:flex}
+  #dw-lottery-2 .dw-clear:hover{background:var(--brand-100)}
+
+  /* === Top-centre logo (mask + fallback) ======================= */
+  #dw-lottery-2 .dw-top-brand{
+    display:flex; align-items:center; justify-content:center;
+  }
+
+  /* Masked, single-colour logo (exact match to header green) */
+  #dw-lottery-2 .dw-top-logo{
+    display:block;
+    height: clamp(18px, 4.2vw, 28px);
+    width: clamp(120px, 16vw, 220px);
+    background: var(--header-bg); /* exact fill = #56C257 by default */
+    -webkit-mask: var(--logo-url) no-repeat center / contain;
+            mask: var(--logo-url) no-repeat center / contain;
+  }
+
+  /* <img> fallback (near-exact match using filter) */
+  #dw-lottery-2 .dw-top-logo-img{
+    display:block;
+    height: clamp(18px, 4.2vw, 28px);
+    width:auto;
+    filter:
+      brightness(0) saturate(100%)
+      invert(62%) sepia(23%) saturate(1250%) hue-rotate(78deg)
+      brightness(96%) contrast(92%);
+    image-rendering:-webkit-optimize-contrast;
+  }
+
+  /* Prefer mask when available */
+  #dw-lottery-2 .dw-top-logo { display: none; }
+  #dw-lottery-2 .dw-top-logo-img { display: block; }
+  #dw-lottery-2.logo-mask-ok .dw-top-logo { display: block; }
+  #dw-lottery-2.logo-mask-ok .dw-top-logo-img { display: none; }
+
+  /* If mask isn’t supported, stay on <img> fallback */
+  @supports not (-webkit-mask: url("")){
+    #dw-lottery-2 .dw-top-logo{ display:none; }
+    #dw-lottery-2 .dw-top-logo-img{ display:block; }
+  }
+
+  /* Card & table */
+  #dw-lottery-2 .dw-card {
+    background: var(--bg);
+    border: 0;
+    box-shadow: none;
+    overflow: hidden;
+    margin: 0;
+    width: 100%;
+  }
+  #dw-lottery-2 .dw-scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+  #dw-lottery-2 .dw-scroll.no-scroll { overflow-x: hidden !important; }
+  #dw-lottery-2 table.dw-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font: 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+    background: transparent;
+    min-width: 1200px;
+    table-layout: auto;
+  }
+
+  /* Header */
+  #dw-lottery-2 thead th{
+    background:var(--header-bg); color:var(--header-fg,#fff); font-weight:700; text-align:center;
+    padding:12px 14px; white-space:nowrap; vertical-align:middle; border:0;
+    transition:background-color .15s, color .15s, box-shadow .15s, transform .05s;
+  }
+  #dw-lottery-2 thead th.sortable{cursor:pointer; user-select:none}
+  #dw-lottery-2 thead th.sortable::after{content:"↕"; font-size:12px; opacity:.75; margin-left:8px; color:var(--header-fg,#fff)}
+  #dw-lottery-2 thead th.sortable[data-sort="asc"]::after{content:"▲"}
+  #dw-lottery-2 thead th.sortable[data-sort="desc"]::after{content:"▼"}
+  #dw-lottery-2 thead th.sortable:hover,#dw-lottery-2 thead th.sortable:focus-visible{background:var(--brand-600); color:#fff; box-shadow:inset 0 -3px 0 var(--brand-100)}
+  #dw-lottery-2 .dw-scroll.scrolled thead th{box-shadow:0 6px 10px -6px rgba(0,0,0,.25)}
+  #dw-lottery-2 thead th.is-sorted{background:var(--brand-700); color:#fff; box-shadow:inset 0 -3px 0 var(--brand-100)}
+
+  #dw-lottery-2 thead th,
+  #dw-lottery-2 tbody td {
+    padding: 12px 10px;
+    overflow: hidden;
+  }
+  #dw-lottery-2 thead th { white-space: nowrap; }
+  #dw-lottery-2 tbody td:nth-child(2) {
+    white-space: normal;          
+    word-break: keep-all;         
+    overflow-wrap: break-word;
+    min-width: 100px;
+    max-width: 220px;            
+    line-height: 1.3;
+  }
+  #dw-lottery-2 tbody td {
+    background-clip: padding-box;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+
+  /* Body */
+  #dw-lottery-2 tbody td{ text-align:center; vertical-align:middle; background:transparent!important; border:0; transition:background-color .12s }
+  #dw-lottery-2 thead th:last-child,#dw-lottery-2 tbody td:last-child{padding-right:14px}
+  #dw-lottery-2 tbody tr:nth-child(odd){background:var(--stripe,#DCF2EB)}
+  #dw-lottery-2 tbody tr:hover{background:var(--hover,#BCE5D6); box-shadow:inset 3px 0 0 var(--brand-500)}
+  #dw-lottery-2 thead th{position:sticky; top:var(--sticky-top,0); z-index:5}
+
+  /* Scrollbar + height */
+  #dw-lottery-2 .dw-scroll{max-height:var(--table-max-h,360px); overflow-y:auto; -ms-overflow-style:auto; scrollbar-width:thin; scrollbar-color:var(--scroll-thumb) transparent}
+  #dw-lottery-2 .dw-scroll::-webkit-scrollbar:horizontal{height:0; display:none}
+  #dw-lottery-2 .dw-scroll::-webkit-scrollbar:vertical{width:var(--vbar-w)}
+  #dw-lottery-2 .dw-scroll:hover::-webkit-scrollbar:vertical{width:var(--vbar-w-hover)}
+  #dw-lottery-2 .dw-scroll::-webkit-scrollbar-thumb{background:var(--scroll-thumb); border-radius:9999px; border:2px solid transparent; background-clip:content-box}
+
+  /* Dynamic zebra */
+  #dw-lottery-2 tbody tr{background:transparent!important}
+  #dw-lottery-2 tbody tr.dw-zebra{background:var(--stripe,#DCF2EB)!important}
+  #dw-lottery-2 tbody td.is-sorted{background:var(--hover,#BCE5D6)!important; font-weight:600}
+
+  /* Empty-state row */
+  #dw-lottery-2 tr.dw-empty td{text-align:center; color:#6b7280; font-style:italic; padding:18px 14px; background:linear-gradient(0deg,#fff,var(--brand-50))}
+
+  /* Footer */
+  #dw-lottery-2 .dw-footer{
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    padding:10px 0; margin-top:10px; color:#6b7280;
+    font:12px/1.25 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+    box-shadow:0 -1px 0 0 color-mix(in oklab,var(--brand-500) 35%, transparent);
+  }
+  #dw-lottery-2 .dw-brand-left{
+    display:none; color:inherit; text-decoration:none; font-weight:600;
+    border-bottom:1px dashed transparent; transition:color .15s, border-color .15s;
+  }
+  #dw-lottery-2 .dw-brand-left:is(:hover,:focus-visible){color:var(--brand-700); border-color:var(--brand-700); outline:none}
+
+  #dw-lottery-2 .dw-controls{
+    grid-template-columns: minmax(0,1fr) auto minmax(0,1fr);
+    column-gap: 12px;
+  }
+  #dw-lottery-2 .left,
+  #dw-lottery-2 .center,
+  #dw-lottery-2 .right { min-width: 0; }
+  #dw-lottery-2 .left,
+  #dw-lottery-2 .right { flex-wrap: nowrap; }
+  #dw-lottery-2 .right { white-space: nowrap; gap: 8px; }
+  #dw-lottery-2 .dw-input { width: clamp(160px, 26vw, 320px); }
+  #dw-lottery-2 .dw-select { min-width: 68px; }
+  #dw-lottery-2 .dw-btn { padding-inline: 8px; }
+
+  @media (min-width:601px) and (max-width:980px){
+    #dw-lottery-2 .right > .dw-status{display:inline; font-size:0;}
+    #dw-lottery-2 .right > .dw-status::after{content:"Rows"; font-size:12px;}
+    #dw-lottery-2 .dw-input { width: clamp(150px, 22vw, 260px); }
+  }
+  @media (min-width:981px){
+    #dw-lottery-2 .dw-top-logo,
+    #dw-lottery-2 .dw-top-logo-img { height: 24px; width: auto; }
+  }
+  @media (max-width: 600px){
+    #dw-lottery-2 .dw-controls{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto auto;
+      align-items:center; column-gap:8px; row-gap:0; margin:6px 0 8px;
+    }
+    #dw-lottery-2 .left, #dw-lottery-2 .center, #dw-lottery-2 .right{min-width:0;}
+    #dw-lottery-2 .dw-field{width:100%; max-width:46vw;}
+    #dw-lottery-2 .dw-input{width:100%; padding:6px 24px 6px 10px; height:34px; font-size:13px;}
+    #dw-lottery-2 .dw-clear{width:20px; height:20px;}
+    #dw-lottery-2 thead th{ font-size:13px; line-height:1.2; }
+    #dw-lottery-2 .dw-top-logo,
+    #dw-lottery-2 .dw-top-logo-img{ height:18px; width:120px; } /* 18px on phones */
+    #dw-lottery-2 .right{justify-content:flex-end; gap:6px;}
+    #dw-lottery-2 .right .dw-status{display:none;}
+    #dw-lottery-2 .dw-select{min-width:68px; height:32px; padding:6px 22px 6px 8px; font-size:13px;}
+    #dw-lottery-2 .dw-btn{width:32px; height:32px; padding:0; border-radius:12px; display:inline-flex; align-items:center; justify-content:center;}
+  }
+  </style>
+
+  <!-- Controls -->
+  <div class="dw-controls">
+    <div class="left">
+      <div class="dw-field">
+        <input type="search" class="dw-input" placeholder="Search table…" aria-label="Search table">
+        <button type="button" class="dw-clear" aria-label="Clear search">×</button>
+      </div>
+      <span class="dw-status dw-counter" aria-live="polite"></span>
+    </div>
+
+    <!-- Center: NOT clickable logo -->
+    <div class="center">
+      <div class="dw-top-brand" aria-label="Brand">
+        <div class="dw-top-logo" aria-hidden="true"></div>
+        <img class="dw-top-logo-img"
+             src="https://i.postimg.cc/x1nG117r/AN-final2-logo.png"
+             alt="VegasInsider logo" loading="lazy">
+      </div>
+    </div>
+       
+    <div class="right">
+      <label class="dw-status" for="dw-size" style="margin-right:4px;">Rows/page</label>
+      <select id="dw-size" class="dw-select">
+        <option value="10" selected>10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+        <option value="0">All</option>
+      </select>
+      <button class="dw-btn" data-page="prev" aria-label="Previous page">‹</button>
+      <button class="dw-btn" data-page="next" aria-label="Next page">›</button>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="dw-card">
+    <div class="dw-scroll">
+      <table class="dw-table">
+  <thead>
+  <tr>
+    <th scope="col" data-type="num">Rank</th>
+    <th scope="col" data-type="text">State</th>
+    <th scope="col" data-type="num">Implied Probability (%)</th>
+    <th scope="col" data-type="num">Moneyline Odds</th>
+    <th scope="col" data-type="num">Avg. Elevation (ft)</th>
+    <th scope="col" data-type="num">Darkness Score (1–5)</th>
+    <th scope="col" data-type="num">Avg. Clear Days (Nov)</th>
+    <th scope="col" data-type="num">Avg. Humidity (Nov)</th>
+  </tr>
+</thead>
+<tbody>
+  <tr><td>1</td><td>Arizona</td><td>4.66</td><td>+2046</td><td>4,100.00</td><td>4.13</td><td>17.20</td><td>33.00</td></tr>
+  <tr><td>2</td><td>New Mexico</td><td>4.64</td><td>+2056</td><td>5,700.00</td><td>4.24</td><td>15.33</td><td>40.00</td></tr>
+  <tr><td>3</td><td>Colorado</td><td>3.98</td><td>+2413</td><td>6,800.00</td><td>4.11</td><td>11.80</td><td>46.80</td></tr>
+  <tr><td>4</td><td>California</td><td>3.89</td><td>+2471</td><td>2,900.00</td><td>4.18</td><td>12.08</td><td>54.54</td></tr>
+  <tr><td>5</td><td>Nevada</td><td>3.53</td><td>+2733</td><td>5,500.00</td><td>4.40</td><td>10.20</td><td>41.60</td></tr>
+  <tr><td>6</td><td>Utah</td><td>3.26</td><td>+2968</td><td>6,100.00</td><td>4.26</td><td>9.50</td><td>60.00</td></tr>
+  <tr><td>7</td><td>Texas</td><td>2.94</td><td>+3292</td><td>1,700.00</td><td>3.93</td><td>11.93</td><td>53.17</td></tr>
+  <tr><td>8</td><td>Oklahoma</td><td>2.68</td><td>+3629</td><td>1,300.00</td><td>3.47</td><td>11.50</td><td>54.50</td></tr>
+  <tr><td>9</td><td>Kansas</td><td>2.62</td><td>+3718</td><td>2,000.00</td><td>4.00</td><td>11.00</td><td>56.20</td></tr>
+  <tr><td>10</td><td>Wyoming</td><td>2.61</td><td>+3733</td><td>6,700.00</td><td>4.33</td><td>7.75</td><td>56.75</td></tr>
+  <tr><td>11</td><td>Georgia</td><td>2.55</td><td>+3821</td><td>600.00</td><td>3.29</td><td>11.83</td><td>51.67</td></tr>
+  <tr><td>12</td><td>South Carolina</td><td>2.53</td><td>+3850</td><td>350.00</td><td>3.00</td><td>12.00</td><td>50.00</td></tr>
+  <tr><td>13</td><td>North Carolina</td><td>2.34</td><td>+4173</td><td>700.00</td><td>3.50</td><td>11.00</td><td>54.17</td></tr>
+  <tr><td>14</td><td>Arkansas</td><td>2.23</td><td>+4379</td><td>650.00</td><td>4.00</td><td>11.00</td><td>56.00</td></tr>
+  <tr><td>15</td><td>Nebraska</td><td>2.22</td><td>+4398</td><td>2,600.00</td><td>3.83</td><td>8.71</td><td>55.71</td></tr>
+  <tr><td>16</td><td>Virginia</td><td>2.18</td><td>+4484</td><td>950.00</td><td>3.50</td><td>9.50</td><td>53.80</td></tr>
+  <tr><td>17</td><td>Alabama</td><td>2.16</td><td>+4522</td><td>500.00</td><td>3.50</td><td>10.25</td><td>55.25</td></tr>
+  <tr><td>18</td><td>Tennessee</td><td>2.04</td><td>+4805</td><td>900.00</td><td>3.29</td><td>9.40</td><td>56.20</td></tr>
+  <tr><td>19</td><td>Louisiana</td><td>2.00</td><td>+4900</td><td>100.00</td><td>3.22</td><td>10.25</td><td>59.00</td></tr>
+  <tr><td>20</td><td>Florida</td><td>1.97</td><td>+4976</td><td>100.00</td><td>3.75</td><td>10.27</td><td>58.50</td></tr>
+  <tr><td>21</td><td>Mississippi</td><td>1.97</td><td>+4976</td><td>300.00</td><td>3.00</td><td>9.67</td><td>56.00</td></tr>
+  <tr><td>22</td><td>Idaho</td><td>1.87</td><td>+5248</td><td>5,000.00</td><td>4.25</td><td>4.67</td><td>62.33</td></tr>
+  <tr><td>23</td><td>South Dakota</td><td>1.86</td><td>+5276</td><td>2,200.00</td><td>4.07</td><td>7.00</td><td>63.00</td></tr>
+  <tr><td>24</td><td>Hawaii</td><td>1.84</td><td>+5323</td><td>3,030.00</td><td>4.06</td><td>6.25</td><td>65.00</td></tr>
+  <tr><td>25</td><td>Oregon</td><td>1.76</td><td>+5582</td><td>3,300.00</td><td>4.22</td><td>3.75</td><td>73.00</td></tr>
+  <tr><td>26</td><td>Missouri</td><td>1.75</td><td>+5614</td><td>800.00</td><td>4.00</td><td>9.00</td><td>60.25</td></tr>
+  <tr><td>27</td><td>Alaska</td><td>1.75</td><td>+5614</td><td>1,900.00</td><td>4.59</td><td>6.22</td><td>76.60</td></tr>
+  <tr><td>28</td><td>Maryland</td><td>1.72</td><td>+5716</td><td>350.00</td><td>3.00</td><td>8.00</td><td>54.00</td></tr>
+  <tr><td>29</td><td>Rhode Island</td><td>1.66</td><td>+5912</td><td>200.00</td><td>2.00</td><td>8.00</td><td>56.00</td></tr>
+  <tr><td>30</td><td>New Jersey</td><td>1.65</td><td>+5948</td><td>250.00</td><td>1.00</td><td>8.00</td><td>55.00</td></tr>
+  <tr><td>31</td><td>Delaware</td><td>1.63</td><td>+6025</td><td>60.00</td><td>2.00</td><td>8.00</td><td>56.00</td></tr>
+  <tr><td>32</td><td>New Hampshire</td><td>1.63</td><td>+6025</td><td>1,000.00</td><td>4.09</td><td>6.00</td><td>58.00</td></tr>
+  <tr><td>33</td><td>Montana</td><td>1.60</td><td>+6137</td><td>3,400.00</td><td>4.33</td><td>4.33</td><td>63.14</td></tr>
+  <tr><td>34</td><td>Connecticut</td><td>1.55</td><td>+6345</td><td>500.00</td><td>2.00</td><td>7.00</td><td>57.00</td></tr>
+  <tr><td>35</td><td>Kentucky</td><td>1.53</td><td>+6424</td><td>750.00</td><td>3.00</td><td>7.25</td><td>57.50</td></tr>
+  <tr><td>36</td><td>Massachusetts</td><td>1.50</td><td>+6557</td><td>500.00</td><td>3.00</td><td>7.50</td><td>59.00</td></tr>
+  <tr><td>37</td><td>West Virginia</td><td>1.46</td><td>+6760</td><td>1,500.00</td><td>3.89</td><td>5.00</td><td>57.25</td></tr>
+  <tr><td>38</td><td>Pennsylvania</td><td>1.43</td><td>+6925</td><td>1,100.00</td><td>3.11</td><td>5.33</td><td>59.86</td></tr>
+  <tr><td>39</td><td>Iowa</td><td>1.40</td><td>+7091</td><td>1,100.00</td><td>3.08</td><td>6.50</td><td>63.50</td></tr>
+  <tr><td>40</td><td>Illinois</td><td>1.33</td><td>+7417</td><td>600.00</td><td>3.17</td><td>7.00</td><td>63.40</td></tr>
+  <tr><td>41</td><td>Minnesota</td><td>1.26</td><td>+7879</td><td>1,200.00</td><td>4.06</td><td>5.00</td><td>68.60</td></tr>
+  <tr><td>42</td><td>Maine</td><td>1.15</td><td>+8686</td><td>600.00</td><td>4.09</td><td>5.00</td><td>65.50</td></tr>
+  <tr><td>43</td><td>Wisconsin</td><td>1.12</td><td>+8936</td><td>1,050.00</td><td>3.40</td><td>5.25</td><td>65.50</td></tr>
+  <tr><td>44</td><td>North Dakota</td><td>1.12</td><td>+8936</td><td>1,900.00</td><td>3.17</td><td>5.67</td><td>68.25</td></tr>
+  <tr><td>45</td><td>Indiana</td><td>1.06</td><td>+9364</td><td>700.00</td><td>2.00</td><td>5.75</td><td>63.75</td></tr>
+  <tr><td>46</td><td>Michigan</td><td>1.00</td><td>+9900</td><td>900.00</td><td>4.05</td><td>2.86</td><td>68.38</td></tr>
+  <tr><td>47</td><td>New York</td><td>0.91</td><td>+10987</td><td>1,000.00</td><td>3.16</td><td>2.60</td><td>62.25</td></tr>
+  <tr><td>48</td><td>Ohio</td><td>0.86</td><td>+11528</td><td>850.00</td><td>3.00</td><td>4.25</td><td>63.63</td></tr>
+  <tr><td>49</td><td>Vermont</td><td>0.82</td><td>+12190</td><td>1,000.00</td><td>4.00</td><td>3.00</td><td>64.00</td></tr>
+  <tr><td>50</td><td>Washington</td><td>0.75</td><td>+13233</td><td>1,700.00</td><td>4.00</td><td>3.25</td><td>75.50</td></tr>
+
+  <!-- keep this empty-state row at the end -->
+  <tr class="dw-empty" style="display:none;"><td colspan="8">No matches found.</td></tr>
+</tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Optional footer brand name (left) -->
+  <div class="dw-footer" role="contentinfo">
+    <a class="dw-brand-left" href="#" aria-label="Brand name"></a>
+    <span></span>
+  </div>
+
+  <script>
+  (function(){
+    const root = document.getElementById('dw-lottery-2');
+    if (!root || root.dataset.dwInit === '1') return;
+
+    function DWTableInit(root){
+      root.dataset.dwInit='1';
+
+      const table = root.querySelector('table.dw-table');
+      const tb = table ? table.tBodies[0] : null;
+      const scroller = root.querySelector('.dw-scroll');
+      // Disable horizontal scrolling if the table has 4 or fewer columns
+      if (table.tHead && table.tHead.rows[0].cells.length <= 4) {
+        scroller.classList.add('no-scroll');
+      }
+      const controls = root.querySelector('.dw-controls');
+      if(!table || !tb || !scroller || !controls) return;
+
+      const field = controls.querySelector('.dw-field');
+      const searchInput = controls.querySelector('.dw-input');
+      const clearBtn = controls.querySelector('.dw-clear');
+      const statusEl = controls.querySelector('.dw-counter'); // hidden
+      const sizeSel = controls.querySelector('#dw-size');
+      const prevBtn = controls.querySelector('[data-page="prev"]');
+      const nextBtn = controls.querySelector('[data-page="next"]');
+      const emptyRow = tb.querySelector('.dw-empty');
+
+      /* record original order for "unsort" */
+      Array.from(tb.rows).forEach((r,i)=>{ if(!r.classList.contains('dw-empty')) r.dataset.idx=i; });
+
+      let pageSize = parseInt(sizeSel.value,10) || 10;  // 0 = All
+      let page = 1;
+      let filter = '';
+
+      /* header shadow while scrolled */
+      const onScrollShadow = ()=> scroller.classList.toggle('scrolled', scroller.scrollTop > 0);
+      scroller.addEventListener('scroll', onScrollShadow); onScrollShadow();
+
+      /* tri-state sorting */
+      const heads = Array.from(table.tHead.rows[0].cells);
+      heads.forEach((th,i)=>{
+        th.classList.add('sortable'); th.setAttribute('aria-sort','none'); th.dataset.sort='none'; th.tabIndex=0;
+        const type = th.dataset.type || 'text';
+        const go = ()=> sortBy(i,type,th);
+        th.addEventListener('click',go);
+        th.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); go(); } });
+      });
+
+      function textOf(tr,i){ return (tr.children[i].innerText||'').trim(); }
+      function clearSortedClasses(){
+        heads.forEach(h=>h.classList.remove('is-sorted'));
+        Array.from(tb.rows).forEach(r=>Array.from(r.cells).forEach(c=>c.classList.remove('is-sorted')));
+      }
+      function markSortedColumn(colIdx){
+        heads[colIdx]?.classList.add('is-sorted');
+        Array.from(tb.rows).forEach(r=>{ const c=r.cells[colIdx]; if(c) c.classList.add('is-sorted'); });
+      }
+
+      function sortBy(colIdx, type, th){
+        const rows = Array.from(tb.rows).filter(r=>!r.classList.contains('dw-empty'));
+        const current = th.dataset.sort || 'none';
+        const next = current==='none' ? 'asc' : current==='asc' ? 'desc' : 'none';
+
+        heads.forEach(h=>{ h.dataset.sort='none'; h.setAttribute('aria-sort','none'); h.classList.remove('is-sorted'); });
+
+        if(next === 'none'){
+          rows.sort((a,b)=>(+a.dataset.idx)-(+b.dataset.idx));
+          rows.forEach(r=>tb.insertBefore(r, emptyRow));
+          clearSortedClasses();
+          renderPage();
+          return;
+        }
+
+        th.dataset.sort = next;
+        th.setAttribute('aria-sort', next==='asc'?'ascending':'descending');
+
+        const mul = next==='asc'?1:-1;
+        rows.sort((a,b)=>{
+          let v1=textOf(a,colIdx), v2=textOf(b,colIdx);
+          if((type||'text')==='num'){
+            v1=parseFloat(v1.replace(/[^0-9.\-]/g,'')); if(isNaN(v1)) v1=-Infinity;
+            v2=parseFloat(v2.replace(/[^0-9.\-]/g,'')); if(isNaN(v2)) v2=-Infinity;
+          }else{ v1=(v1+'').toLowerCase(); v2=(v2+'').toLowerCase(); }
+          if(v1>v2) return 1*mul; if(v1<v2) return -1*mul; return 0;
+        });
+        rows.forEach(r=>tb.insertBefore(r, emptyRow));
+        clearSortedClasses(); markSortedColumn(colIdx);
+        renderPage();
+      }
+
+      /* zebra */
+      function applyZebra(shown){
+        Array.from(tb.rows).forEach(r=>r.classList.remove('dw-zebra'));
+        shown.forEach((r,idx)=>{ if(idx % 2 === 0) r.classList.add('dw-zebra'); });
+      }
+
+      function matchesFilter(tr){ return !tr.classList.contains('dw-empty') && tr.innerText.toLowerCase().includes(filter); }
+
+      function renderPage(){
+        const ordered = Array.from(tb.rows).filter(r=>!r.classList.contains('dw-empty'));
+        const visible = ordered.filter(matchesFilter);
+        const total = visible.length;
+
+        ordered.forEach(r=>r.style.display='none');
+        let shown = [];
+
+        if(total===0){
+          if(emptyRow){ emptyRow.style.display='table-row'; emptyRow.firstElementChild.colSpan = heads.length; }
+          if(statusEl) statusEl.textContent = "";
+          prevBtn.disabled = nextBtn.disabled = true;
+        }else{
+          if(emptyRow) emptyRow.style.display='none';
+          if(pageSize===0){
+            shown = visible;
+            if(statusEl) statusEl.textContent = "";
+            prevBtn.disabled = nextBtn.disabled = true;
+          }else{
+            const pages = Math.max(1, Math.ceil(total / pageSize));
+            page = Math.min(Math.max(1, page), pages);
+            const start = (page-1)*pageSize, end = start + pageSize;
+            shown = visible.slice(start,end);
+            if(statusEl) statusEl.textContent = "";
+            prevBtn.disabled = page<=1; nextBtn.disabled = page>=pages;
+          }
+        }
+
+        shown.forEach(r=>r.style.display='table-row');
+        applyZebra(shown);
+      }
+
+      /* search + clear */
+      const syncClearBtn = ()=> field.classList.toggle('has-value', !!searchInput.value);
+      let t=null;
+      searchInput.addEventListener('input', e=>{
+        syncClearBtn();
+        clearTimeout(t);
+        t=setTimeout(()=>{ filter=(e.target.value||'').toLowerCase().trim(); page=1; renderPage(); },120);
+      });
+      clearBtn.addEventListener('click', ()=>{ searchInput.value=''; syncClearBtn(); filter=''; page=1; renderPage(); searchInput.focus(); });
+      syncClearBtn();
+
+      /* page size + nav */
+      sizeSel.addEventListener('change', e=>{ pageSize = parseInt(e.target.value,10) || 0; page=1; renderPage(); });
+      prevBtn.addEventListener('click', ()=>{ page--; renderPage(); });
+      nextBtn.addEventListener('click', ()=>{ page++; renderPage(); });
+
+      /* ---------- Config ---------- */
+      const LOGO_URL   = "https://i.postimg.cc/x1nG117r/AN-final2-logo.png";
+      const BRAND_NAME = "";
+      const BRAND_HREF = "";
+      
+      const topWrap = root.querySelector('.dw-top-brand');
+      const topLogo = root.querySelector('.dw-top-logo');      // masked version
+      const topImg  = root.querySelector('.dw-top-logo-img');  // <img> fallback
+      
+      if (LOGO_URL) topLogo.style.setProperty('--logo-url', `url("${LOGO_URL}")`);
+      topWrap.style.display = 'flex';
+
+      // Only enable the mask route if the browser actually supports it
+      const supportsMask =
+        (window.CSS && (CSS.supports('mask-image', 'url("")') || CSS.supports('-webkit-mask-image', 'url("")')));
+
+      // Preload the asset then flip the class when ready
+      const probe = new Image();
+      probe.onload = () => {
+        if (supportsMask) {
+          const color = (getComputedStyle(root).getPropertyValue('--header-bg') || '#56C257').trim();
+          // Ensure masked logo takes the header colour exactly
+          topLogo.style.backgroundColor = color;
+          topLogo.style.webkitMaskImage  = `url("${LOGO_URL}")`;
+          topLogo.style.maskImage        = `url("${LOGO_URL}")`;
+          topLogo.style.webkitMaskRepeat = 'no-repeat';
+          topLogo.style.maskRepeat       = 'no-repeat';
+          topLogo.style.webkitMaskPosition = 'center';
+          topLogo.style.maskPosition       = 'center';
+          topLogo.style.webkitMaskSize   = 'contain';
+          topLogo.style.maskSize         = 'contain';
+          root.classList.add('logo-mask-ok');      // switch to masked version
+        } else {
+          // Stay on <img> + filter fallback
+          if (topImg && !topImg.getAttribute('src')) topImg.src = LOGO_URL;
+          root.classList.remove('logo-mask-ok');
+        }
+      };
+      probe.onerror = () => {
+        // Fall back gracefully to <img>
+        if (topImg && !topImg.getAttribute('src')) topImg.src = LOGO_URL;
+        root.classList.remove('logo-mask-ok');
+      };
+      probe.src = LOGO_URL;
+
+      // Footer brand name (optional)
+      const footer    = root.querySelector('.dw-footer');
+      const brandLeft = root.querySelector('.dw-brand-left');
+      if (BRAND_NAME){
+        brandLeft.textContent = BRAND_NAME;
+        if (BRAND_HREF) brandLeft.href = BRAND_HREF;
+        brandLeft.style.display = "inline-block";
+      } else {
+        footer.style.display = "none";
+      }
+
+      /* -------------------------------- */
+      renderPage();
+    }
+
+    DWTableInit(root);
+
+    /* ---- Auto-resize messaging to parent (iframe) ---- */
+    function sendHeightToParent() {
+      try {
+        const height = document.body.scrollHeight;
+        window.parent.postMessage({ type: "resize-iframe", height: height, src: window.location.href }, "*");
+      } catch (e) {}
+    }
+    window.addEventListener("load", sendHeightToParent);
+    window.addEventListener("resize", sendHeightToParent);
+    const observer = new MutationObserver(sendHeightToParent);
+    observer.observe(document.body, { childList: true, subtree: true, attributes: true });
+  })();
+  </script>
+</div>
+</section>
+
+<!-- Logo size override moved OUTSIDE the main <style> so it actually applies -->
+<style>
+  /* Logo size override (desktop wins over earlier media rules) */
+  #dw-lottery-2 .dw-top-logo{ height: 64px; width: 260px; }
+  #dw-lottery-2 .dw-top-logo-img{ height: 64px; width: auto; }
+
+  @media (max-width: 600px){
+    #dw-lottery-2 .dw-top-logo{ height: 44px; width: 160px; }
+    #dw-lottery-2 .dw-top-logo-img{ height: 44px; }
+  }
+</style>
