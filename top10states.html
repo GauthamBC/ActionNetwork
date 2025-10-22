@@ -283,50 +283,48 @@
 /* ===================== MOBILE OVERRIDES (single block) ===================== */
 @media (max-width:640px){
   html, body { height:auto !important; overflow:auto !important; }
-  /* Make the SECTION the scroll container, not .table */
+  /* Let the page behave normally; mirror desktop: .table scrolls, footer not sticky */
   .vi-compact-embed{
-    display:flex;
-    flex-direction:column;
-    min-height:100dvh;
-    min-height:100svh;
-    overflow:auto;                 /* page scroll happens here */
-    scroll-padding-bottom:72px;    /* keeps last row above sticky footer */
+    display:block;
+    min-height:auto;
+    overflow:visible;
   }
 
-  /* Let the table grow; no internal scroller on mobile */
+  /* Keep .table as the scroll container (like desktop), a touch shorter for phones */
+  .vi-compact-embed { --pane-max-h: min(70vh, 560px); }
   .vi-compact-embed .table{
-    max-height:none !important;
-    overflow:visible !important;
-    -webkit-overflow-scrolling:auto !important;
+    max-height: var(--pane-max-h) !important;
+    overflow:auto !important;
+    -webkit-overflow-scrolling:touch !important;
     padding-bottom:0 !important;
-    margin-bottom:72px;            /* breathing room above footer */
+    margin-bottom:0 !important;
   }
 
-  /* Sticky footer */
+  /* Footer behaves like desktop (not sticky) */
   .vi-compact-embed .vi-footer{
-    position:sticky;
-    bottom:0;
-    z-index:5;
-    align-self:stretch;
+    position: static !important;
+    bottom: auto !important;
+    z-index: auto !important;
+    padding: 8px 0;
     border-top:1px solid var(--border);
-    padding:8px 0 max(8px, env(safe-area-inset-bottom));
     background:
       radial-gradient(120% 140% at 85% 10%, rgba(255,255,255,.10) 0%, transparent 60%),
       linear-gradient(90deg,var(--brand-900) 0%,var(--brand-600) 45%,var(--brand-500) 100%)!important;
   }
 
-  /* Keep the embed popup fully visible above the footer */
+  /* Keep the embed popup positioned like desktop (relative to footer) */
   .vi-compact-embed .embed-wrapper{
-    position:fixed;
-    left:50%; transform:translateX(-50%);
-    bottom:calc(56px + env(safe-area-inset-bottom) + 8px);
-    width:min(600px, 92vw);
+    position: absolute !important;
+    bottom: calc(100% + 10px) !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: min(600px, calc(100% - 24px)) !important;
     max-height:65vh;
     overflow:auto;
     z-index:1000;
   }
 
-  /* Details panel UX */
+  /* Details panel UX (keep) */
   .vi-compact-embed .details.open{ max-height:none !important; }
   .vi-compact-embed .details{ display:flex; flex-direction:column; scroll-margin-top:8px; }
   .vi-compact-embed .details-close{
@@ -347,7 +345,6 @@
 }
 /* =================== END MOBILE OVERRIDES (desktop untouched) ============== */
   </style>
-
 <div class="head">
   <h3 id="vi-compact-embed-title" class="title">Top 10 U.S. Destinations to See the Supermoon Clearly in 2025</h3>
   <p class="sub"><em>Ranked by <strong>implied probabilities</strong> &amp; <strong>equivalent American moneylines</strong></em></p>
