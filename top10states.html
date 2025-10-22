@@ -287,14 +287,27 @@
       /* cancel section's inline overflow:hidden so children can be visible */
       section.vi-compact-embed{ overflow:visible !important; }
 
-      /* Kill inner scroller: whole page scrolls; add room for sticky footer */
-      .vi-compact-embed .table{
-        max-height:none !important;
-        height:auto !important;
-        overflow:visible !important;        /* removes the green scrollbar */
-        -webkit-overflow-scrolling:auto !important;
-        padding-bottom:96px !important;     /* space for sticky footer */
-      }
+  .vi-compact-embed .table{
+  max-height:620px !important;                 /* fixed height like desktop */
+  overflow:auto !important;                    /* re-enable scroll */
+  -webkit-overflow-scrolling:touch !important; /* smooth scrolling on iOS */
+  scrollbar-color: var(--brand-600) var(--brand-50);
+  scrollbar-width: thin;
+  padding-bottom:96px !important;              /* keep sticky footer space */
+}
+.vi-compact-embed .table::-webkit-scrollbar {
+  width:10px; height:8px;
+}
+.vi-compact-embed .table::-webkit-scrollbar-track {
+  background:var(--brand-50); border-radius:999px;
+}
+.vi-compact-embed .table::-webkit-scrollbar-thumb {
+  background:linear-gradient(180deg,var(--brand-600),var(--brand-500));
+  border-radius:999px; border:2px solid #fff;
+}
+.vi-compact-embed .table::-webkit-scrollbar-thumb:hover {
+  background:linear-gradient(180deg,var(--brand-700),var(--brand-600));
+}
 
       /* Sticky footer that hugs the bottom */
       .vi-compact-embed .vi-footer{
