@@ -261,6 +261,39 @@
   }
   .vi-compact-embed .metrics-title{ margin-top:6px; }
 }
+    /* === Optional horizontal scroll for the metrics row (desktop only) === */
+@media (min-width:641px){
+  /* give the right edge a bit of breathing room so the last card isn't under the v-scrollbar */
+  .vi-compact-embed .details{ padding-inline-end: 16px; }
+
+  /* make the 4-up grid horizontally scrollable only if the cards can't fit */
+  .vi-compact-embed .metrics-grid{
+    grid-template-columns: repeat(4, minmax(220px, 1fr)) !important; /* min width per card */
+    overflow-x: auto;                    /* enable horizontal scroll if needed */
+    overflow-y: visible;                 /* keep vertical clipping off here */
+    -webkit-overflow-scrolling: touch;   /* smooth on trackpads/touch */
+    scrollbar-gutter: stable;            /* reserve space when scrollbars take room */
+    scroll-snap-type: x proximity;       /* nicer horizontal scroll feel */
+    padding-bottom: 6px;                 /* room for the X scrollbar */
+  }
+  .vi-compact-embed .metric-card{ scroll-snap-align: start; }
+
+  /* brand the horizontal scrollbar on WebKit */
+  .vi-compact-embed .metrics-grid::-webkit-scrollbar{ height: 8px; }
+  .vi-compact-embed .metrics-grid::-webkit-scrollbar-track{
+    background: var(--brand-50); border-radius: 999px;
+  }
+  .vi-compact-embed .metrics-grid::-webkit-scrollbar-thumb{
+    background: linear-gradient(90deg, var(--brand-600), var(--brand-500));
+    border-radius: 999px; border: 2px solid #fff;
+  }
+
+  /* Firefox */
+  .vi-compact-embed .metrics-grid{
+    scrollbar-width: thin;
+    scrollbar-color: var(--brand-600) var(--brand-50);
+  }
+}
   </style>
 
   <div class="head">
