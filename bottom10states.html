@@ -83,6 +83,17 @@
     .vi-compact-embed .row[data-rank="8"]  .bar{background:linear-gradient(90deg,#76CC88,#8FE099)!important}
     .vi-compact-embed .row[data-rank="9"]  .bar{background:linear-gradient(90deg,#8AD79D,#9AE5A5)!important}
     .vi-compact-embed .row[data-rank="10"] .bar{background:linear-gradient(90deg,#9FE1B3,#A7E6BA)!important}
+    /* Gradient bars by rank (worst -> less-worst: 50 → 41, light → dark) */
+.vi-compact-embed .row[data-rank="50"] .bar{background:linear-gradient(90deg,#9FE1B3,#A7E6BA)!important}
+.vi-compact-embed .row[data-rank="49"] .bar{background:linear-gradient(90deg,#8AD79D,#9AE5A5)!important}
+.vi-compact-embed .row[data-rank="48"] .bar{background:linear-gradient(90deg,#76CC88,#8FE099)!important}
+.vi-compact-embed .row[data-rank="47"] .bar{background:linear-gradient(90deg,#64C274,#84DB8E)!important}
+.vi-compact-embed .row[data-rank="46"] .bar{background:linear-gradient(90deg,#52B760,#7AD783)!important}
+.vi-compact-embed .row[data-rank="45"] .bar{background:linear-gradient(90deg,#3FA94B,#71D279)!important}
+.vi-compact-embed .row[data-rank="44"] .bar{background:linear-gradient(90deg,#379744,#6ACE70)!important}
+.vi-compact-embed .row[data-rank="43"] .bar{background:linear-gradient(90deg,#2E8538,#63CA67)!important}
+.vi-compact-embed .row[data-rank="42"] .bar{background:linear-gradient(90deg,#2A7331,#5DC65F)!important}
+.vi-compact-embed .row[data-rank="41"] .bar{background:linear-gradient(90deg,#1F5D28,#56C257)!important}
 
     /* Details panel */
     .vi-compact-embed .details{
@@ -372,10 +383,9 @@
 
   <div class="table">
     <!-- Rows are clickable; the shared panel will be moved under the clicked row -->
-    <div class="row is-clickable" data-state="Minnesota" data-rank="41" aria-expanded="false" tabindex="0" role="button">
-      <div class="rank">41</div>
-      <div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="Minnesota flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Minnesota.svg"></span>Minnesota</div>
-      <div class="metric"><span class="bar" style="width:100.00%"></span><span class="val">1.26% (+7879)</span></div>
+    <div class="row is-clickable" data-state="Washington" data-rank="50" aria-expanded="false" tabindex="0" role="button">
+      <div class="rank">50</div><div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="Washington flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Washington.svg"></span>Washington</div>
+      <div class="metric"><span class="bar" style="width:59.52%"></span><span class="val">0.75% (+13233)</span></div>
     </div>
 
     <!-- Shared details panel -->
@@ -457,42 +467,43 @@
       <button id="az-close" class="details-close" type="button" aria-label="Close viewing factors">Close ✕</button>
     </div>
 
-    <!-- Other rows (clickable, same design) -->
-    <div class="row is-clickable" data-state="Maine" data-rank="42" aria-expanded="false" tabindex="0" role="button">
-      <div class="rank">42</div><div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="Maine flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Maine.svg"></span>Maine</div>
-      <div class="metric"><span class="bar" style="width:91.27%"></span><span class="val">1.15% (+8686)</span></div>
-    </div>
-    <div class="row is-clickable" data-state="Wisconsin" data-rank="43" aria-expanded="false" tabindex="0" role="button">
-      <div class="rank">43</div><div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="Wisconsin flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Wisconsin.svg"></span>Wisconsin</div>
-      <div class="metric"><span class="bar" style="width:88.89%"></span><span class="val">1.12% (+8936)</span></div>
-    </div>
-    <div class="row is-clickable" data-state="North Dakota" data-rank="44" aria-expanded="false" tabindex="0" role="button">
-      <div class="rank">44</div><div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="North Dakota flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_North_Dakota.svg"></span>North Dakota</div>
-      <div class="metric"><span class="bar" style="width:88.89%"></span><span class="val">1.12% (+8936)</span></div>
-    </div>
-    <div class="row is-clickable" data-state="Indiana" data-rank="45" aria-expanded="false" tabindex="0" role="button">
-      <div class="rank">45</div><div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="Indiana flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Indiana.svg"></span>Indiana</div>
-      <div class="metric"><span class="bar" style="width:84.13%"></span><span class="val">1.06% (+9364)</span></div>
-    </div>
-    <div class="row is-clickable" data-state="Michigan" data-rank="46" aria-expanded="false" tabindex="0" role="button">
-      <div class="rank">46</div><div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="Michigan flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Michigan.svg"></span>Michigan</div>
-      <div class="metric"><span class="bar" style="width:79.37%"></span><span class="val">1.00% (+9900)</span></div>
-    </div>
-    <div class="row is-clickable" data-state="New York" data-rank="47" aria-expanded="false" tabindex="0" role="button">
-      <div class="rank">47</div><div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="New York flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_New_York.svg"></span>New York</div>
-      <div class="metric"><span class="bar" style="width:72.22%"></span><span class="val">0.91% (+10987)</span></div>
+    <!-- Remaining rows in descending rank (worst to less-worst) -->
+    <div class="row is-clickable" data-state="Vermont" data-rank="49" aria-expanded="false" tabindex="0" role="button">
+      <div class="rank">49</div><div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="Vermont flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Vermont.svg"></span>Vermont</div>
+      <div class="metric"><span class="bar" style="width:65.08%"></span><span class="val">0.82% (+12190)</span></div>
     </div>
     <div class="row is-clickable" data-state="Ohio" data-rank="48" aria-expanded="false" tabindex="0" role="button">
       <div class="rank">48</div><div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="Ohio flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Ohio.svg"></span>Ohio</div>
       <div class="metric"><span class="bar" style="width:68.25%"></span><span class="val">0.86% (+11528)</span></div>
     </div>
-    <div class="row is-clickable" data-state="Vermont" data-rank="49" aria-expanded="false" tabindex="0" role="button">
-      <div class="rank">49</div><div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="Vermont flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Vermont.svg"></span>Vermont</div>
-      <div class="metric"><span class="bar" style="width:65.08%"></span><span class="val">0.82% (+12190)</span></div>
+    <div class="row is-clickable" data-state="New York" data-rank="47" aria-expanded="false" tabindex="0" role="button">
+      <div class="rank">47</div><div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="New York flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_New_York.svg"></span>New York</div>
+      <div class="metric"><span class="bar" style="width:72.22%"></span><span class="val">0.91% (+10987)</span></div>
     </div>
-    <div class="row is-clickable" data-state="Washington" data-rank="50" aria-expanded="false" tabindex="0" role="button">
-      <div class="rank">50</div><div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="Washington flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Washington.svg"></span>Washington</div>
-      <div class="metric"><span class="bar" style="width:59.52%"></span><span class="val">0.75% (+13233)</span></div>
+    <div class="row is-clickable" data-state="Michigan" data-rank="46" aria-expanded="false" tabindex="0" role="button">
+      <div class="rank">46</div><div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="Michigan flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Michigan.svg"></span>Michigan</div>
+      <div class="metric"><span class="bar" style="width:79.37%"></span><span class="val">1.00% (+9900)</span></div>
+    </div>
+    <div class="row is-clickable" data-state="Indiana" data-rank="45" aria-expanded="false" tabindex="0" role="button">
+      <div class="rank">45</div><div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="Indiana flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Indiana.svg"></span>Indiana</div>
+      <div class="metric"><span class="bar" style="width:84.13%"></span><span class="val">1.06% (+9364)</span></div>
+    </div>
+    <div class="row is-clickable" data-state="North Dakota" data-rank="44" aria-expanded="false" tabindex="0" role="button">
+      <div class="rank">44</div><div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="North Dakota flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_North_Dakota.svg"></span>North Dakota</div>
+      <div class="metric"><span class="bar" style="width:88.89%"></span><span class="val">1.12% (+8936)</span></div>
+    </div>
+    <div class="row is-clickable" data-state="Wisconsin" data-rank="43" aria-expanded="false" tabindex="0" role="button">
+      <div class="rank">43</div><div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="Wisconsin flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Wisconsin.svg"></span>Wisconsin</div>
+      <div class="metric"><span class="bar" style="width:88.89%"></span><span class="val">1.12% (+8936)</span></div>
+    </div>
+    <div class="row is-clickable" data-state="Maine" data-rank="42" aria-expanded="false" tabindex="0" role="button">
+      <div class="rank">42</div><div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="Maine flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Maine.svg"></span>Maine</div>
+      <div class="metric"><span class="bar" style="width:91.27%"></span><span class="val">1.15% (+8686)</span></div>
+    </div>
+    <div class="row is-clickable" data-state="Minnesota" data-rank="41" aria-expanded="false" tabindex="0" role="button">
+      <div class="rank">41</div>
+      <div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="Minnesota flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Minnesota.svg"></span>Minnesota</div>
+      <div class="metric"><span class="bar" style="width:100.00%"></span><span class="val">1.26% (+7879)</span></div>
     </div>
   </div>
 
