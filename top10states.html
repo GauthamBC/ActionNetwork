@@ -1,7 +1,7 @@
 <section class="vi-compact-embed" role="region" aria-labelledby="vi-compact-embed-title"
   style="max-width:860px;margin:16px auto;font:14px/1.35 Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
          color:#181a1f;background:#ffffff;border:1px solid #DCEFE6;border-radius:12px;
-         box-shadow:0 1px 2px rgba(0,0,0,.04),0 6px 16px rgba(0,0,0,.05);overflow:hidden;">
+         box-shadow:0 1px 2px rgba(0,0,0,.04),0 6px 16px rgba(86,194,87,.10);overflow:hidden;">
   <style>
     .vi-compact-embed *{box-sizing:border-box}
     .vi-compact-embed{color-scheme:light}
@@ -227,43 +227,48 @@
       .vi-compact-embed .metrics-grid{ scrollbar-width:thin; scrollbar-color:var(--brand-600) var(--brand-50) }
     }
 
-    /* === NEW: Darkness gauge (styles only) === */
+    /* Darkness gauge (styles only) */
     .vi-compact-embed .gauge-svg{ width:100%; height:var(--viz-row-h) }
     .vi-compact-embed .gauge-track{ stroke:#e6f4ee; stroke-width:10; fill:none; stroke-linecap:round }
     .vi-compact-embed .gauge-value{ stroke:url(#az-gauge-grad); stroke-width:10; fill:none; stroke-linecap:round; transition:stroke-dashoffset .7s ease }
     .vi-compact-embed .gauge-needle{ transform-origin:70px 70px; transition:transform .6s cubic-bezier(.2,.8,.2,1) }
     .vi-compact-embed .gauge-needle line{ stroke:#2E8538; stroke-width:3; stroke-linecap:round }
     .vi-compact-embed .gauge-needle circle{ fill:#fff; stroke:#cfe4da }
-    /* Humidity droplet (sits inside the donut) */
-.vi-compact-embed .donut .drop{
-  fill: var(--brand-600);
-  stroke: #ffffff;               /* crisp edge on light bg */
-  stroke-width: 2;
-  paint-order: stroke;           /* keep white stroke on top */
-  filter: drop-shadow(0 1px 0 rgba(0,0,0,.03));
-}
+
+    /* Humidity droplet */
+    .vi-compact-embed .donut .drop{
+      fill: var(--brand-600);
+      stroke: #ffffff;
+      stroke-width: 2;
+      paint-order: stroke;
+      filter: drop-shadow(0 1px 0 rgba(0,0,0,.03));
+        /* ↓ shrink the droplet slightly, centered in the donut */
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  transform: scale(.7);          /* tweak .80–.90 to taste */
+  vector-effect: non-scaling-stroke;
+    }
   </style>
 
   <div class="head">
     <h3 id="vi-compact-embed-title" class="title">States Most Likely to Legalize Sports Betting Next</h3>
     <p class="sub">Implied probabilities &amp; equivalent American moneylines</p>
-    <p class="meta">Ordered by: Implied Probability • Bars show: Relative probability (normalized to the #1 state). Click <strong>Arizona</strong> to see extra metrics.</p>
+    <p class="meta">Ordered by: Implied Probability • Bars show: Relative probability (normalized to the #1 state). Click <strong>a state</strong> to see extra metrics.</p>
   </div>
 
   <div class="table">
-    <div class="row is-clickable" data-state="Arizona" data-rank="1" aria-controls="az-details" aria-expanded="false" tabindex="0" role="button">
+    <!-- Rows are clickable; the shared panel will be moved under the clicked row -->
+    <div class="row is-clickable" data-state="Arizona" data-rank="1" aria-expanded="false" tabindex="0" role="button">
       <div class="rank">1</div>
-      <div class="state">
-        <span class="chip"><img loading="lazy" decoding="async" alt="Arizona flag" width="18" height="18"
-          src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Arizona.svg"></span>
-        Arizona
-      </div>
+      <div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="Arizona flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Arizona.svg"></span>Arizona</div>
       <div class="metric"><span class="bar" style="width:100.00%"></span><span class="val">4.66% (+2046)</span></div>
     </div>
 
+    <!-- Shared details panel (we re-use and move it) -->
     <div id="az-details" class="details" aria-hidden="true" role="region" aria-labelledby="az-metrics-title">
       <h4 id="az-metrics-title" class="metrics-title">Arizona — Extra Metrics</h4>
       <div class="metrics-grid">
+        <!-- Elevation -->
         <div class="metric-card">
           <div class="metric-label">Avg. Elevation</div>
           <div class="metric-number"><span id="az-elev-val">4,100 ft</span></div>
@@ -283,7 +288,7 @@
           <div class="metric-scale">Above sea level</div>
         </div>
 
-        <!-- Darkness: donut -> semicircle gauge -->
+        <!-- Darkness gauge -->
         <div class="metric-card">
           <div class="metric-label">Darkness Score (1–5)</div>
           <div class="metric-number"><span id="az-dark-val">4.13 / 5</span></div>
@@ -306,6 +311,7 @@
           <div class="metric-scale">0 • 5</div>
         </div>
 
+        <!-- Clear days -->
         <div class="metric-card">
           <div class="metric-label">Avg. Clear Days (Nov)</div>
           <div class="metric-number"><span id="az-clear-val">17.2 days</span></div>
@@ -313,21 +319,19 @@
           <div class="metric-scale">0 • 30</div>
         </div>
 
-        <!-- Humidity: mini bar -> donut ring -->
+        <!-- Humidity donut -->
         <div class="metric-card">
           <div class="metric-label">Avg. Humidity (Nov)</div>
           <div class="donut">
             <svg viewBox="0 0 72 72" aria-hidden="true">
               <circle class="bg" cx="36" cy="36" r="26"></circle>
-              <circle id="az-humid-arc" class="fg" cx="36" cy="36" r="26"
-                      stroke-dasharray="0" stroke-dashoffset="0"></circle>
-                       <!-- ⬇️ add this droplet so it renders on top, centered -->
-             <path id="az-humid-drop" class="drop"
-            d="M36 18
-               C 30 26, 26 32, 26 37
-               C 26 45, 31.5 50, 36 50
-               C 40.5 50, 46 45, 46 37
-               C 46 32, 42 26, 36 18 Z"/>
+              <circle id="az-humid-arc" class="fg" cx="36" cy="36" r="26" stroke-dasharray="0" stroke-dashoffset="0"></circle>
+              <path id="az-humid-drop" class="drop"
+                    d="M36 18
+                       C 30 26, 26 32, 26 37
+                       C 26 45, 31.5 50, 36 50
+                       C 40.5 50, 46 45, 46 37
+                       C 46 32, 42 26, 36 18 Z"/>
             </svg>
             <div>
               <div class="metric-number"><span id="az-humid-val">33%</span></div>
@@ -336,49 +340,86 @@
           </div>
         </div>
       </div>
-      <button id="az-close" class="details-close" type="button" aria-label="Close Arizona metrics">Close ✕</button>
+      <button id="az-close" class="details-close" type="button" aria-label="Close metrics">Close ✕</button>
     </div>
 
-    <!-- Other rows (unchanged) -->
-    <div class="row"><div class="rank">2</div><div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="New Mexico flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_New_Mexico.svg"></span>New Mexico</div><div class="metric"><span class="bar" style="width:99.57%"></span><span class="val">4.64% (+2056)</span></div></div>
-    <div class="row"><div class="rank">3</div><div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="Colorado flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Colorado.svg"></span>Colorado</div><div class="metric"><span class="bar" style="width:85.41%"></span><span class="val">3.98% (+2413)</span></div></div>
-    <div class="row"><div class="rank">4</div><div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="California flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_California.svg"></span>California</div><div class="metric"><span class="bar" style="width:83.48%"></span><span class="val">3.89% (+2471)</span></div></div>
-    <div class="row"><div class="rank">5</div><div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="Nevada flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Nevada.svg"></span>Nevada</div><div class="metric"><span class="bar" style="width:75.75%"></span><span class="val">3.53% (+2733)</span></div></div>
-    <div class="row"><div class="rank">6</div><div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="Utah flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Utah.svg"></span>Utah</div><div class="metric"><span class="bar" style="width:69.96%"></span><span class="val">3.26% (+2968)</span></div></div>
-    <div class="row"><div class="rank">7</div><div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="Texas flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Texas.svg"></span>Texas</div><div class="metric"><span class="bar" style="width:63.09%"></span><span class="val">2.94% (+3292)</span></div></div>
-    <div class="row"><div class="rank">8</div><div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="Oklahoma flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Oklahoma.svg"></span>Oklahoma</div><div class="metric"><span class="bar" style="width:57.51%"></span><span class="val">2.68% (+3629)</span></div></div>
-    <div class="row"><div class="rank">9</div><div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="Kansas flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Kansas.svg"></span>Kansas</div><div class="metric"><span class="bar" style="width:56.22%"></span><span class="val">2.62% (+3718)</span></div></div>
-    <div class="row"><div class="rank">10</div><div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="Wyoming flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Wyoming.svg"></span>Wyoming</div><div class="metric"><span class="bar" style="width:56.01%"></span><span class="val">2.61% (+3733)</span></div></div>
+    <!-- Other rows (clickable, same design) -->
+    <div class="row is-clickable" data-state="New Mexico" data-rank="2" aria-expanded="false" tabindex="0" role="button">
+      <div class="rank">2</div><div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="New Mexico flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_New_Mexico.svg"></span>New Mexico</div>
+      <div class="metric"><span class="bar" style="width:99.57%"></span><span class="val">4.64% (+2056)</span></div>
+    </div>
+    <div class="row is-clickable" data-state="Colorado" data-rank="3" aria-expanded="false" tabindex="0" role="button">
+      <div class="rank">3</div><div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="Colorado flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Colorado.svg"></span>Colorado</div>
+      <div class="metric"><span class="bar" style="width:85.41%"></span><span class="val">3.98% (+2413)</span></div>
+    </div>
+    <div class="row is-clickable" data-state="California" data-rank="4" aria-expanded="false" tabindex="0" role="button">
+      <div class="rank">4</div><div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="California flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_California.svg"></span>California</div>
+      <div class="metric"><span class="bar" style="width:83.48%"></span><span class="val">3.89% (+2471)</span></div>
+    </div>
+    <div class="row is-clickable" data-state="Nevada" data-rank="5" aria-expanded="false" tabindex="0" role="button">
+      <div class="rank">5</div><div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="Nevada flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Nevada.svg"></span>Nevada</div>
+      <div class="metric"><span class="bar" style="width:75.75%"></span><span class="val">3.53% (+2733)</span></div>
+    </div>
+    <div class="row is-clickable" data-state="Utah" data-rank="6" aria-expanded="false" tabindex="0" role="button">
+      <div class="rank">6</div><div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="Utah flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Utah.svg"></span>Utah</div>
+      <div class="metric"><span class="bar" style="width:69.96%"></span><span class="val">3.26% (+2968)</span></div>
+    </div>
+    <div class="row is-clickable" data-state="Texas" data-rank="7" aria-expanded="false" tabindex="0" role="button">
+      <div class="rank">7</div><div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="Texas flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Texas.svg"></span>Texas</div>
+      <div class="metric"><span class="bar" style="width:63.09%"></span><span class="val">2.94% (+3292)</span></div>
+    </div>
+    <div class="row is-clickable" data-state="Oklahoma" data-rank="8" aria-expanded="false" tabindex="0" role="button">
+      <div class="rank">8</div><div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="Oklahoma flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Oklahoma.svg"></span>Oklahoma</div>
+      <div class="metric"><span class="bar" style="width:57.51%"></span><span class="val">2.68% (+3629)</span></div>
+    </div>
+    <div class="row is-clickable" data-state="Kansas" data-rank="9" aria-expanded="false" tabindex="0" role="button">
+      <div class="rank">9</div><div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="Kansas flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Kansas.svg"></span>Kansas</div>
+      <div class="metric"><span class="bar" style="width:56.22%"></span><span class="val">2.62% (+3718)</span></div>
+    </div>
+    <div class="row is-clickable" data-state="Wyoming" data-rank="10" aria-expanded="false" tabindex="0" role="button">
+      <div class="rank">10</div><div class="state"><span class="chip"><img loading="lazy" decoding="async" alt="Wyoming flag" width="18" height="18" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Wyoming.svg"></span>Wyoming</div>
+      <div class="metric"><span class="bar" style="width:56.01%"></span><span class="val">2.61% (+3733)</span></div>
+    </div>
   </div>
 
   <div class="foot">
-    <em>Notes: Moneylines in parentheses. Bars normalized to the top probability. Click Arizona to expand metrics.</em>
+    <em>Notes: Moneylines in parentheses. Bars normalized to the top probability. Click a state to expand metrics.</em>
   </div>
 
   <script>
     (function(){
-      const rowAZ = document.querySelector('.vi-compact-embed .row[data-state="Arizona"]');
-      const panel = document.getElementById('az-details');
-      const btnClose = document.getElementById('az-close');
-      if(!rowAZ || !panel) return;
+      /* --- dataset for all rows --- */
+      const DATA = {
+        "Arizona":     { elev:4100, dark:4.13, clear:17.20, humid:33.00 },
+        "New Mexico":  { elev:5700, dark:4.24, clear:15.33, humid:40.00 },
+        "Colorado":    { elev:6800, dark:4.11, clear:11.80, humid:46.80 },
+        "California":  { elev:2900, dark:4.18, clear:12.08, humid:54.54 },
+        "Nevada":      { elev:5500, dark:4.40, clear:10.20, humid:41.60 },
+        "Utah":        { elev:6100, dark:4.26, clear: 9.50, humid:60.00 },
+        "Texas":       { elev:1700, dark:3.93, clear:11.93, humid:53.17 },
+        "Oklahoma":    { elev:1300, dark:3.47, clear:11.50, humid:54.50 },
+        "Kansas":      { elev:2000, dark:4.00, clear:11.00, humid:56.20 },
+        "Wyoming":     { elev:6700, dark:4.33, clear: 7.75, humid:56.75 }
+      };
+      const DARK_MAX = 5, CLEAR_MAX = 30;
 
-      const elevations = [4100,5700,6800,2900,5500,6100,1700,1300,2000,6700];
-      const elevMin = Math.min(...elevations);
-      const elevMax = Math.max(...elevations);
+      const rows   = document.querySelectorAll('.vi-compact-embed .row.is-clickable[data-state]');
+      const panel  = document.getElementById('az-details');
+      const closeB = document.getElementById('az-close');
 
-      const data = { elev:4100, dark:4.13, darkMax:5, clear:17.20, clearMax:30, humid:33.00 };
+      /* elevation scale uses min/max of these ten states (keeps your design) */
+      const allElev = Object.values(DATA).map(d=>d.elev);
+      const elevMin = Math.min(...allElev);
+      const elevMax = Math.max(...allElev);
 
-      function drawElevationSpark(){
+      function drawElevationSpark(val){
         const base = document.querySelector('#az-elev-spark .spark-base');
         const line = document.getElementById('az-elev-line');
         const dot  = document.getElementById('az-elev-dot');
+        if(!line || !dot) return;
 
-        const H = 60, W = 160;
-        const padX = 6;               // keeps end cap + dot fully inside
-        const baselineY = H - 2;      // tiny bottom padding
-        const x0 = padX, x1 = W - padX;
-
-        const pct  = (data.elev - elevMin) / Math.max(1, (elevMax - elevMin));
+        const H=60, W=160, padX=6, baselineY=H-2, x0=padX, x1=W-padX;
+        const pct  = (val - elevMin) / Math.max(1,(elevMax - elevMin));
         const yEnd = baselineY - (pct * (H - 12));
 
         if (base) base.setAttribute('d', `M${x0},${baselineY} L${x1},${baselineY}`);
@@ -386,80 +427,102 @@
         dot.setAttribute('cx', x1);
         dot.setAttribute('cy', yEnd.toFixed(2));
 
-        const pathLen = line.getTotalLength();
-        line.style.strokeDasharray = pathLen;
-        line.style.strokeDashoffset = pathLen;
+        const L = line.getTotalLength();
+        line.style.strokeDasharray = L;
+        line.style.strokeDashoffset = L;
         requestAnimationFrame(()=>{ line.style.strokeDashoffset = 0; });
       }
 
-      function animateOtherBars(){
-        // (clear mini-bar was not used; safe no-op if element missing)
-        const clearFill = document.getElementById('az-clear-fill');
-        const clearPct = Math.max(0, Math.min(100, data.clear / data.clearMax * 100));
-        if(clearFill){ clearFill.style.width = '0%'; requestAnimationFrame(()=> clearFill.style.width = clearPct.toFixed(1)+'%'); }
-
-        // ---- DARKNESS: animate semicircle gauge ----
-        const gVal = document.getElementById('az-dark-value');
+      function drawDarknessGauge(val){
+        const gVal    = document.getElementById('az-dark-value');
         const gNeedle = document.getElementById('az-dark-needle-group');
-        if (gVal && gNeedle){
-          const len = gVal.getTotalLength();
-          gVal.style.strokeDasharray = len.toFixed(1);
-          gVal.style.strokeDashoffset = len.toFixed(1);
-          const pctDark = Math.max(0, Math.min(1, data.dark / data.darkMax));
-          setTimeout(()=>{
-            gVal.style.strokeDashoffset = (len * (1 - pctDark)).toFixed(1);
-            const angle = -90 + 180 * pctDark; // -90° → +90°
-            gNeedle.style.transform = `rotate(${angle}deg)`;
-          }, 30);
-        }
+        if(!gVal || !gNeedle) return;
 
-        // ---- HUMIDITY: donut ring ----
-        const hArc = document.getElementById('az-humid-arc');
-        if (hArc){
-          const r = 26, C = 2 * Math.PI * r;
-          hArc.style.strokeDasharray = C.toFixed(1);
-          hArc.style.strokeDashoffset = C.toFixed(1);
-          const pctHum = Math.max(0, Math.min(1, data.humid / 100));
-          setTimeout(()=> hArc.style.strokeDashoffset = (C * (1 - pctHum)).toFixed(1), 30);
-        }
-        const hz = document.getElementById('az-humid-val'); if(hz) hz.textContent = Math.round(data.humid) + '%';
+        const len = gVal.getTotalLength();
+        gVal.style.strokeDasharray = len.toFixed(1);
+        gVal.style.strokeDashoffset = len.toFixed(1);
 
-        // Text values
-        const ez = document.getElementById('az-elev-val'); if(ez) ez.textContent = data.elev.toLocaleString() + ' ft';
-        const dz = document.getElementById('az-dark-val'); if(dz) dz.textContent = data.dark.toFixed(2) + ' / ' + data.darkMax;
-        const cz = document.getElementById('az-clear-val'); if(cz) cz.textContent = data.clear.toFixed(1) + ' days';
+        const pct = Math.max(0, Math.min(1, val / DARK_MAX));
+        requestAnimationFrame(()=>{
+          gVal.style.strokeDashoffset = (len * (1 - pct)).toFixed(1);
+          const angle = -90 + 180 * pct;
+          gNeedle.style.transform = `rotate(${angle}deg)`;
+        });
+      }
 
-        // Calendar for clear days (30 cells, ~17 green)
+      function drawHumidityRing(pctVal){
+        const arc = document.getElementById('az-humid-arc');
+        if(!arc) return;
+        const r=26, C=2*Math.PI*r;
+        arc.style.strokeDasharray = C.toFixed(1);
+        arc.style.strokeDashoffset = C.toFixed(1);
+        const pct = Math.max(0, Math.min(1, pctVal/100));
+        requestAnimationFrame(()=> arc.style.strokeDashoffset = (C*(1-pct)).toFixed(1));
+      }
+
+      function buildCalendar(days){
         const cal = document.getElementById('az-clear-cal');
-        if (cal && !cal.hasChildNodes()) {
-          const total = 30;
-          const whole = Math.floor(data.clear);
-          const frac  = Math.max(0, Math.min(1, data.clear - whole));
-          for (let i = 0; i < total; i++) {
-            const cell = document.createElement('span');
-            cell.className = 'day';
-            if (i < whole) {
-              cell.classList.add('filled');
-            } else if (i === whole && frac > 0) {
-              cell.classList.add('partial');
-              cell.style.setProperty('--part', frac.toFixed(2));
-            }
-            cal.appendChild(cell);
-          }
+        if(!cal) return;
+        cal.innerHTML = '';
+        const total = 30;
+        const whole = Math.floor(days);
+        const frac  = Math.max(0, Math.min(1, days - whole));
+        for(let i=0;i<total;i++){
+          const cell=document.createElement('span');
+          cell.className='day';
+          if(i<whole) cell.classList.add('filled');
+          else if(i===whole && frac>0){ cell.classList.add('partial'); cell.style.setProperty('--part', frac.toFixed(2)); }
+          cal.appendChild(cell);
         }
       }
 
-      function togglePanel(){
-        const isOpen = panel.classList.toggle('open');
-        rowAZ.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        panel.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
-        if(isOpen){ drawElevationSpark(); animateOtherBars(); panel.scrollIntoView({block:'nearest', behavior:'smooth'}); }
+      function renderState(name){
+        const d = DATA[name]; if(!d) return;
+        const title = document.getElementById('az-metrics-title'); if(title) title.textContent = name+' — Extra Metrics';
+        const ez = document.getElementById('az-elev-val');   if(ez) ez.textContent = d.elev.toLocaleString()+' ft';
+        const dz = document.getElementById('az-dark-val');   if(dz) dz.textContent = d.dark.toFixed(2)+' / 5';
+        const cz = document.getElementById('az-clear-val');  if(cz) cz.textContent = d.clear.toFixed(1)+' days';
+        const hz = document.getElementById('az-humid-val');  if(hz) hz.textContent = Math.round(d.humid)+'%';
+
+        drawElevationSpark(d.elev);
+        drawDarknessGauge(d.dark);
+        drawHumidityRing(d.humid);
+        buildCalendar(d.clear);
       }
 
-      rowAZ.addEventListener('click', togglePanel);
-      rowAZ.addEventListener('keydown', e=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); togglePanel(); }});
-      if(btnClose) btnClose.addEventListener('click', togglePanel);
-      document.addEventListener('keydown', e=>{ if(e.key==='Escape' && panel.classList.contains('open')) togglePanel(); });
+      function openUnderRow(row){
+        const state = row.dataset.state;
+        // move shared panel right after this row
+        row.after(panel);
+        // mark rows expanded state
+        document.querySelectorAll('.vi-compact-embed .row.is-clickable[aria-expanded]')
+          .forEach(r=>r.setAttribute('aria-expanded','false'));
+        row.setAttribute('aria-expanded','true');
+
+        // show + render
+        if(!panel.classList.contains('open')){
+          panel.classList.add('open');
+          panel.setAttribute('aria-hidden','false');
+        }
+        renderState(state);
+        panel.scrollIntoView({block:'nearest', behavior:'smooth'});
+      }
+
+      function closePanel(){
+        panel.classList.remove('open');
+        panel.setAttribute('aria-hidden','true');
+        document.querySelectorAll('.vi-compact-embed .row.is-clickable[aria-expanded]')
+          .forEach(r=>r.setAttribute('aria-expanded','false'));
+      }
+
+      rows.forEach(row=>{
+        row.addEventListener('click', ()=> openUnderRow(row));
+        row.addEventListener('keydown', e=>{
+          if(e.key==='Enter' || e.key===' '){ e.preventDefault(); openUnderRow(row); }
+        });
+      });
+      if(closeB) closeB.addEventListener('click', closePanel);
+      document.addEventListener('keydown', e=>{ if(e.key==='Escape' && panel.classList.contains('open')) closePanel(); });
     })();
   </script>
 </section>
