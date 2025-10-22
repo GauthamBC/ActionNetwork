@@ -178,6 +178,43 @@
     @media (max-width:360px){
       .vi-compact-embed .metrics-grid{ grid-template-columns: 1fr !important }
     }
+    /* === Internal scroll + branded slim scrollbars === */
+
+/* cap the rows area height so the page/iframe doesn't get a tall scrollbar */
+.vi-compact-embed{
+  --pane-max-h: min(72vh, 680px);   /* tweak to taste */
+}
+.vi-compact-embed .table{
+  max-height: var(--pane-max-h);
+  overflow: auto;                   /* vertical + horizontal if needed */
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;     /* stop scroll chaining to the page */
+  scrollbar-gutter: stable both-edges;
+}
+
+/* WebKit (Chrome/Edge/Safari) — thin, brand-styled */
+.vi-compact-embed .table::-webkit-scrollbar{
+  width: 10px;                      /* vertical */
+  height: 8px;                      /* horizontal */
+}
+.vi-compact-embed .table::-webkit-scrollbar-track{
+  background: var(--brand-50);
+  border-radius: 999px;
+}
+.vi-compact-embed .table::-webkit-scrollbar-thumb{
+  background: linear-gradient(180deg, var(--brand-600), var(--brand-500));
+  border-radius: 999px;
+  border: 2px solid #ffffff;        /* keeps a slim look on light bg */
+}
+.vi-compact-embed .table::-webkit-scrollbar-thumb:hover{
+  background: linear-gradient(180deg, var(--brand-700), var(--brand-600));
+}
+
+/* Firefox — thin + colour pair */
+.vi-compact-embed .table{
+  scrollbar-width: thin;
+  scrollbar-color: var(--brand-600) var(--brand-50);
+}
   </style>
 
   <div class="head">
