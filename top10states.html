@@ -281,52 +281,65 @@
     .vi-compact-embed .row.is-clickable::after{ display:none !important; } /* hide hint if it clips */
 
     /* ===================== MOBILE OVERRIDES (single block) ===================== */
-    @media (max-width:640px){
-      html, body { height:auto !important; overflow:auto !important; }
-
-      /* cancel section's inline overflow:hidden so children can be visible */
-      section.vi-compact-embed{ overflow:visible !important; }
+  @media (max-width:640px){
+  html, body { height:auto !important; overflow:auto !important; }
+  section.vi-compact-embed{ overflow:visible !important; }
 
   .vi-compact-embed .table{
-  max-height:620px !important;                 /* fixed height like desktop */
-  overflow:auto !important;                    /* re-enable scroll */
-  -webkit-overflow-scrolling:touch !important; /* smooth scrolling on iOS */
-  scrollbar-color: var(--brand-600) var(--brand-50);
-  scrollbar-width: thin;
-  padding-bottom:96px !important;              /* keep sticky footer space */
-}
-.vi-compact-embed .table::-webkit-scrollbar {
-  width:10px; height:8px;
-}
-.vi-compact-embed .table::-webkit-scrollbar-track {
-  background:var(--brand-50); border-radius:999px;
-}
-.vi-compact-embed .table::-webkit-scrollbar-thumb {
-  background:linear-gradient(180deg,var(--brand-600),var(--brand-500));
-  border-radius:999px; border:2px solid #fff;
-}
-.vi-compact-embed .table::-webkit-scrollbar-thumb:hover {
-  background:linear-gradient(180deg,var(--brand-700),var(--brand-600));
-}
+    max-height:620px !important;
+    overflow:auto !important;
+    -webkit-overflow-scrolling:touch !important;
+    scrollbar-color: var(--brand-600) var(--brand-50);
+    scrollbar-width: thin;
+    padding-bottom:96px !important;
+  }
+  .vi-compact-embed .table::-webkit-scrollbar {
+    width:10px; height:8px;
+  }
+  .vi-compact-embed .table::-webkit-scrollbar-track {
+    background:var(--brand-50); border-radius:999px;
+  }
+  .vi-compact-embed .table::-webkit-scrollbar-thumb {
+    background:linear-gradient(180deg,var(--brand-600),var(--brand-500));
+    border-radius:999px; border:2px solid #fff;
+  }
+  .vi-compact-embed .table::-webkit-scrollbar-thumb:hover {
+    background:linear-gradient(180deg,var(--brand-700),var(--brand-600));
+  }
 
-      /* Sticky footer that hugs the bottom */
-      .vi-compact-embed .vi-footer{
-        position:sticky;
-        inset-block-end:0;
-        z-index:3;
-        padding-bottom:max(6px, env(safe-area-inset-bottom));
-      }
+  /* --- fix: footer visible and sticky --- */
+  .vi-compact-embed {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
 
-      /* Keep the embed popup fully visible above the footer */
-      .vi-compact-embed .embed-wrapper{
-        position:fixed;
-        left:50%; transform:translateX(-50%);
-        bottom:calc(56px + env(safe-area-inset-bottom) + 8px);
-        width:min(600px, 92vw);
-        max-height:65vh;
-        overflow:auto;
-        z-index:1000;
-      }
+  .vi-compact-embed .table {
+    flex: 1 1 auto;
+  }
+
+  .vi-compact-embed .vi-footer {
+    flex-shrink: 0;
+    position: sticky;
+    bottom: 0;
+    z-index: 3;
+    background:
+      radial-gradient(120% 140% at 85% 10%, rgba(255,255,255,.10) 0%, transparent 60%),
+      linear-gradient(90deg,var(--brand-900) 0%,var(--brand-600) 45%,var(--brand-500) 100%)!important;
+    border-top: 1px solid var(--border);
+    padding: 8px 0 max(8px, env(safe-area-inset-bottom));
+  }
+
+  /* Keep the embed popup fully visible above the footer */
+  .vi-compact-embed .embed-wrapper{
+    position:fixed;
+    left:50%; transform:translateX(-50%);
+    bottom:calc(56px + env(safe-area-inset-bottom) + 8px);
+    width:min(600px, 92vw);
+    max-height:65vh;
+    overflow:auto;
+    z-index:1000;
+  }
 
       /* Details panel: allow full height on mobile + sticky close */
       .vi-compact-embed .details.open{ max-height:none !important; }
