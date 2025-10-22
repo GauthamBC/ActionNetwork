@@ -255,16 +255,6 @@
     #dw-lottery-2 .dw-select{min-width:68px; height:32px; padding:6px 22px 6px 8px; font-size:13px;}
     #dw-lottery-2 .dw-btn{width:32px; height:32px; padding:0; border-radius:12px; display:inline-flex; align-items:center; justify-content:center;}
   }
-  <style>
-  /* Logo size override */
-  #dw-lottery-2 .dw-top-logo{ height: 36px; width: 260px; }
-  #dw-lottery-2 .dw-top-logo-img{ height: 36px; width: auto; }
-  @media (max-width: 600px){
-    #dw-lottery-2 .dw-top-logo{ height: 24px; width: 160px; }
-    #dw-lottery-2 .dw-top-logo-img{ height: 24px; }
-  }
-</style>
-
   </style>
 
   <!-- Controls -->
@@ -599,6 +589,18 @@
   </script>
 </div>
 </section>
+
+<!-- Logo size override moved OUTSIDE the main <style> so it actually applies -->
+<style>
+  /* Logo size override (desktop wins over earlier media rules) */
+  #dw-lottery-2 .dw-top-logo{ height: 64px; width: 260px; }
+  #dw-lottery-2 .dw-top-logo-img{ height: 64px; width: auto; }
+
+  @media (max-width: 600px){
+    #dw-lottery-2 .dw-top-logo{ height: 24px; width: 160px; }
+    #dw-lottery-2 .dw-top-logo-img{ height: 24px; }
+  }
+</style>
 
 <div style="height: 8px;"></div>
 
