@@ -396,20 +396,29 @@
       const data = { elev:4100, dark:4.13, darkMax:5, clear:17.20, clearMax:30, humid:33.00 };
 
       function drawElevationSpark(){
-        const line = document.getElementById('az-elev-line');
-        const dot  = document.getElementById('az-elev-dot');
-        const H=60, W=160, pad=2, baselineY=H-pad;
-        const pct = (data.elev - elevMin) / Math.max(1,(elevMax - elevMin));
-        const yEnd = baselineY - (pct * (H - 12));
-        const d = `M0,${baselineY} L${W},${yEnd.toFixed(2)}`;
-        line.setAttribute('d', d);
-        dot.setAttribute('cx', W);
-        dot.setAttribute('cy', yEnd.toFixed(2));
-        const pathLen = line.getTotalLength();
-        line.style.strokeDasharray = pathLen;
-        line.style.strokeDashoffset = pathLen;
-        requestAnimationFrame(()=>{ line.style.strokeDashoffset = 0; });
-      }
+      const base = document.querySelector('#az-elev-spark .spark-base');
+      const line = document.getElementById('az-elev-line');
+      const dot  = document.getElementById('az-elev-dot');
+    
+      const H = 60, W = 160;
+      const padX = 6;                 // keeps end cap + dot fully inside
+      const baselineY = H - 2;        // tiny bottom padding
+      const x0 = padX, x1 = W - padX;
+    
+      const pct  = (data.elev - elevMin) / Math.max(1, (elevMax - elevMin));
+      const yEnd = baselineY - (pct * (H - 12));
+    
+      if (base) base.setAttribute('d', `M${x0},${baselineY} L${x1},${baselineY}`);
+      line.setAttribute('d', `M${x0},${baselineY} L${x1},${yEnd.toFixed(2)}`);
+      dot.setAttribute('cx', x1);
+      dot.setAttribute('cy', yEnd.toFixed(2));
+    
+      const pathLen = line.getTotalLength();
+      line.style.strokeDasharray = pathLen;
+      line.style.strokeDashoffset = pathLen;
+      requestAnimationFrame(()=>{ line.style.strokeDashoffset = 0; });
+    }
+
 
       function animateOtherBars(){
         const clearFill = document.getElementById('az-clear-fill');
