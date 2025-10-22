@@ -76,7 +76,7 @@
       display:grid;grid-template-rows:auto auto var(--viz-h) auto;gap:8px;align-content:start;
     }
     .vi-compact-embed .metric-label{font-size:12px;color:var(--muted);font-weight:700;margin:0;line-height:1.2}
-    .vi-compact-embed .metric-number{font-weight:800;font-size:20px;color:#0e1a12;margin:0;line-height:1.1;font-variant-numeric:tabular-nums}
+    .vi-compact-embed .metric-number{font-weight:800;font-size:20px;color:#0e1a1f;margin:0;line-height:1.1;font-variant-numeric:tabular-nums}
     .vi-compact-embed .metric-scale{font-size:11px;color:#8a9099;margin:0}
 
     /* Sparkline (elevation) */
@@ -93,11 +93,11 @@
     .vi-compact-embed .mini-bar{height:10px;border-radius:999px;background:rgba(86,194,87,.16);overflow:hidden;align-self:center}
     .vi-compact-embed .mini-bar .fill{display:block;height:100%;width:0%;border-radius:999px;background:linear-gradient(90deg,var(--brand-600),var(--brand-500));transition:width .6s ease}
 
-    /* Clickable hint fix */
+    /* Clickable hint fix — copy tweak */
     .vi-compact-embed .row.is-clickable{cursor:pointer;position:relative}
     .vi-compact-embed .row.is-clickable .metric{padding-right:128px}
     .vi-compact-embed .row.is-clickable::after{
-      content:"Click for metrics";position:absolute;right:12px;top:50%;transform:translateY(-50%);
+      content:"Click for viewing factors";position:absolute;right:12px;top:50%;transform:translateY(-50%);
       font-size:11px;color:#7cae85;white-space:nowrap;pointer-events:none;z-index:1;
     }
     .vi-compact-embed .metric .val{z-index:2}
@@ -185,8 +185,6 @@
     .vi-compact-embed .table::-webkit-scrollbar-thumb:hover{ background:linear-gradient(180deg,var(--brand-700),var(--brand-600)) }
     .vi-compact-embed .table{ scrollbar-width:thin; scrollbar-color:var(--brand-600) var(--brand-50) }
 
-    .vi-compact-embed .foot{display:none!important}
-
     /* Bigger cards + taller panel + mobile sticky Close (merged) */
     .vi-compact-embed{ --pane-max-h: min(78vh, 820px); --card-h:220px; --viz-row-h:120px; --donut-h:120px; --details-max:740px; }
     .vi-compact-embed .table{ max-height: var(--pane-max-h); }
@@ -242,19 +240,116 @@
       stroke-width: 2;
       paint-order: stroke;
       filter: drop-shadow(0 1px 0 rgba(0,0,0,.03));
-        /* ↓ shrink the droplet slightly, centered in the donut */
-  transform-box: fill-box;
-  transform-origin: 50% 50%;
-  transform: scale(.7);          /* tweak .80–.90 to taste */
-  vector-effect: non-scaling-stroke;
+      transform-box: fill-box;
+      transform-origin: 50% 50%;
+      transform: scale(.7);
+      vector-effect: non-scaling-stroke;
     }
+/* Clean, centered Action Network footer — gradient background + white logo */
+.vi-compact-embed .vi-footer {
+  display: block !important;
+  text-align: center;
+  padding: 0 0; /* zero vertical padding for minimal height */
+  border-top: 1px solid var(--border);
+  background:
+    radial-gradient(120% 140% at 85% 10%, rgba(255,255,255,.10) 0%, transparent 60%),
+    linear-gradient(90deg, var(--brand-900) 0%, var(--brand-600) 45%, var(--brand-500) 100%) !important;
+}
+
+.vi-compact-embed .vi-footer img {
+  height: 52px;
+  width: auto;
+  display: inline-block;
+  filter: brightness(0) invert(1); /* turns logo white */
+  transition: filter 0.3s ease;
+}
+
+/* Optional hover: subtle white dim for interactivity */
+.vi-compact-embed .vi-footer img:hover {
+  filter: brightness(0.9) invert(1);
+}
+
+/* === Footer layout with Embed button === */
+.vi-compact-embed .vi-footer {
+  display: block !important;
+  text-align: center;
+  padding: 6px 0;
+  border-top: 1px solid var(--border);
+  background:
+    radial-gradient(120% 140% at 85% 10%, rgba(255,255,255,.10) 0%, transparent 60%),
+    linear-gradient(90deg,var(--brand-900) 0%,var(--brand-600) 45%,var(--brand-500) 100%)!important;
+  color: #fff;
+  position: relative;
+}
+
+.vi-compact-embed .footer-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+
+.vi-compact-embed .embed-btn {
+  position: absolute;
+  left: 14px;
+  background: #56C257;
+  color: #fff;
+  border: 1px solid #56C257;
+  border-radius: 8px;
+  padding: 6px 14px;
+  font: 13px/1.2 system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.vi-compact-embed .embed-btn:hover {
+  background: #3FA94B;
+  border-color: #3FA94B;
+}
+
+.vi-compact-embed .vi-footer img {
+  height: 52px;
+  width: auto;
+  display: inline-block;
+  filter: brightness(0) invert(1);
+}
+
+.vi-compact-embed .embed-wrapper {
+  display: none;
+  margin: 10px auto 12px;
+  max-width: 600px;
+  padding: 10px 16px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,.08);
+}
+
+.vi-compact-embed .embed-wrapper textarea {
+  width: 100%;
+  height: 80px;
+  font: 13px monospace;
+  padding: 6px 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  resize: none;
+}
+
+.vi-compact-embed #copy-status {
+  display: none;
+  color: #008000;
+  font-size: 13px;
+  margin-top: 6px;
+}
+
   </style>
 
-  <div class="head">
-    <h3 id="vi-compact-embed-title" class="title">States Most Likely to Legalize Sports Betting Next</h3>
-    <p class="sub">Implied probabilities &amp; equivalent American moneylines</p>
-    <p class="meta">Ordered by: Implied Probability • Bars show: Relative probability (normalized to the #1 state). Click <strong>a state</strong> to see extra metrics.</p>
-  </div>
+<div class="head">
+  <h3 id="vi-compact-embed-title" class="title">Top 10 U.S. Destinations to See the Supermoon Clearly in 2025</h3>
+  <p class="sub"><em>Ranked by <strong>implied probabilities</strong> &amp; <strong>equivalent American moneylines</strong></em></p>
+  <p class="meta">Click <strong>a state</strong> to see viewing factors.</p>
+</div>
 
   <div class="table">
     <!-- Rows are clickable; the shared panel will be moved under the clicked row -->
@@ -264,9 +359,9 @@
       <div class="metric"><span class="bar" style="width:100.00%"></span><span class="val">4.66% (+2046)</span></div>
     </div>
 
-    <!-- Shared details panel (we re-use and move it) -->
+    <!-- Shared details panel (re-used under each clicked row) -->
     <div id="az-details" class="details" aria-hidden="true" role="region" aria-labelledby="az-metrics-title">
-      <h4 id="az-metrics-title" class="metrics-title">Arizona — Extra Metrics</h4>
+      <h4 id="az-metrics-title" class="metrics-title">Arizona — Supermoon Viewing Factors</h4>
       <div class="metrics-grid">
         <!-- Elevation -->
         <div class="metric-card">
@@ -340,7 +435,7 @@
           </div>
         </div>
       </div>
-      <button id="az-close" class="details-close" type="button" aria-label="Close metrics">Close ✕</button>
+      <button id="az-close" class="details-close" type="button" aria-label="Close viewing factors">Close ✕</button>
     </div>
 
     <!-- Other rows (clickable, same design) -->
@@ -381,10 +476,25 @@
       <div class="metric"><span class="bar" style="width:56.01%"></span><span class="val">2.61% (+3733)</span></div>
     </div>
   </div>
+  
+<div class="vi-footer">
+  <div class="footer-inner">
+    <button id="copy-embed-btn" class="embed-btn">🔗 Embed This Table</button>
 
-  <div class="foot">
-    <em>Notes: Moneylines in parentheses. Bars normalized to the top probability. Click a state to expand metrics.</em>
+    <img src="https://i.postimg.cc/x1nG117r/AN-final2-logo.png"
+         alt="The Action Network logo"
+         width="120" height="auto" loading="lazy" decoding="async" />
   </div>
+
+  <div id="embed-wrapper" class="embed-wrapper">
+    <textarea id="embed-code" readonly>&lt;iframe src="https://gauthambc.github.io/tailgating-State-Table/"
+        title="Top Tailgating States"
+        width="100%" height="550"
+        style="border:0;" loading="lazy"&gt;&lt;/iframe&gt;
+    </textarea>
+    <p id="copy-status">Embed code copied!</p>
+  </div>
+</div>
 
   <script>
     (function(){
@@ -478,7 +588,7 @@
 
       function renderState(name){
         const d = DATA[name]; if(!d) return;
-        const title = document.getElementById('az-metrics-title'); if(title) title.textContent = name+' — Extra Metrics';
+        const title = document.getElementById('az-metrics-title'); if(title) title.textContent = name+' — Supermoon Viewing Factors';
         const ez = document.getElementById('az-elev-val');   if(ez) ez.textContent = d.elev.toLocaleString()+' ft';
         const dz = document.getElementById('az-dark-val');   if(dz) dz.textContent = d.dark.toFixed(2)+' / 5';
         const cz = document.getElementById('az-clear-val');  if(cz) cz.textContent = d.clear.toFixed(1)+' days';
@@ -515,14 +625,68 @@
           .forEach(r=>r.setAttribute('aria-expanded','false'));
       }
 
-      rows.forEach(row=>{
-        row.addEventListener('click', ()=> openUnderRow(row));
-        row.addEventListener('keydown', e=>{
-          if(e.key==='Enter' || e.key===' '){ e.preventDefault(); openUnderRow(row); }
-        });
+    rows.forEach(row=>{
+  row.addEventListener('click', ()=>{
+    const isExpanded = row.getAttribute('aria-expanded') === 'true';
+    const panelIsOpen = panel.classList.contains('open');
+
+    // If the same row is clicked again while open → close it
+        if (isExpanded && panelIsOpen) {
+          closePanel();
+        } else {
+          openUnderRow(row);
+        }
       });
-      if(closeB) closeB.addEventListener('click', closePanel);
+    
+      row.addEventListener('keydown', e=>{
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const isExpanded = row.getAttribute('aria-expanded') === 'true';
+          const panelIsOpen = panel.classList.contains('open');
+    
+          if (isExpanded && panelIsOpen) {
+            closePanel();
+          } else {
+            openUnderRow(row);
+          }
+        }
+      });
+    });
+     if(closeB) closeB.addEventListener('click', closePanel);
       document.addEventListener('keydown', e=>{ if(e.key==='Escape' && panel.classList.contains('open')) closePanel(); });
     })();
   </script>
+  <script>
+  const btn = document.getElementById('copy-embed-btn');
+  const wrapper = document.getElementById('embed-wrapper');
+  const ta = document.getElementById('embed-code');
+  const status = document.getElementById('copy-status');
+
+  if (btn && ta && wrapper && status) {
+    btn.addEventListener('click', () => {
+      const isHidden = wrapper.style.display === 'none' || wrapper.style.display === '';
+      wrapper.style.display = isHidden ? 'block' : 'none';
+      btn.textContent = isHidden ? 'Hide Embed Code' : '🔗 Embed This Table';
+      if (isHidden) {
+        ta.select();
+        document.execCommand('copy');
+        status.style.display = 'block';
+        setTimeout(() => status.style.display = 'none', 2500);
+      }
+    });
+  }
+</script>
+
+<script>
+function sendHeightToParent() {
+  try {
+    const height = document.body.scrollHeight;
+    window.parent.postMessage({ type: "resize-iframe", height: height, src: window.location.href }, "*");
+  } catch (e) {}
+}
+window.addEventListener("load", sendHeightToParent);
+window.addEventListener("resize", sendHeightToParent);
+const observer = new MutationObserver(sendHeightToParent);
+observer.observe(document.body, { childList: true, subtree: true, attributes: true });
+</script>
 </section>
