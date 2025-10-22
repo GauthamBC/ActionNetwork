@@ -13,16 +13,14 @@
          color:#181a1f;background:#ffffff;border:1px solid #DCEFE6;border-radius:12px;
          box-shadow:0 1px 2px rgba(0,0,0,.04),0 6px 16px rgba(86,194,87,.10);overflow:hidden;">
   <style>
-    /* === SCOPING PATCH (added) ==============================================
-       Keeps any resets strictly inside THIS section, even when pasted inline.
-       ---------------------------------------------------------------------- */
+    /* === SCOPING PATCH ============================================== */
     section.vi-compact-embed, section.vi-compact-embed * {
       box-sizing: border-box;
       font-family: inherit;
       color: inherit;
     }
     section.vi-compact-embed { color-scheme: light; }
-    /* ====================================================================== */
+    /* ================================================================= */
 
     .vi-compact-embed *{box-sizing:border-box}
     .vi-compact-embed{color-scheme:light}
@@ -56,8 +54,14 @@
       background:linear-gradient(0deg,var(--hover-tint),var(--hover-tint)),#fff!important;
       transform:scale(1.01);box-shadow:var(--hover-shadow);border-color:var(--hover-ring)!important;
     }
-    @media (prefers-reduced-motion:reduce){.vi-compact-embed .row{transition:none}.vi-compact-embed .row:hover,.vi-compact-embed .row:focus-within{transform:none;box-shadow:none}}
-    @media (max-width:640px){.vi-compact-embed .row{grid-template-columns:30px 1fr}.vi-compact-embed .metric{grid-column:1 / -1}}
+    @media (prefers-reduced-motion:reduce){
+      .vi-compact-embed .row{transition:none}
+      .vi-compact-embed .row:hover,.vi-compact-embed .row:focus-within{transform:none;box-shadow:none}
+    }
+    @media (max-width:640px){
+      .vi-compact-embed .row{grid-template-columns:30px 1fr}
+      .vi-compact-embed .metric{grid-column:1 / -1}
+    }
 
     .vi-compact-embed .rank{display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--muted)}
     .vi-compact-embed .state{display:flex;align-items:center;gap:8px;font-weight:700;color:var(--ink)}
@@ -91,7 +95,7 @@
     .vi-compact-embed .metrics-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
     @media (max-width:640px){.vi-compact-embed .metrics-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
-    /* Cards (grid: label → number → viz → caption) */
+    /* Cards */
     .vi-compact-embed .metric-card{
       background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 12px 12px;
       display:grid;grid-template-rows:auto auto var(--viz-h) auto;gap:8px;align-content:start;
@@ -114,7 +118,7 @@
     .vi-compact-embed .mini-bar{height:10px;border-radius:999px;background:rgba(86,194,87,.16);overflow:hidden;align-self:center}
     .vi-compact-embed .mini-bar .fill{display:block;height:100%;width:0%;border-radius:999px;background:linear-gradient(90deg,var(--brand-600),var(--brand-500));transition:width .6s ease}
 
-    /* Clickable hint fix — copy tweak */
+    /* Clickable hint */
     .vi-compact-embed .row.is-clickable{cursor:pointer;position:relative}
     .vi-compact-embed .row.is-clickable .metric{padding-right:128px}
     .vi-compact-embed .row.is-clickable::after{
@@ -128,20 +132,19 @@
     .vi-compact-embed .details-close{margin-top:10px;align-self:flex-end;background:#fff;border:1px solid var(--border);border-radius:999px;padding:6px 10px;font-weight:700;cursor:pointer}
     .vi-compact-embed .details-close:hover{border-color:var(--hover-ring)}
 
-    /* === FINAL: compact + equal-height, no extra whitespace === */
+    /* Compact defaults / shared heights */
     .vi-compact-embed{ --viz-h:56px; --card-h:176px }
     .vi-compact-embed .metrics-grid{ grid-auto-rows:var(--card-h); gap:10px }
     .vi-compact-embed .metric-card{ height:100%; padding:12px 12px 10px; gap:6px; grid-template-rows:auto auto var(--viz-h) auto }
     .vi-compact-embed .metric-number{ font-size:19px }
     .vi-compact-embed .spark svg{ height:var(--viz-h) }
-
     .vi-compact-embed .donut{ row-gap:6px }
     .vi-compact-embed .donut svg{ width:var(--viz-h); height:var(--viz-h) }
     .vi-compact-embed .donut circle.bg,.vi-compact-embed .donut circle.fg{ stroke-width:8 }
     .vi-compact-embed .mini-bar{ height:8px }
     .vi-compact-embed .details.open{ padding:8px }
 
-    /* Big ring, no in-chart labels */
+    /* Big ring */
     .vi-compact-embed{ --donut-h:104px; --card-h:196px }
     .vi-compact-embed .metric-card:has(.donut){ grid-template-rows:auto auto var(--donut-h) auto }
     .vi-compact-embed .donut,.vi-compact-embed .donut > div{ display:contents }
@@ -166,7 +169,7 @@
       background:linear-gradient(90deg,var(--brand-600),var(--brand-500));
     }
 
-    /* Shared viz row height + centre alignment */
+    /* Shared viz row height */
     .vi-compact-embed{ --viz-row-h:104px }
     .vi-compact-embed .metric-card{ grid-template-rows:auto auto var(--viz-row-h) auto !important }
     .vi-compact-embed .metric-card:has(.donut), .vi-compact-embed .metric-card:has(.calendar){
@@ -176,7 +179,7 @@
     .vi-compact-embed .spark svg{ height:min(var(--viz-h,56px), calc(var(--viz-row-h) - 2px)) }
     .vi-compact-embed .calendar{ height:var(--viz-row-h) }
 
-    /* Responsive grid */
+    /* Desktop layout */
     @media (min-width:641px){
       .vi-compact-embed .metrics-grid{ grid-template-columns: repeat(4, minmax(0,1fr)) !important; }
       .vi-compact-embed .row{ grid-template-columns: 36px 1fr minmax(240px,48%) !important; }
@@ -184,7 +187,7 @@
     }
     @media (max-width:640px){
       .vi-compact-embed .metrics-grid{ grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
-      .vi-compact-embed{ --card-h: 188px; --viz-row-h: 92px; --donut-h: 92px }
+      .vi-compact-embed{ --card-h:188px; --viz-row-h:92px; --donut-h:92px }
       .vi-compact-embed .calendar{ gap:5px }
       .vi-compact-embed .metric-number{ font-size:18px }
     }
@@ -192,7 +195,7 @@
       .vi-compact-embed .metrics-grid{ grid-template-columns: 1fr !important }
     }
 
-    /* Internal scroll + branded slim scrollbars */
+    /* Desktop internal scroll (kept for desktop) */
     .vi-compact-embed{ --pane-max-h: min(72vh, 680px); }
     .vi-compact-embed .table{
       max-height: var(--pane-max-h); overflow:auto; -webkit-overflow-scrolling:touch;
@@ -205,46 +208,6 @@
     }
     .vi-compact-embed .table::-webkit-scrollbar-thumb:hover{ background:linear-gradient(180deg,var(--brand-700),var(--brand-600)) }
     .vi-compact-embed .table{ scrollbar-width:thin; scrollbar-color:var(--brand-600) var(--brand-50) }
-
-    /* Bigger cards + taller panel + mobile sticky Close (merged) */
-    .vi-compact-embed{ --pane-max-h: min(78vh, 820px); --card-h:220px; --viz-row-h:120px; --donut-h:120px; --details-max:740px; }
-    .vi-compact-embed .table{ max-height: var(--pane-max-h); }
-    .vi-compact-embed .metrics-grid{ grid-auto-rows: var(--card-h) !important; }
-    .vi-compact-embed .metric-card{ padding:14px 12px 12px !important; overflow:hidden; }
-    .vi-compact-embed .spark svg{ height: var(--viz-row-h) !important; }
-    .vi-compact-embed .donut svg{ width: var(--donut-h) !important; height: var(--donut-h) !important; }
-    .vi-compact-embed .calendar{ height: var(--viz-row-h) !important; }
-    .vi-compact-embed .details.open{ max-height: var(--details-max) !important; }
-    @media (min-width:641px){
-      .vi-compact-embed .metrics-grid{ grid-template-columns: repeat(4, minmax(200px, 1fr)) !important; }
-    }
-    @media (max-width:640px){
-      .vi-compact-embed{ --card-h:208px; --viz-row-h:108px; --donut-h:108px; }
-      .vi-compact-embed .details.open{ max-height: none !important; }
-      .vi-compact-embed .details{ display:flex; flex-direction:column; scroll-margin-top:8px; }
-      .vi-compact-embed .details-close{
-        order:-1; align-self:flex-end; position:sticky; top:8px; z-index:5;
-        padding:8px 12px; border-radius:999px; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,.08);
-      }
-      .vi-compact-embed .metrics-title{ margin-top:6px; }
-    }
-
-    /* Optional horizontal scroll for metrics row (desktop only) */
-    @media (min-width:641px){
-      .vi-compact-embed .details{ padding-inline-end:16px; }
-      .vi-compact-embed .metrics-grid{
-        grid-template-columns: repeat(4, minmax(220px, 1fr)) !important;
-        overflow-x:auto; overflow-y:visible; -webkit-overflow-scrolling:touch;
-        scrollbar-gutter:stable; scroll-snap-type:x proximity; padding-bottom:6px;
-      }
-      .vi-compact-embed .metric-card{ scroll-snap-align:start; }
-      .vi-compact-embed .metrics-grid::-webkit-scrollbar{ height:8px }
-      .vi-compact-embed .metrics-grid::-webkit-scrollbar-track{ background:var(--brand-50); border-radius:999px }
-      .vi-compact-embed .metrics-grid::-webkit-scrollbar-thumb{
-        background:linear-gradient(90deg,var(--brand-600),var(--brand-500)); border-radius:999px; border:2px solid #fff;
-      }
-      .vi-compact-embed .metrics-grid{ scrollbar-width:thin; scrollbar-color:var(--brand-600) var(--brand-50) }
-    }
 
     /* Darkness gauge (styles only) */
     .vi-compact-embed .gauge-svg{ width:100%; height:var(--viz-row-h) }
@@ -266,31 +229,8 @@
       transform: scale(.7);
       vector-effect: non-scaling-stroke;
     }
-    /* Clean, centered Action Network footer — gradient background + white logo */
-    .vi-compact-embed .vi-footer {
-      display: block !important;
-      text-align: center;
-      padding: 0 0; /* zero vertical padding for minimal height */
-      border-top: 1px solid var(--border);
-      background:
-        radial-gradient(120% 140% at 85% 10%, rgba(255,255,255,.10) 0%, transparent 60%),
-        linear-gradient(90deg, var(--brand-900) 0%, var(--brand-600) 45%, var(--brand-500) 100%) !important;
-    }
 
-    .vi-compact-embed .vi-footer img {
-      height: 52px;
-      width: auto;
-      display: inline-block;
-      filter: brightness(0) invert(1); /* turns logo white */
-      transition: filter 0.3s ease;
-    }
-
-    /* Hover tint: crisp blue (#0079F0) */
-    .vi-compact-embed .vi-footer img:hover {
-      filter: invert(27%) sepia(98%) saturate(2883%) hue-rotate(196deg) brightness(98%) contrast(101%);
-    }
-
-    /* === Footer layout with Embed button === */
+    /* Footer + embed button */
     .vi-compact-embed .vi-footer {
       display: block !important;
       text-align: center;
@@ -302,180 +242,99 @@
       color: #fff;
       position: relative;
     }
-
     .vi-compact-embed .footer-inner {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 12px;
-      position: relative;
+      display: flex; justify-content: center; align-items: center; gap: 12px; position: relative;
     }
-
     .vi-compact-embed .embed-btn {
-      position: absolute;
-      left: 14px;
-      background: #56C257;
-      color: #fff;
-      border: 1px solid #56C257;
-      border-radius: 8px;
-      padding: 6px 14px;
-      font: 13px/1.2 system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
-      cursor: pointer;
-      transition: .2s ease;
+      position: absolute; left: 14px; background: #56C257; color: #fff; border: 1px solid #56C257;
+      border-radius: 8px; padding: 6px 14px; font: 13px/1.2 system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif; cursor: pointer; transition: .2s ease;
     }
-
-    .vi-compact-embed .embed-btn:hover {
-      background: #3FA94B;
-      border-color: #3FA94B;
-    }
-
+    .vi-compact-embed .embed-btn:hover { background:#3FA94B; border-color:#3FA94B; }
     .vi-compact-embed .vi-footer img {
-      height: 52px;
-      width: auto;
-      display: inline-block;
-      filter: brightness(0) invert(1);
+      height: 52px; width: auto; display: inline-block; filter: brightness(0) invert(1);
     }
 
-.vi-compact-embed .embed-wrapper{
-  position: absolute;
-  bottom: calc(100% + 10px);   /* sits above the green footer bar */
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(600px, calc(100% - 24px));
-  display: none;
-  padding: 16px 20px;          /* more breathing room */
-  border: 1px solid #ccc;
-  border-radius: 12px;
-  background: #fff;
-  color: #111;                 /* ensure dark text in the popup */
-  box-shadow: 0 12px 28px rgba(0,0,0,.18);
-  z-index: 1000;               /* overlays the table rows */
-}
-
-/* (optional) little pointer arrow */
-.vi-compact-embed .embed-wrapper::after{
-  content:"";
-  position:absolute;
-  left:50%;
-  transform:translateX(-50%);
-  bottom:-8px;
-  border:8px solid transparent;
-  border-top-color:#fff;
-  filter: drop-shadow(0 1px 1px rgba(0,0,0,.08));
-}
-
-    .vi-compact-embed #copy-status {
+    .vi-compact-embed .embed-wrapper{
+      position: absolute;
+      bottom: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(600px, calc(100% - 24px));
       display: none;
-      color: #008000;
-      font-size: 13px;
-      margin-top: 6px;
+      padding: 16px 20px;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      background: #fff;
+      color: #111;
+      box-shadow: 0 12px 28px rgba(0,0,0,.18);
+      z-index: 1000;
     }
+    .vi-compact-embed .embed-wrapper::after{
+      content:""; position:absolute; left:50%; transform:translateX(-50%); bottom:-8px;
+      border:8px solid transparent; border-top-color:#fff; filter: drop-shadow(0 1px 1px rgba(0,0,0,.08));
+    }
+    .vi-compact-embed #copy-status { display:none; color:#008000; font-size:13px; margin-top:6px; }
+    .vi-compact-embed .embed-wrapper textarea{
+      width:100%; height:140px; font:14px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+      color:#111; background:#fff; padding:10px 12px; border:1px solid #ddd; border-radius:8px; resize:none;
+    }
+    .vi-compact-embed .row.is-clickable::after{ display:none !important; } /* hide hint if it clips */
 
-/* Roomier, black-text textarea */
-.vi-compact-embed .embed-wrapper textarea{
-  width: 100%;
-  height: 140px; /* taller */
-  font: 14px/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-  color: #111;
-  background: #fff;
-  padding: 10px 12px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  resize: none;
-}
-
-/* Kill stray “s” letters from the right edge by hiding the pseudo-hint entirely */
-.vi-compact-embed .row.is-clickable::after{ display:none !important; }
-    /* === Mobile footer/notch/popup fixes === */
-@media (max-width:640px){
-  /* 1) Let the whole page scroll, not the inner table */
-  .vi-compact-embed .table{
-    max-height: none !important;
-    /* add a bit of breathing room above the footer */
-    padding-bottom: 72px; /* ~footer height */
-  }
-
-  /* 2) Ensure the section itself doesn't clip children on mobile */
-  section.vi-compact-embed{
-    overflow: visible !important;
-  }
-
-  /* 3) Safe-area friendly footer */
-  .vi-compact-embed .vi-footer{
-    padding-bottom: max(6px, env(safe-area-inset-bottom));
-  }
-
-  /* 4) Keep the embed popup visible on small screens */
-  .vi-compact-embed .embed-wrapper{
-    position: fixed;                        /* escape any parent overflow */
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: calc(56px + env(safe-area-inset-bottom) + 8px); /* sit above footer */
-    width: min(600px, 92vw);
-    max-height: 65vh;                        /* scroll inside if tall */
-    overflow: auto;
-    z-index: 1000;
-  }
-}
+    /* ===================== MOBILE OVERRIDES (single block) ===================== */
     @media (max-width:640px){
-  .vi-compact-embed .vi-footer{
-    position: sticky;
-    bottom: 0;
-    z-index: 2;
-  }
-  .vi-compact-embed .table{ padding-bottom: 96px; }
-}
-    /* === FINAL MOBILE: page scroll + sticky footer, no inner green bar === */
-@media (max-width:640px){
-  /* Cancel the inline overflow:hidden on the section */
-  section.vi-compact-embed{
-    overflow: visible !important;
-  }
+      html, body { height:auto !important; overflow:auto !important; }
 
-  /* Kill the inner scroller so the whole page can scroll */
-  .vi-compact-embed .table{
-    max-height: none !important;
-    height: auto !important;
-    overflow: visible !important;            /* removes the green scrollbar */
-    -webkit-overflow-scrolling: auto !important;
-    padding-bottom: 96px !important;         /* room for sticky footer */
-  }
+      /* cancel section's inline overflow:hidden so children can be visible */
+      section.vi-compact-embed{ overflow:visible !important; }
 
-  /* Sticky footer that hugs the bottom of the viewport */
-  .vi-compact-embed .vi-footer{
-    position: sticky;
-    inset-block-end: 0;
-    z-index: 3;
-    padding-bottom: max(6px, env(safe-area-inset-bottom));
-  }
+      /* Kill inner scroller: whole page scrolls; add room for sticky footer */
+      .vi-compact-embed .table{
+        max-height:none !important;
+        height:auto !important;
+        overflow:visible !important;        /* removes the green scrollbar */
+        -webkit-overflow-scrolling:auto !important;
+        padding-bottom:96px !important;     /* space for sticky footer */
+      }
 
-  /* Keep the embed popup fully visible above the footer */
-  .vi-compact-embed .embed-wrapper{
-    position: fixed;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: calc(56px + env(safe-area-inset-bottom) + 8px);
-    width: min(600px, 92vw);
-    max-height: 65vh;
-    overflow: auto;
-    z-index: 1000;
-  }
-}
+      /* Sticky footer that hugs the bottom */
+      .vi-compact-embed .vi-footer{
+        position:sticky;
+        inset-block-end:0;
+        z-index:3;
+        padding-bottom:max(6px, env(safe-area-inset-bottom));
+      }
 
-/* If this lives inside an iframe that DOESN'T auto-resize,
-   make the SECTION itself the scroller so sticky still works. */
-@media (max-width:640px){
-  section.vi-compact-embed.is-embedded{
-    max-height: 100dvh;
-    overflow: auto !important;
-    -webkit-overflow-scrolling: touch;
-  }
-  section.vi-compact-embed.is-embedded .table{
-    overflow: visible !important;
-    max-height: none !important;
-  }
-}
-  
+      /* Keep the embed popup fully visible above the footer */
+      .vi-compact-embed .embed-wrapper{
+        position:fixed;
+        left:50%; transform:translateX(-50%);
+        bottom:calc(56px + env(safe-area-inset-bottom) + 8px);
+        width:min(600px, 92vw);
+        max-height:65vh;
+        overflow:auto;
+        z-index:1000;
+      }
+
+      /* Details panel: allow full height on mobile + sticky close */
+      .vi-compact-embed .details.open{ max-height:none !important; }
+      .vi-compact-embed .details{ display:flex; flex-direction:column; scroll-margin-top:8px; }
+      .vi-compact-embed .details-close{
+        order:-1; align-self:flex-end; position:sticky; top:8px; z-index:5;
+        padding:8px 12px; border-radius:999px; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,.08);
+      }
+
+      /* If the host iframe cannot resize, add .is-embedded on the <section> */
+      section.vi-compact-embed.is-embedded{
+        max-height:100dvh;
+        overflow:auto !important;
+        -webkit-overflow-scrolling:touch;
+      }
+      section.vi-compact-embed.is-embedded .table{
+        overflow:visible !important;
+        max-height:none !important;
+      }
+    }
+    /* =================== END MOBILE OVERRIDES (desktop untouched) ============== */
   </style>
 
 <div class="head">
@@ -492,7 +351,7 @@
       <div class="metric"><span class="bar" style="width:100.00%"></span><span class="val">4.66% (+2046)</span></div>
     </div>
 
-    <!-- Shared details panel (re-used under each clicked row) -->
+    <!-- Shared details panel -->
     <div id="az-details" class="details" aria-hidden="true" role="region" aria-labelledby="az-metrics-title">
       <h4 id="az-metrics-title" class="metrics-title">Arizona — Supermoon Viewing Factors</h4>
       <div class="metrics-grid">
@@ -609,25 +468,24 @@
       <div class="metric"><span class="bar" style="width:56.01%"></span><span class="val">2.61% (+3733)</span></div>
     </div>
   </div>
-  
-<div class="vi-footer">
-  <div class="footer-inner">
-    <button id="copy-embed-btn" class="embed-btn" aria-controls="embed-wrapper" aria-expanded="false">🔗 Embed This Table</button>
 
-    <img src="https://i.postimg.cc/x1nG117r/AN-final2-logo.png"
-         alt="The Action Network logo"
-         width="120" height="auto" loading="lazy" decoding="async" />
-  </div>
+  <div class="vi-footer">
+    <div class="footer-inner">
+      <button id="copy-embed-btn" class="embed-btn" aria-controls="embed-wrapper" aria-expanded="false">🔗 Embed This Table</button>
+      <img src="https://i.postimg.cc/x1nG117r/AN-final2-logo.png"
+           alt="The Action Network logo"
+           width="120" height="auto" loading="lazy" decoding="async" />
+    </div>
 
-  <div id="embed-wrapper" class="embed-wrapper">
-    <textarea id="embed-code" readonly>&lt;iframe src="https://gauthambc.github.io/ActionNetwork/top10-supermoon-states.html"
-        title="Top 10 Supermoon States"
-        width="100%" height="710"
-        style="border:0;" loading="lazy"&gt;&lt;/iframe&gt;
-    </textarea>
-    <p id="copy-status">Embed code copied!</p>
+    <div id="embed-wrapper" class="embed-wrapper">
+      <textarea id="embed-code" readonly>&lt;iframe src="https://gauthambc.github.io/ActionNetwork/top10-supermoon-states.html"
+          title="Top 10 Supermoon States"
+          width="100%" height="710"
+          style="border:0;" loading="lazy"&gt;&lt;/iframe&gt;
+      </textarea>
+      <p id="copy-status">Embed code copied!</p>
+    </div>
   </div>
-</div>
 
   <script>
     (function(){
@@ -644,7 +502,7 @@
         "Kansas":      { elev:2000, dark:4.00, clear:11.00, humid:56.20 },
         "Wyoming":     { elev:6700, dark:4.33, clear: 7.75, humid:56.75 }
       };
-      const DARK_MAX = 5, CLEAR_MAX = 30;
+      const DARK_MAX = 5;
 
       const rows   = document.querySelectorAll('.vi-compact-embed .row.is-clickable[data-state]');
       const panel  = document.getElementById('az-details');
@@ -735,14 +593,11 @@
 
       function openUnderRow(row){
         const state = row.dataset.state;
-        // move shared panel right after this row
-        row.after(panel);
-        // mark rows expanded state
+        row.after(panel); // move shared panel under row
         document.querySelectorAll('.vi-compact-embed .row.is-clickable[aria-expanded]')
           .forEach(r=>r.setAttribute('aria-expanded','false'));
         row.setAttribute('aria-expanded','true');
 
-        // show + render
         if(!panel.classList.contains('open')){
           panel.classList.add('open');
           panel.setAttribute('aria-hidden','false');
@@ -758,16 +613,12 @@
           .forEach(r=>r.setAttribute('aria-expanded','false'));
       }
 
-      /* Click to toggle (open on first click, close if clicking same row again) */
       rows.forEach(row=>{
         row.addEventListener('click', ()=>{
           const isExpanded  = row.getAttribute('aria-expanded') === 'true';
           const panelIsOpen = panel.classList.contains('open');
-          if (isExpanded && panelIsOpen) {
-            closePanel();
-          } else {
-            openUnderRow(row);
-          }
+          if (isExpanded && panelIsOpen) closePanel();
+          else openUnderRow(row);
         });
 
         row.addEventListener('keydown', e=>{
@@ -775,11 +626,8 @@
             e.preventDefault();
             const isExpanded  = row.getAttribute('aria-expanded') === 'true';
             const panelIsOpen = panel.classList.contains('open');
-            if (isExpanded && panelIsOpen) {
-              closePanel();
-            } else {
-              openUnderRow(row);
-            }
+            if (isExpanded && panelIsOpen) closePanel();
+            else openUnderRow(row);
           }
         });
       });
@@ -810,9 +658,9 @@
           const isHidden = wrapper.style.display === 'none' || wrapper.style.display === '';
           wrapper.style.display = isHidden ? 'block' : 'none';
           btn.textContent = isHidden ? 'Hide Embed Code' : '🔗 Embed This Table';
-          btn.setAttribute('aria-expanded', String(isHidden));   // a11y
+          btn.setAttribute('aria-expanded', String(isHidden));
           if (isHidden) {
-            ta.focus();                                         // focus + select
+            ta.focus();
             ta.select();
             document.execCommand('copy');
             status.style.display = 'block';
@@ -820,7 +668,7 @@
           } else {
             btn.focus();
           }
-          sendHeightToParent(); // update host height when wrapper toggles
+          sendHeightToParent();
         });
 
         // Close when clicking outside the popup
