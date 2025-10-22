@@ -417,6 +417,65 @@
     z-index: 1000;
   }
 }
+    @media (max-width:640px){
+  .vi-compact-embed .vi-footer{
+    position: sticky;
+    bottom: 0;
+    z-index: 2;
+  }
+  .vi-compact-embed .table{ padding-bottom: 96px; }
+}
+    /* === FINAL MOBILE: page scroll + sticky footer, no inner green bar === */
+@media (max-width:640px){
+  /* Cancel the inline overflow:hidden on the section */
+  section.vi-compact-embed{
+    overflow: visible !important;
+  }
+
+  /* Kill the inner scroller so the whole page can scroll */
+  .vi-compact-embed .table{
+    max-height: none !important;
+    height: auto !important;
+    overflow: visible !important;            /* removes the green scrollbar */
+    -webkit-overflow-scrolling: auto !important;
+    padding-bottom: 96px !important;         /* room for sticky footer */
+  }
+
+  /* Sticky footer that hugs the bottom of the viewport */
+  .vi-compact-embed .vi-footer{
+    position: sticky;
+    inset-block-end: 0;
+    z-index: 3;
+    padding-bottom: max(6px, env(safe-area-inset-bottom));
+  }
+
+  /* Keep the embed popup fully visible above the footer */
+  .vi-compact-embed .embed-wrapper{
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: calc(56px + env(safe-area-inset-bottom) + 8px);
+    width: min(600px, 92vw);
+    max-height: 65vh;
+    overflow: auto;
+    z-index: 1000;
+  }
+}
+
+/* If this lives inside an iframe that DOESN'T auto-resize,
+   make the SECTION itself the scroller so sticky still works. */
+@media (max-width:640px){
+  section.vi-compact-embed.is-embedded{
+    max-height: 100dvh;
+    overflow: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  section.vi-compact-embed.is-embedded .table{
+    overflow: visible !important;
+    max-height: none !important;
+  }
+}
+  
   </style>
 
 <div class="head">
