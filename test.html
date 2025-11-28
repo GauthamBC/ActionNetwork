@@ -196,7 +196,7 @@
     }
 
     /* Desktop internal scroll (kept for desktop) */
-    .vi-compact-embed{ --pane-max-h: min(85vh, 880px); }
+    .vi-compact-embed{ --pane-max-h: min(74vh, 680px); }
     .vi-compact-embed .table{
       max-height: var(--pane-max-h); overflow:auto; -webkit-overflow-scrolling:touch;
       overscroll-behavior:contain; scrollbar-gutter:stable both-edges;
@@ -292,15 +292,15 @@
   }
 
   /* Keep .table as the scroll container (like desktop), a touch shorter for phones */
-
-  /* Let the table grow naturally on mobile; page scrolls instead */
+  .vi-compact-embed { --pane-max-h: min(70vh, 560px); }
   .vi-compact-embed .table{
-    max-height:none !important;
-    overflow:visible !important;
-    -webkit-overflow-scrolling:auto !important;
+    max-height: var(--pane-max-h) !important;
+    overflow:auto !important;
+    -webkit-overflow-scrolling:touch !important;
     padding-bottom:0 !important;
     margin-bottom:0 !important;
   }
+
   /* Make footer content not overlap: button smaller and in-flow */
   .vi-compact-embed .footer-inner{
     justify-content:space-between !important;
