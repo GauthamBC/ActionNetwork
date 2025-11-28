@@ -1,4 +1,4 @@
-<!doctype html>
+<!doctype html> 
 <html lang="en">
 <head>
 <meta charset="utf-8" />
@@ -86,6 +86,7 @@
 
     /* Details panel */
     .vi-compact-embed .details{
+      position:relative;
       margin:0;padding:0;border:1px solid var(--border);border-width:0;border-radius:12px;background:var(--brand-50);
       max-height:0;opacity:0;overflow:hidden;transform:translateY(-6px);
       transition:max-height .28s ease,opacity .28s ease,transform .28s ease,padding .20s ease,margin .20s ease,border-width .20s ease;
@@ -129,8 +130,26 @@
     @media (max-width:640px){.vi-compact-embed .row.is-clickable::after{display:none}}
     .vi-compact-embed .row[aria-expanded="true"]::after{display:none}
 
-    .vi-compact-embed .details-close{margin-top:10px;align-self:flex-end;background:#fff;border:1px solid var(--border);border-radius:999px;padding:6px 10px;font-weight:700;cursor:pointer}
-    .vi-compact-embed .details-close:hover{border-color:var(--hover-ring)}
+    /* Top-right close button */
+ .vi-compact-embed .details-close{
+  position:absolute;
+  top:8px;
+  right:8px;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:999px;
+  padding:3px 8px;          /* smaller pill */
+  font-size:11px;           /* smaller text */
+  line-height:1.1;
+  font-weight:600;
+  cursor:pointer;
+  z-index:10;
+  box-shadow:0 1px 3px rgba(0,0,0,.06);
+}
+
+.vi-compact-embed .details-close:hover{
+  border-color:var(--hover-ring);
+}
 
     /* Compact defaults / shared heights */
     .vi-compact-embed{ --viz-h:56px; --card-h:176px }
@@ -281,94 +300,91 @@
     }
     .vi-compact-embed .row.is-clickable::after{ display:none !important; } /* hide hint if it clips */
 
-/* ===================== MOBILE OVERRIDES (single block) ===================== */
-@media (max-width:640px){
-  html, body { height:auto !important; overflow:auto !important; }
-  /* Let the page behave normally; mirror desktop: .table scrolls, footer not sticky */
-  .vi-compact-embed{
-    display:block;
-    min-height:auto;
-    overflow:visible;
-  }
+    /* ===================== MOBILE OVERRIDES (single block) ===================== */
+    @media (max-width:640px){
+      html, body { height:auto !important; overflow:auto !important; }
+      /* Let the page behave normally; mirror desktop: .table scrolls, footer not sticky */
+      .vi-compact-embed{
+        display:block;
+        min-height:auto;
+        overflow:visible;
+      }
 
-  /* Keep .table as the scroll container (like desktop), a touch shorter for phones */
-  .vi-compact-embed { --pane-max-h: min(70vh, 560px); }
-  .vi-compact-embed .table{
-    max-height: var(--pane-max-h) !important;
-    overflow:auto !important;
-    -webkit-overflow-scrolling:touch !important;
-    padding-bottom:0 !important;
-    margin-bottom:0 !important;
-  }
+      /* Keep .table as the scroll container (like desktop), a touch shorter for phones */
+      .vi-compact-embed { --pane-max-h: min(70vh, 560px); }
+      .vi-compact-embed .table{
+        max-height: var(--pane-max-h) !important;
+        overflow:auto !important;
+        -webkit-overflow-scrolling:touch !important;
+        padding-bottom:0 !important;
+        margin-bottom:0 !important;
+      }
 
-  /* Make footer content not overlap: button smaller and in-flow */
-  .vi-compact-embed .footer-inner{
-    justify-content:space-between !important;
-    padding:0 10px;
-    gap:8px;
-  }
-  .vi-compact-embed .embed-btn{
-    position:static !important;
-    padding:6px 10px;
-    font-size:12px;
-    line-height:1.2;
-    flex-shrink:0;
-  }
-  .vi-compact-embed .vi-footer img{
-    height:44px;
-  }
+      /* Make footer content not overlap: button smaller and in-flow */
+      .vi-compact-embed .footer-inner{
+        justify-content:space-between !important;
+        padding:0 10px;
+        gap:8px;
+      }
+      .vi-compact-embed .embed-btn{
+        position:static !important;
+        padding:6px 10px;
+        font-size:12px;
+        line-height:1.2;
+        flex-shrink:0;
+      }
+      .vi-compact-embed .vi-footer img{
+        height:44px;
+      }
 
-  /* Footer behaves like desktop (not sticky) */
-  .vi-compact-embed .vi-footer{
-    position: static !important;
-    bottom: auto !important;
-    z-index: auto !important;
-    padding: 8px 0;
-    border-top:1px solid var(--border);
-    background:
-      radial-gradient(120% 140% at 85% 10%, rgba(255,255,255,.10) 0%, transparent 60%),
-      linear-gradient(90deg,var(--brand-900) 0%,var(--brand-600) 45%,var(--brand-500) 100%)!important;
-    overflow:visible !important; /* ensure popup is visible */
-  }
+      /* Footer behaves like desktop (not sticky) */
+      .vi-compact-embed .vi-footer{
+        position: static !important;
+        bottom: auto !important;
+        z-index: auto !important;
+        padding: 8px 0;
+        border-top:1px solid var(--border);
+        background:
+          radial-gradient(120% 140% at 85% 10%, rgba(255,255,255,.10) 0%, transparent 60%),
+          linear-gradient(90deg,var(--brand-900) 0%,var(--brand-600) 45%,var(--brand-500) 100%)!important;
+        overflow:visible !important; /* ensure popup is visible */
+      }
 
-  /* Keep the embed popup positioned like desktop (relative to footer) */
-  .vi-compact-embed .embed-wrapper{
-    position: absolute !important;
-    bottom: calc(100% + 10px) !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    width: min(600px, calc(100% - 24px)) !important;
-    max-height:65vh;
-    overflow:auto;
-    z-index:1000;
-  }
+      /* Keep the embed popup positioned like desktop (relative to footer) */
+      .vi-compact-embed .embed-wrapper{
+        position: absolute !important;
+        bottom: calc(100% + 10px) !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: min(600px, calc(100% - 24px)) !important;
+        max-height:65vh;
+        overflow:auto;
+        z-index:1000;
+      }
 
-  /* Details panel UX (keep) */
-  .vi-compact-embed .details.open{ max-height:none !important; }
-  .vi-compact-embed .details{ display:flex; flex-direction:column; scroll-margin-top:8px; }
-  .vi-compact-embed .details-close{
-    order:-1; align-self:flex-end; position:sticky; top:8px; z-index:5;
-    padding:8px 12px; border-radius:999px; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,.08);
-  }
+      /* Details panel UX (keep) */
+      .vi-compact-embed .details.open{ max-height:none !important; }
+      .vi-compact-embed .details{ display:flex; flex-direction:column; scroll-margin-top:8px; }
 
-  /* If the host iframe cannot resize, add .is-embedded on the <section> */
-  section.vi-compact-embed.is-embedded{
-    max-height:100dvh;
-    overflow:auto !important;
-    -webkit-overflow-scrolling:touch;
-  }
-  section.vi-compact-embed.is-embedded .table{
-    overflow:visible !important;
-    max-height:none !important;
-  }
-}
-/* =================== END MOBILE OVERRIDES (desktop untouched) ============== */
+      /* If the host iframe cannot resize, add .is-embedded on the <section> */
+      section.vi-compact-embed.is-embedded{
+        max-height:100dvh;
+        overflow:auto !important;
+        -webkit-overflow-scrolling:touch;
+      }
+      section.vi-compact-embed.is-embedded .table{
+        overflow:visible !important;
+        max-height:none !important;
+      }
+    }
+    /* =================== END MOBILE OVERRIDES (desktop untouched) ============== */
   </style>
-<div class="head">
-  <h3 id="vi-compact-embed-title" class="title">Top 10 U.S. States for Supermoon Visibility in 2025</h3>
-  <p class="sub"><em>Ranked by visibility factors such as <strong>sky clarity</strong>, <strong>elevation</strong>, and <strong>atmospheric conditions</strong>, converted into <strong>implied probabilities</strong> and <strong>moneyline odds</strong>.</em></p>
-  <p class="meta">Click <strong>a state</strong> to see viewing factors.</p>
-</div>
+
+  <div class="head">
+    <h3 id="vi-compact-embed-title" class="title">Top 10 U.S. States for Supermoon Visibility in 2025</h3>
+    <p class="sub"><em>Ranked by visibility factors such as <strong>sky clarity</strong>, <strong>elevation</strong>, and <strong>atmospheric conditions</strong>, converted into <strong>implied probabilities</strong> and <strong>moneyline odds</strong>.</em></p>
+    <p class="meta">Click <strong>a state</strong> to see viewing factors.</p>
+  </div>
 
   <div class="table">
     <!-- Rows are clickable; the shared panel will be moved under the clicked row -->
@@ -592,13 +608,13 @@
     </div>
 
     <div id="embed-wrapper" class="embed-wrapper">
-  <textarea id="embed-code" readonly>&lt;iframe src="https://gauthambc.github.io/ActionNetwork/top10December.html"
+      <textarea id="embed-code" readonly>&lt;iframe src="https://gauthambc.github.io/ActionNetwork/top10December.html"
       title="Top 10 Supermoon States"
       width="100%" height="750"
       scrolling="no"
       style="border:0;" loading="lazy"&gt;&lt;/iframe&gt;
-  </textarea>
-  <p id="copy-status">Embed code copied!</p>
+      </textarea>
+      <p id="copy-status">Embed code copied!</p>
     </div>
   </div>
 
